@@ -20,7 +20,7 @@ With Podman Desktop, you can pull an image from a registry to your container eng
 1. Go to **Images** from the left navigation pane.
 1. Click **Pull**.
    ![pull button](img/pull-button.png)
-1. Enter the image name, such as `quay.io/podman/hello`. 
+1. Enter the image name, such as `quay.io/podman/hello`.
 
    :::note
 

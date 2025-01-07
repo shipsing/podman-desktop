@@ -21,7 +21,7 @@ With Podman Desktop, you can build an image from a Containerfile on your contain
    ![build button](img/build-button.png)
 1. Provide the following details:
    - **Containerfile path**: Select the `Containerfile` or `Dockerfile` to build.
-   - **Build context directory**: The field automatically picks up the context directory based on the file path. You can change the directory, if needed.
+   - **Build context directory**: The field automatically picks the context directory based on the file path. You can change the directory, if needed.
    - **Image Name**: Enter your image name, such as `my-image`. If you want to push the image to a registry, use the fully qualified image name that your registry requires, such as `quay.io/my-repository/my-image`, `ghcr.io/my-repository/my-image`, or `docker.io/my-repository/my-image`.
    - **Build arguments**: Pass the key and value for the arguments defined in your `Containerfile` or `Dockerfile`, if needed.
    - **Platform**: Select multiple platforms on which you want to build the image. The default platform is `Intel and AMD x86_64 systems`.
