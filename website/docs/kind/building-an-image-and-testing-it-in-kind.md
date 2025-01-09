@@ -21,25 +21,24 @@ With Podman Desktop, you can build an image with your container engine, and test
 
 1. Build your image:
 
-   1. Open **<Icon icon="fa-solid fa-cloud" size="lg" /> Images > <Icon icon="fa-solid fa-cube" size="lg" /> Build an image**.
-   1. **Containerfile path**: select your `Containerfile` or `Dockerfile`.
-   1. **Build context directory**: optionally, select a directory different from the directory containing your `Containerfile` or `Dockerfile`.
-   1. **Image Name**: enter your image name `my-custom-image`.
-   1. Click **<Icon icon="fa-solid fa-cube" size="lg" /> Build**.
-   1. Wait for the image build to finish.
-   1. Click **Done** to get back to the images list.
+   1. Go to **Images** from the left navigation pane.
+   1. Click **Build**.
+   1. Provide the relevant details to build the image. For example, enter image name as `my-custom-image`.
+   1. Click **Build**. Wait for the image build to finish.
+   1. Click **Done** to return to the Images page.
 
 1. Push your image to your Kind cluster:
 
    1. **<Icon icon="fa-solid fa-cloud" size="lg" /> Search images**: enter your image name `my-custom-image` to find the image.
-   1. Click **<Icon icon="fa-solid fa-ellipsis-v" size="lg" /> > <Icon icon="fa-solid fa-ellipsis-v" size="lg" /> Push image to Kind cluster**.
+   1. Click the **overflow menu** icon and select **Push image to Kind cluster**. A successful operation notification opens.
+   1. Click **OK**.
 
 1. Test your image by creating a container:
 
-   1. Click **<Icon icon="fa-solid fa-play" size="lg" />** to open the **Create a container from image** dialog.
+   1. Click the **Run Image** icon corresponding to the image `my-custom-image`.
    1. **Container name**: enter `my-custom-image-container`.
-   1. Review the parameters that Podman Desktop has detected from your image definition.
-   1. Click **<Icon icon="fa-solid fa-play" size="lg" /> Start Container** to start the container in your container engine.
+   1. Review the parameters that Podman Desktop has detected from your image definition or edit them, if required.
+   1. Click **Start Container**.
 
 1. Test your image and container on your Kind cluster:
 

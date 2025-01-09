@@ -19,15 +19,19 @@ With Podman Desktop, you can push an image to your local Kind-powered Kubernetes
 
 #### Procedure
 
-1. Open **Podman Desktop dashboard > <Icon icon="fa-solid fa-cloud" size="lg" /> Images**.
-1. **<Icon icon="fa-solid fa-search" size="lg" /> Search images**: `<your_image>:<your_tag>`.
-1. Click **<Icon icon="fa-solid fa-ellipsis-v" size="lg" /> > <Icon icon="fa-solid fa-ellipsis-v" size="lg" /> Push image to Kind cluster**.
-1. If you created many Kind clusters, select your Kind cluster from the list.
+1. Go to **Images** from the left navigation pane.
+1. Click the **overflow menu** icon corresponding to the image you want to push and select **Push image to Kind cluster**.
+   ![pushing an image to Kind](img/pushing-an-image.png)
+
+1. Optional: If you created multiple Kind clusters, select the right Kind cluster from the context dropdown list.
+   ![selecting a Kind cluster](img/pushing-an-image.png)
+   A successful operation notification opens.
+1. Click **OK**.
 
 #### Verification
 
 Kind does not enable you to list loaded images.
-Therefore, create a Pod that uses the loaded image.
+Therefore, create a pod that uses the loaded image.
 
 1. Create a `verify_my_image.yaml` Kubernetes YAML file on your workstation.
    Replace the placeholders:
