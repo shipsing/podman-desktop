@@ -43,4 +43,4 @@ Consider running containers in a pod to:
 #### Additional resources
 
 - [Blog- Creating a pod](https://podman-desktop.io/blog/2024/10/05/kubernetes-blog#creating-a-pod)
-- [Managing containers and pods](https://podman-desktop.io/tutorial/managing-your-application-resources#managing-containers-and-pods)   
+- [Managing containers and pods](https://podman-desktop.io/tutorial/managing-your-application-resources#managing-containers-and-pods)
