@@ -18,22 +18,15 @@ You can create multiple local Kind-powered Kubernetes clusters.
 #### Procedure
 
 1. Go to **<Icon icon="fa-solid fa-cog" size="lg" /> Settings > Resources**
-1. In the Kind tile, click on the **Create new ...** button.
-1. Choose your options, and click the **Create** button.
-
-   The defaults are:
-
-   - **Name**: `kind-cluster`
-   - **Provider Type**: `podman`
-   - **HTTP Port**: `9090`
-   - **HTTPS Port**: `9443`
-   - **Setup an ingress controller [Contour](https://projectcontour.io)**: Enabled
-   - **Node’s container image (Available image tags on [kind/releases](https://github.com/kubernetes-sigs/kind/releases))**: Left empty to use latest.
-
-1. (Optionally) Click the **Show logs** button to display the logs.
-1. After successful creation, click on the **Go back to resources** button
+1. In the Kind tile, click the **Create new ...** button.
+1. Edit the default configuration, if needed.
+1. Click the **Create** button.
+   ![creating a Kind cluster](img/creating-a-kind-cluster.png)
+1. Optional: Click the **Show logs** button to view the logs.
+1. After successful creation, click the **Go back to resources** button.
 
 #### Verification
 
-1. In **<Icon icon="fa-solid fa-cog" size="lg" /> Settings > Resources**, in the **Kind** tile, your `<kind-cluster>` instance is running.
+1. Go to **<Icon icon="fa-solid fa-cog" size="lg" /> Settings > Resources**, and view your running `<kind-cluster>` instance in the **Kind** tile.
+   ![running Kind cluster instance](img/kind-cluster-running.png)
 1. In the Podman Desktop tray, open the **Kubernetes** menu, you can set the context to your Kind cluster: `kind-<kind-cluster>`.
