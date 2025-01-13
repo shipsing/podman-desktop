@@ -50,7 +50,8 @@ With Podman Desktop, you can build an image with your container engine, and test
    1. Click the overflow menu icon corresponding to the container and select **Deploy to Kubernetes**.
       ![deploying to Kubernetes](img/deploying-to-kubernetes.png)
    1. Provide the following details:
-      - **Pod Name**: Keep the proposed value `my-custom-image-container-pod`. -**Expose service locally using Kubernetes Ingress**: Select the checkbox to expose the service locally using the ingress controller.
+      - **Pod Name**: Keep the proposed value `my-custom-image-container-pod`.
+      - **Expose service locally using Kubernetes Ingress**: Select the checkbox to expose the service locally using the ingress controller.
       - Optional: If your container exposes more than one port, select the port to expose from the dropdown list.
    1. Click **Deploy**. Wait for the pod to reach the state: **Phase: Running**.
       ![deploy button](img/deploy-button.png)
@@ -62,4 +63,4 @@ With Podman Desktop, you can build an image with your container engine, and test
 1. View the running `my-custom-image-container-pod` pod.
    ![running pod](img/my-custom-image-container-pod.png)
 1. Click the pod name to view its details and logs.
-1. Optional: If your container exposes a port, go to `http://localhost:9090`: your application is running.
+1. Optional: If your container exposes a port, go to `http://localhost:<port-number-expodsed>`: your application is running.
