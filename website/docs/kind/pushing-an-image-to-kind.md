@@ -23,7 +23,7 @@ With Podman Desktop, you can push an image to your local Kind-powered Kubernetes
 1. Click the **overflow menu** icon corresponding to the image you want to push and select **Push image to Kind cluster**.
    ![pushing an image to Kind](img/push-image-to-kind.png)
 
-1. Optional: If you created multiple Kind clusters, select the right Kind cluster from the context dropdown list.
+1. Optional: If you created multiple Kind clusters, select the required Kind cluster from the context dropdown list.
    ![selecting a Kind cluster](img/select-a-kind-cluster.png)
    A successful operation notification opens.
 1. Click **OK**.

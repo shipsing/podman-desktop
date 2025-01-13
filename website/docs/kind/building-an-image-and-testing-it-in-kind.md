@@ -63,4 +63,4 @@ With Podman Desktop, you can build an image with your container engine, and test
 1. View the running `my-custom-image-container-pod` pod.
    ![running pod](img/my-custom-image-container-pod.png)
 1. Click the pod name to view its details and logs.
-1. Optional: If your container exposes a port, go to `http://localhost:<port-number-expodsed>`: your application is running.
+1. Optional: If your container exposes a port, go to `http://localhost:<port-number-exposed>`: your application is running.
