@@ -30,7 +30,7 @@ With Podman Desktop, you can build an image with your container engine, and test
 
 1. Push your image to your Minikube cluster:
 
-   1. Click the **overflow menu** icon corresponding to `my-custom-image` and select **Push image to Kind cluster**. A successful operation notification opens.
+   1. Click the **overflow menu** icon corresponding to `my-custom-image` and select **Push image to minikube cluster**. A successful operation notification opens.
       ![pushing an image to Minikube](img/pushing-an-image-to-minikube.png)
    1. Click **OK**.
 

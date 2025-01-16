@@ -18,11 +18,11 @@ Set your Kubernetes context to your local Minikube-powered Kubernetes cluster.
 
 1. Open the Podman Desktop tray.
 2. Go to **Kubernetes**.
-3. Click the Kubernetes context with the `minikube` name.
+3. Click the Kubernetes context named `minikube`.
 
 :::note
 
-Alternatively, use the status bar or the Podman Desktop Settings to set your Kubernetes context. For more details, see [Viewing and selecting the current Kubernetes context](/docs/kubernetes/viewing-and-selecting-current-kubernetes-context).
+Alternatively, use the status bar or the Podman Desktop **Settings** to set your Kubernetes context. For more details, see [Viewing and selecting the current Kubernetes context](/docs/kubernetes/viewing-and-selecting-current-kubernetes-context).
 
 :::
 

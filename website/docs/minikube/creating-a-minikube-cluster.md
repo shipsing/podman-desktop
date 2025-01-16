@@ -33,6 +33,6 @@ You can create multiple local Minikube-powered Kubernetes clusters.
 
    :::note
 
-   Alternatively, use the status bar or the Podman Desktop Settings to set your Kubernetes context. For more details, see [Viewing and selecting the current Kubernetes context](/docs/kubernetes/viewing-and-selecting-current-kubernetes-context).
+   Alternatively, use the status bar or the Podman Desktop **Settings** to set your Kubernetes context. For more details, see [Viewing and selecting the current Kubernetes context](/docs/kubernetes/viewing-and-selecting-current-kubernetes-context).
 
    :::
