@@ -2,8 +2,8 @@
 sidebar_position: 10
 title: Pushing an image
 description: Pushing an image to your Kind cluster
-keywords: [podman desktop, podman, containers, images, migrating, kubernetes]
-tags: [migrating-to-kubernetes, images]
+keywords: [podman desktop, podman, containers, images, pushing an image, kubernetes]
+tags: [pushing-an-image, images]
 ---
 
 # Pushing an image to your local Kind-powered Kubernetes cluster

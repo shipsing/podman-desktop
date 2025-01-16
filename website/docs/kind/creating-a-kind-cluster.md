@@ -2,8 +2,8 @@
 sidebar_position: 4
 title: Creating a cluster
 description: Creating a local Kind-powered Kubernetes cluster.
-keywords: [podman desktop, podman, containers, migrating, kubernetes, kind]
-tags: [migrating-to-kubernetes, kind]
+keywords: [podman desktop, podman, containers, creating a cluster, kubernetes, kind]
+tags: [creating-a-kind-cluster, kind]
 ---
 
 # Creating a local Kind-powered Kubernetes cluster
@@ -29,4 +29,10 @@ You can create multiple local Kind-powered Kubernetes clusters.
 
 1. Go to **<Icon icon="fa-solid fa-cog" size="lg" /> Settings > Resources**, and view your running `<kind-cluster>` instance in the **Kind** tile.
    ![running Kind cluster instance](img/kind-cluster-running.png)
-1. In the Podman Desktop tray, open the **Kubernetes** menu, you can set the context to your Kind cluster: `kind-<kind-cluster>`.
+1. In the Podman Desktop tray, open the **Kubernetes** menu; you can set the context to your Kind cluster: `kind-<kind-cluster>`.
+
+   :::note
+
+   Alternatively, use the status bar or the Podman Desktop **Settings** to set your Kubernetes context. For more details, see [Viewing and selecting the current Kubernetes context](/docs/kubernetes/viewing-and-selecting-current-kubernetes-context).
+
+   :::

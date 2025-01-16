@@ -2,8 +2,8 @@
 sidebar_position: 10
 title: Building and testing an image
 description: Building an image and testing it in Kind
-keywords: [podman desktop, podman, containers, pods, migrating, kubernetes, kind]
-tags: [migrating-to-kubernetes]
+keywords: [podman desktop, podman, containers, pods, building an image, kubernetes, kind]
+tags: [building-an-image, testing-an-image-on-kind]
 ---
 
 # Building an image and testing it in Kind
