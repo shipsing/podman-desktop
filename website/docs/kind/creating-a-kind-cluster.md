@@ -29,7 +29,7 @@ You can create multiple local Kind-powered Kubernetes clusters.
 
 1. Go to **<Icon icon="fa-solid fa-cog" size="lg" /> Settings > Resources**, and view your running `<kind-cluster>` instance in the **Kind** tile.
    ![running Kind cluster instance](img/kind-cluster-running.png)
-1. In the Podman Desktop tray, open the **Kubernetes** menu; you can set the context to your Kind cluster: `kind-<kind-cluster>`.
+1. In the Podman Desktop tray, select the **Kubernetes** menu; you can set the context to your Kind cluster: `kind-<kind-cluster>`.
 
    :::note
 
