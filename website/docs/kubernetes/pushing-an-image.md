@@ -13,8 +13,8 @@ You can push an image to a Kubernetes cluster, such as Kind, MiniKube, or Lima. 
 See the procedural details in the following sections:
 
 - [Pushing an image to Kind](/docs/kind/pushing-an-image-to-kind)
-- [Pushing an image to Minikube](//docs/minikube/pushing-an-image-to-minikube)
-- [Pushing an image to Lima](/docs/extensions/install)
+- [Pushing an image to Minikube](/docs/minikube/pushing-an-image-to-minikube)
+- [Pushing an image to Lima](/docs/lima/pushing-an-image-to-lima)
 
 #### Additional resources
 
