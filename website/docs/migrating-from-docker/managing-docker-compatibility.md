@@ -36,7 +36,7 @@ As a developer, you can:
 Make sure you have:
 
 - [A running Podman machine](/docs/podman/creating-a-podman-machine).
-- [Enabled the Docker compatibility](/docs/migrating-from-docker/customizing-docker-compatibility#enable-docker-compatibility) feature.
+- Enabled the [Docker compatibility](/docs/migrating-from-docker/customizing-docker-compatibility#enable-docker-compatibility) feature.
 
 <Tabs>
    <TabItem value="win" label="Windows" className="markdown">

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 2
 title: Customizing Docker compatibility
-description: How to customize the Docker compatibiolity feature
+description: How to customize the Docker compatibility feature
 keywords: [podman desktop, podman, Docker compatibility, Kubernetes]
-tags: [enable-docker-compatibility, disable-docker-comatibility]
+tags: [enable-docker-compatibility, disable-docker-compatibility]
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 # Customizing Docker compatibility - Experimental feature
 
-With Podman Desktop, you can customize the Docker compatibility feature based on your development needs. If you want to run your Docker applications on a Podman engine, you can enable the feature. Otherwise, keep the feature disabled.
+With Podman Desktop, you can customize the Docker compatibility feature. If you want to run your Docker applications on a Podman engine, you can enable the feature. Otherwise, keep the feature disabled.
 
 **_On macOS_**
 
@@ -22,7 +22,7 @@ Podman Desktop uses the `podman-mac-helper` utility to automatically link the Do
 
 Podman Desktop displays the information of the Podman machine that emulates the Docker socket on the Docker compatibility page.
 
-**_On Windows and Linux_**
+**_On Windows_**
 
 The binding between the Podman machine and the system socket is not known. So, Podman Desktop displays only the information of the Docker socket on the Docker compatibility page.
 
@@ -170,3 +170,8 @@ Perform any of the following steps:
 
 </TabItem>
 </Tabs>
+
+#### Additional resources
+
+- [Managing Docker compatibility](/docs/migrating-from-docker/managing-docker-compatibility)
+- [`podman-mac-helper` source](https://github.com/containers/podman/tree/main/cmd/podman-mac-helper)
