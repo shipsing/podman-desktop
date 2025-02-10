@@ -89,7 +89,7 @@ Setting the `DOCKER_HOST` environment variable isn't necessary on Windows becaus
 </TabItem>
 <TabItem value="mac" label="macOS">
 
-1. Identify the location of your Podman socket
+1. Identify the location of your Podman socket.
 
 ```shell-session
 $ podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}'
@@ -104,7 +104,7 @@ $ export DOCKER_HOST=unix://<your_podman_socket_location>
 </TabItem>
 <TabItem value="linux" label="Linux">
 
-1. Identify the location of your Podman socket
+1. Identify the location of your Podman socket.
 
 ```shell-session
 $ podman info --format '{{.Host.RemoteSocket.Path}}'
