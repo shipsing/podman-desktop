@@ -11,20 +11,36 @@ import TabItem from '@theme/TabItem';
 
 # Customizing Docker compatibility - Experimental feature
 
-With Podman Desktop, you can customize the Docker compatibility feature. If you want to run your Docker applications on a Podman engine, you can enable the feature. Otherwise, keep the feature disabled.
+With Podman Desktop, you can customize the Docker compatibility feature. If you want to run your Docker applications on a Podman engine, you can enable the feature.
 
-**_On macOS_**
+<Tabs>
+   <TabItem value="macOS" label="macOS" className="markdown">
 
 Podman Desktop uses the `podman-mac-helper` utility to automatically link the Docker socket to the Podman machine. This utility provides a compatibility layer that allows you to:
 
 - Run Docker commands on a Podman engine.
 - Make your tools, such as [Maven](https://maven.apache.org/) or [Testcontainers](https://www.testcontainers.com/) communicate with Podman without reconfiguration.
 
-Podman Desktop displays the information of the Podman machine that emulates the Docker socket on the Docker compatibility page.
+Podman Desktop provides information about the Podman machine that emulates the Docker socket on the Docker Compatibility page. Click the **Podman details** icon to view the details of the Podman machine.
 
-**_On Windows_**
+![system socket details on macOS](img/system-socket-details-macOS.png)
 
-The binding between the Podman machine and the system socket is not known. So, Podman Desktop displays only the information of the Docker socket on the Docker compatibility page.
+</TabItem>
+<TabItem value="win" label="Windows" className="markdown">
+
+The binding between the Podman machine and the system socket is not known. So, Podman Desktop displays only the server information on the Docker Compatibility page.
+
+![system socket details on Windows](img/system-socket-details-windows.png)
+
+</TabItem>
+<TabItem value="linux" label="Linux" className="markdown">
+
+The binding between the Podman machine and the system socket is not known. So, Podman Desktop displays only the server information on the Docker Compatibility page.
+
+![system socket details on Linux](img/system-socket-details-linux.png)
+
+</TabItem>
+</Tabs>
 
 ## Enable Docker compatibility
 
@@ -44,10 +60,13 @@ The binding between the Podman machine and the system socket is not known. So, P
 1. Click **OK**. A notification prompts you to restart your Podman machine.
 1. Click **Yes**.
    ![restart Podman machine](img/restart-podman-machine.png)
-1. Perform one of the following steps: - Go to **Settings > Experimental**, and click the toggle button.
-   ![enable toggle button - Experimental](img/enable-using-experimental.png) - Go to **Settings > Preferences > Experimental (Docker Compatibility)**, and click the toggle button.
-   ![enable toggle button - Preferences](img/enable-using-preferences.png)
-   A Docker Compatibilty section is added to the list of **Settings**.
+1. Perform one of the following steps:
+
+   - Go to **Settings > Experimental**, and click the toggle button.
+     ![enable toggle button - Experimental](img/enable-using-experimental.png)
+   - Go to **Settings > Preferences > Experimental (Docker Compatibility)**, and click the toggle button.
+     ![enable toggle button - Preferences](img/enable-using-preferences.png)
+     A Docker Compatibilty section is added to the list of **Settings**.
 
 #### Verification
 
@@ -74,7 +93,7 @@ Perform any of the following steps:
 - Run the `docker context list` command to check that the Docker CLI context is set to `unix:///var/run/docker.sock`.
 
 </TabItem>
-<TabItem value="win" label="Windows/Linux" className="markdown">
+<TabItem value="win" label="Windows" className="markdown">
 
 #### Procedure
 
@@ -95,9 +114,31 @@ Perform any of the following steps:
   $ docker info --format=json | jq -r .ServerVersion
   ```
 
-- Run the `docker context list` command to check that the Docker CLI context is set to the default value:
-  - Linux: `unix:///var/run/docker.sock`
-  - Windows: `npipe:////./pipe/docker_engine`
+- Run the `docker context list` command to check that the Docker CLI context is set to the default value `npipe:////./pipe/docker_engine`.
+
+</TabItem>
+<TabItem value="linux" label="Linux" className="markdown">
+
+#### Procedure
+
+- Perform one of the following steps:
+
+  - Go to **Settings > Experimental**, and click the toggle button.
+  - Go to **Settings > Preferences > Experimental (Docker Compatibility)**, and click the toggle button.
+
+  A Docker Compatibilty section is added to the list of **Settings**.
+
+#### Verification
+
+Perform any of the following steps:
+
+- Run the following command to check the output returns the Podman version rather than the Docker version:
+
+  ```shell-session
+  $ docker info --format=json | jq -r .ServerVersion
+  ```
+
+- Run the `docker context list` command to check that the Docker CLI context is set to the default value `unix:///var/run/docker.sock`.
 
 </TabItem>
 </Tabs>
@@ -149,7 +190,27 @@ Perform any of the following steps:
   ```
 
 </TabItem>
-<TabItem value="win" label="Windows/Linux" className="markdown">
+<TabItem value="win" label="Windows" className="markdown">
+
+#### Procedure
+
+- Perform one of the following steps:
+
+  - Go to **Settings > Experimental**, and click the toggle button.
+  - Go to **Settings > Preferences > Experimental (Docker Compatibility)**, and click the toggle button.
+
+  The Docker Compatibilty section is removed from the list of **Settings**.
+
+#### Verification
+
+- Run the following command to check the output returns the Docker version rather than the Podman version:
+
+  ```shell-session
+  $ docker info --format=json | jq -r .ServerVersion
+  ```
+
+</TabItem>
+<TabItem value="linux" label="Linux" className="markdown">
 
 #### Procedure
 
