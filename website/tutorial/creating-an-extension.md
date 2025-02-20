@@ -32,8 +32,8 @@ Make sure you have:
 
 Create a `package.json` file to initialize your extension.
 
-1. Create a sub-directory, such as `foobar` in the `extensions` directory of the Podman Desktop repository.
-1. Initialize a `package.json` file and add it the sub-directory.
+1. Create a subdirectory, such as `foobar` in the `extensions` directory of the Podman Desktop repository.
+1. Initialize a `package.json` file and add it the subdirectory.
 
    ```json
    {}
@@ -87,7 +87,7 @@ Create a `package.json` file to initialize your extension.
      }
    ```
 
-1. Validate the complete `package.json` file:
+1. Validate the complete `package.json` file manually:
 
    **_Example: The complete `package.json` file_**
 
@@ -125,11 +125,11 @@ Create a `package.json` file to initialize your extension.
    }
    ```
 
-1. Add an `icon.png` file to the sub-directory.
+1. Add an `icon.png` file to the subdirectory.
 
 ## Writing the extension entry point
 
-1. Create a `src/extension.ts` file in the sub-directory.
+1. Create a `src/extension.ts` file in the subdirectory.
 
 1. Import the Podman Desktop API into the file:
 
@@ -215,7 +215,7 @@ Create a `package.json` file to initialize your extension.
 
 You can build this extension by configuring `TypeScript` and `Vite`.
 
-1. Create a file named `tsconfig.json` with the following content in the sub-directory:
+1. Create a file named `tsconfig.json` with the following content in the subdirectory:
 
 ```json
 {
@@ -236,7 +236,7 @@ You can build this extension by configuring `TypeScript` and `Vite`.
 }
 ```
 
-2. Create a file named `vite.config.js` with the following content in the sub-directory:
+2. Create a file named `vite.config.js` with the following content in the subdirectory:
 
 ```javascript
 /**********************************************************************
@@ -308,7 +308,7 @@ export default config;
    pnpm watch --extension-folder <path-to-your-extension>
    ```
 
-   The extension compiles and generates the output in the `dist` folder of the sub-directory.
+   The extension compiles and generates the output in the `dist` folder of the subdirectory.
    ![output in the dist folder](img/dist-folder.png)
 
 ## Verifying the extension's features
