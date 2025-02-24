@@ -18,7 +18,7 @@ Most extensions are externally loaded; however, we also dogfood our own API by l
 
 We try to simplify extension creation as much as possible by utilizing `package.json` and by keeping activations simple within the extension, providing only two entrypoints: `activate()` and `deactivate()`.
 
-All Podman Desktop functionalities are communicated entirely through the API. When writing your extension, you must include this line `import * as podmanDesktopAPI from '@podman-desktop/api';` in the file. The API code is located [here](https://github.com/podman-desktop/podman-desktop/blob/main/packages/extension-api/src/extension-api.d.ts), while the website representation of the code can be found [here](https://podman-desktop.io/api).
+All Podman Desktop functionalities are communicated entirely through the API. The extension you create interacts with the Podman Desktop API through the `@podman-desktop/api` package. The API code is located [here](https://github.com/podman-desktop/podman-desktop/blob/main/packages/extension-api/src/extension-api.d.ts), while the website representation of the code can be found [here](https://podman-desktop.io/api).
 
 ### Activating
 

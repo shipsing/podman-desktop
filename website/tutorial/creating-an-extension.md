@@ -10,13 +10,15 @@ tags: [podman-desktop, creating-an-extension]
 
 This tutorial covers the following end-to-end tasks required to create and run a Podman Desktop extension:
 
-- Initializing an extension
-- Writing the extension entry point
-- Build dependencies
-- Running the extension
-- Verifying the extension's features
+- [Initializing an extension](/tutorial/creating-an-extension#initializing-an-extension)
+- [Writing the extension entry point](/tutorial/creating-an-extension#writing-the-extension-entry-point)
+- [Build dependencies](/tutorial/creating-an-extension#build-dependencies)
+- [Running the extension](/tutorial/creating-an-extension#running-the-extension)
+- [Verifying the extension's features](/tutorial/creating-an-extension#verifying-the-extensions-features)
 
-You can write an extension in `TypeScript` or `JavaScript`. You can simplify extension creation by specifying two entry points: `activate()` and `deactivate()` from within the extension. All Podman Desktop functionalities are communicated entirely through the API. When writing your extension, you must include this line `import * as podmanDesktopAPI from '@podman-desktop/api';` in the file.
+You can write an extension in `TypeScript` or `JavaScript`. You can simplify extension creation by specifying two entry points: `activate()` and `deactivate()` from within the extension.
+
+All Podman Desktop functionalities are communicated entirely through the [API](https://podman-desktop.io/api). The extension you create interacts with the Podman Desktop API through the `@podman-desktop/api` package. The type definition of the `@podman-desktop/api` API is hosted as part of the [`npm` package](https://www.npmjs.com/package/@podman-desktop/api).
 
 ## Before you begin
 
