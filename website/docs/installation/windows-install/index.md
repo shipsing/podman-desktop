@@ -131,8 +131,11 @@ To verify that Podman is set up:
 
 As an administrator, you can set up a Podman machine using Hyper-V as the machine provider type. To do so, ensure to select `hyperv` from the **Provider Type** dropdown list when [creating a Podman machine](/docs/podman/creating-a-podman-machine).
 
-After successful creation, you are prompted to set the Hyper-V machine as the default machine to avoid CLI errors. Click **Yes** to proceed.
-![set hyperv as default machine](img/set-hyperv-as-default.png)
+:::note
+
+If you already have a running Podman machine with the WSL provider type, you will be prompted to set the Hyper-V machine as the default machine to avoid CLI errors.
+
+:::
 
 #### Verification
 
