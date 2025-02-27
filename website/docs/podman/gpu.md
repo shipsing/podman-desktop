@@ -161,10 +161,8 @@ RUN dnf -y install dnf-plugins-core && \
 3. Verify you can see the GPU by running a test container:
 
 ```sh
-$  podman run --rm -it --device /dev/dri --name gpu-info <gpu-container-name>  vulkaninfo | grep "GPU"
+$  podman run --rm -it --device /dev/dri --name gpu-info <gpu-container-image>  vulkaninfo | grep "GPU"
 ```
-
-- Replace `gpu-container-name` with a valid container name, such as `quay.io/slopezpa/fedora-vgpu`.
 
 Example output:
 
