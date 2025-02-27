@@ -128,17 +128,15 @@ test.describe.serial('Podman Desktop Update installation', { tag: '@update-insta
     await playExpect(updateAvailableDialog).not.toBeVisible();
   });
 
-  test('Update is in progress', async ({ page }) => {
+  test('Update is progressing until restart is offered', async ({ page }) => {
+    test.setTimeout(150000);
     await sBar.updateButtonTitle.click();
     await playExpect(updateDialog).toBeVisible();
-    await handleConfirmationDialog(page, 'Update', true, 'OK', 'Cancel');
-  });
-
-  test('Update is performed and restart offered', async ({ page }) => {
-    test.setTimeout(150000);
+    // the dialog might change in meantime from Update (in progress) to Update downloaded.
     // now it takes some time to perform, in case of failure, PD gets closed
     await playExpect(updateDownloadedDialog).toBeVisible({ timeout: 120000 });
     // some buttons
     await handleConfirmationDialog(page, 'Update Downloaded', false, 'Restart', 'Cancel');
+    await playExpect(updateDownloadedDialog).not.toBeVisible();
   });
 });

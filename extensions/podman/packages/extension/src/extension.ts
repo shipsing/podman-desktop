@@ -28,11 +28,11 @@ import { Mutex } from 'async-mutex';
 import { compareVersions } from 'compare-versions';
 
 import type { PodmanExtensionApi, PodmanRunOptions } from '../../api/src/podman-extension-api';
-import { SequenceCheck } from './base-check';
+import { SequenceCheck } from './checks/base-check';
+import { getDetectionChecks } from './checks/detection-checks';
 import { PodmanCleanupMacOS } from './cleanup/podman-cleanup-macos';
 import { PodmanCleanupWindows } from './cleanup/podman-cleanup-windows';
 import { getSocketCompatibility } from './compatibility-mode';
-import { getDetectionChecks } from './detection-checks';
 import { KrunkitHelper } from './helpers/krunkit-helper';
 import { PodmanBinaryLocationHelper } from './helpers/podman-binary-location-helper';
 import { PodmanInfoHelper } from './helpers/podman-info-helper';
@@ -2163,16 +2163,25 @@ export async function createMachine(
     telemetryRecords.imagePath = 'default';
   }
 
+  const installedPodman = await getPodmanInstallation();
+  const version = installedPodman?.version;
   if (params['podman.factory.machine.rootful'] === undefined) {
     // should be rootful mode if version supports this mode and only if rootful is not provided (false or true)
-    const installedPodman = await getPodmanInstallation();
-    const version: string | undefined = installedPodman?.version;
     if (version) {
       const isRootfulSupported = isRootfulMachineInitSupported(version);
       if (isRootfulSupported) {
         params['podman.factory.machine.rootful'] = true;
       }
     }
+  }
+
+  // if playbook option is supported
+  if (version && isPlaybookMachineInitSupported(version)) {
+    // add the playbook option
+    parameters.push('--playbook');
+    // get the playbook script
+    const playbookPath = await podmanConfiguration.registryConfiguration.getPlaybookScriptPath();
+    parameters.push(playbookPath);
   }
 
   if (params['podman.factory.machine.rootful']) {

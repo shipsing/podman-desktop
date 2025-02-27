@@ -15,65 +15,63 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  ***********************************************************************/
-import type { ImagesPage } from '../../model/pages/images-page';
-import { NavigationBar } from '../../model/workbench/navigation';
 import { expect as playExpect, test } from '../../utility/fixtures';
-import { waitForPodmanMachineStartup, waitWhile } from '../../utility/wait';
+import { waitForPodmanMachineStartup } from '../../utility/wait';
+
+const numberOfObjects = Number(process.env.OBJECT_NUM) || 100;
+console.log(`numberOfObjects => ${numberOfObjects}`);
 
 test.beforeAll(async ({ runner, welcomePage, page }) => {
   runner.setVideoAndTraceName('ui-stress-e2e');
   await welcomePage.handleWelcomePage(true);
   await waitForPodmanMachineStartup(page);
-  // wait giving a time to podman desktop to load up
-  let images: ImagesPage;
-  try {
-    images = await new NavigationBar(page).openImages();
-  } catch (error) {
-    await runner.screenshot('error-on-open-images.png');
-    throw error;
-  }
-  await waitWhile(async () => await images.pageIsEmpty(), {
-    sendError: false,
-    message: 'Images page is empty, there are no images present',
-  });
 });
 
-test.afterAll(async () => {
-  test.setTimeout(90_000);
+test.afterAll(async ({ runner }) => {
+  test.setTimeout(120_000);
+  await runner.close();
 });
 
 test.describe.serial('Verification of UI handling lots of objects', { tag: ['@ui-stress'] }, () => {
   test(`Verification of images`, async ({ navigationBar }) => {
-    test.setTimeout(30_000);
+    test.setTimeout(300_000);
+
     const images = await navigationBar.openImages();
-    //count images => 1 original image + (1 tagged * 10) + 1 localhost/podman-pause from pods = 12
-    await playExpect.poll(async () => images.countRowsFromTable()).toBe(12);
-    for (let imgNum = 1; imgNum <= 10; imgNum++) {
+    await playExpect(images.heading).toBeVisible({ timeout: 10_000 });
+    //count images => 1 original image + (1 tagged * numberOfObjects) + 1 localhost/podman-pause from pods = numberOfObjects + 2
+    await playExpect.poll(async () => await images.countRowsFromTable(), { timeout: 10_000 }).toBe(numberOfObjects + 2);
+    for (let imgNum = 1; imgNum <= numberOfObjects; imgNum++) {
       await playExpect
-        .poll(async () => await images.waitForImageExists(`quay.io/my-image-${imgNum}`), { timeout: 5_000 })
+        .poll(async () => await images.waitForRowToExists(`localhost/my-image-${imgNum}`), { timeout: 0 })
         .toBeTruthy();
     }
   });
 
   test(`Verification of containers`, async ({ navigationBar }) => {
-    test.setTimeout(30_000);
+    test.setTimeout(300_000);
+
     const containers = await navigationBar.openContainers();
-    //count containers => (1 manually created + 2 from creating pods) * 10 = 30
-    await playExpect.poll(async () => containers.countRowsFromTable()).toBe(30);
-    for (let containerNum = 1; containerNum <= 10; containerNum++) {
+    await playExpect(containers.heading).toBeVisible({ timeout: 10_000 });
+    //count containers => (1 manually created + 2 from creating pods) * numberOfObjects = 3 * numberOfObjects
+    await playExpect
+      .poll(async () => await containers.countRowsFromTable(), { timeout: 10_000 })
+      .toBe(3 * numberOfObjects);
+    for (let containerNum = 1; containerNum <= numberOfObjects; containerNum++) {
       await playExpect
-        .poll(async () => await containers.containerExists(`my-container-${containerNum}`), { timeout: 5_000 })
+        .poll(async () => await containers.waitForRowToExists(`my-container-${containerNum}`), { timeout: 0 })
         .toBeTruthy();
     }
   });
 
   test(`Verification of pods`, async ({ navigationBar }) => {
-    test.setTimeout(30_000);
+    test.setTimeout(300_000);
+
     const pods = await navigationBar.openPods();
-    //count pods => 1 manually created * 10 = 10
-    await playExpect.poll(async () => pods.countRowsFromTable()).toBe(10);
-    for (let podNum = 1; podNum <= 10; podNum++) {
-      await playExpect.poll(async () => await pods.podExists(`my-pod-${podNum}`), { timeout: 5_000 }).toBeTruthy();
+    await playExpect(pods.heading).toBeVisible({ timeout: 10_000 });
+    //count pods => 1 manually created * numberOfObjects = numberOfObjects
+    await playExpect.poll(async () => await pods.countRowsFromTable(), { timeout: 10_000 }).toBe(numberOfObjects);
+    for (let podNum = 1; podNum <= numberOfObjects; podNum++) {
+      await playExpect.poll(async () => await pods.waitForRowToExists(`my-pod-${podNum}`), { timeout: 0 }).toBeTruthy();
     }
   });
 });

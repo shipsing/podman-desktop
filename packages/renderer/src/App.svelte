@@ -19,6 +19,7 @@ import SecretDetails from './lib/configmaps-secrets/SecretDetails.svelte';
 import ContainerDetails from './lib/container/ContainerDetails.svelte';
 import ContainerExport from './lib/container/ContainerExport.svelte';
 import ContainerList from './lib/container/ContainerList.svelte';
+import CreateContainerFromExistingImage from './lib/container/CreateContainerFromExistingImage.svelte';
 import ContextKey from './lib/context/ContextKey.svelte';
 import CronJobDetails from './lib/cronjob/CronJobDetails.svelte';
 import CronJobList from './lib/cronjob/CronJobList.svelte';
@@ -148,7 +149,7 @@ window.events?.receive('kubernetes-navigation', (args: unknown) => {
         <SendFeedback />
         <ToastHandler />
         <ToastTaskNotifications />
-        <Route path="/" breadcrumb="Dashboard Page">
+        <Route path="/" breadcrumb="Dashboard Page" navigationHint="root">
           <DashboardPage />
         </Route>
         <Route path="/containers" breadcrumb="Containers" navigationHint="root">
@@ -171,6 +172,9 @@ window.events?.receive('kubernetes-navigation', (args: unknown) => {
         </Route>
         <Route path="/images" breadcrumb="Images" navigationHint="root">
           <ImagesList />
+        </Route>
+        <Route path="/images/existing-image-create-container" breadcrumb="Select image" >
+          <CreateContainerFromExistingImage />
         </Route>
         <Route path="/images/:id/:engineId" breadcrumb="Images" let:meta navigationHint="root">
           <ImagesList searchTerm={meta.params.id} imageEngineId={meta.params.engineId} />

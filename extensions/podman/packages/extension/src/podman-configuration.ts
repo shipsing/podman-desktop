@@ -25,6 +25,9 @@ import * as extensionApi from '@podman-desktop/api';
 import { Mutex } from 'async-mutex';
 import * as toml from 'smol-toml';
 
+import type { RegistryConfiguration } from './configuration/registry-configuration';
+import { RegistryConfigurationImpl } from './configuration/registry-configuration';
+
 const configurationRosetta = 'setting.rosetta';
 
 /**
@@ -32,6 +35,13 @@ const configurationRosetta = 'setting.rosetta';
  */
 export class PodmanConfiguration {
   private mutex: Mutex = new Mutex();
+
+  #registryConfiguration: RegistryConfiguration;
+
+  constructor() {
+    this.#registryConfiguration = new RegistryConfigurationImpl();
+  }
+
   async init(): Promise<void> {
     let httpProxy = undefined;
     let httpsProxy = undefined;
@@ -351,5 +361,10 @@ export class PodmanConfiguration {
         }
       });
     });
+  }
+
+  // expose RegistryConfiguration interface
+  get registryConfiguration(): RegistryConfiguration {
+    return this.#registryConfiguration;
   }
 }
