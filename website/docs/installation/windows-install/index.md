@@ -129,7 +129,7 @@ To verify that Podman is set up:
 
 ### Use Hyper-V as machine provider
 
-As an administrator, you can set up a Podman machine using Hyper-V as the machine provider type. To do so, ensure to select `hyperv` from the **Provider Type** dropdown list when [creating a Podman machine](/docs/podman/creating-a-podman-machine).
+As an administrator, you can set up a Podman machine using Hyper-V as the machine provider type. To do so, select `hyperv` from the **Provider Type** dropdown list when [creating a Podman machine](/docs/podman/creating-a-podman-machine).
 
 :::note
 
