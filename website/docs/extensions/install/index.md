@@ -34,6 +34,6 @@ Installing an extension is a great way to expand the capabilities of Podman Desk
 
 #### Verification
 
-- The extension can be verified by checking the **Installed** section of the Extensions page.
+- Verify the extension by checking the **Installed** tab on the Extensions page.
 
 - Depending on the extension, items can appear in the status bar, tray menu, or other areas of Podman Desktop.
