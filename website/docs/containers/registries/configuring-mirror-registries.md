@@ -25,9 +25,7 @@ You can add registry locations and configure their mirrors by using the Podman D
    1. Type the location of the registry, such as `docker.io`, and press the `Enter` key. The `docker.io` registry is added to the palette.
       ![docker.io registry added](img/docker-option-added.png)
    1. Select `docker.io` from the command palette.
-   1. Type the location where you want to mirror the registry, such as `ghcr.io`, and press the `Enter` key. The `docker.io` registry indicates the location where it has been mirrored.
+   1. Type the location where you want to mirror the registry, such as `ghcr.io`, and press the `Enter` key. The entry for the `docker.io` registry shows the location where it is mirrored.
       ![mirrored registry location](img/mirrored-registry.png)
    1. Select the `End configuring registries` option to end registry configuration.
       ![ending registry configuration](img/end-configuring-registries.png)
-
-#### Verification
