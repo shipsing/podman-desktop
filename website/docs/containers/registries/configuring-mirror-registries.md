@@ -8,7 +8,7 @@ tags: [registry-configuration, mirroring-a-registry]
 
 # Configuring a mirror registry
 
-You can add registry locations and configure their mirrors by using the Podman Desktop UI. By configuring a mirror, you can store a copy of any registry to another location and use its content, such as images, files, and other resources during development.
+You can add registry locations and configure their mirrors by using the Podman Desktop UI. By configuring a mirror, you can redirect a registry to another location and use its content, such as images, files, and other resources during development.
 
 #### Prerequisites
 
