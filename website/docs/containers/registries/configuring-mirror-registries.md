@@ -12,7 +12,8 @@ You can add registry locations and configure their mirrors by using the Podman D
 
 #### Prerequisites
 
-- [A running Podman machine](/docs/podman/creating-a-podman-machine).
+- [Recreate your Podman machine](/docs/podman/creating-a-podman-machine) to mount the registry configuration file.
+- Upgrade to the latest version of Podman.
 
 #### Procedure
 
@@ -22,10 +23,10 @@ You can add registry locations and configure their mirrors by using the Podman D
 1. Set up your registry configuration:
    1. Select the **Add registry configuration** option from the command palette.
       ![adding registry configuration](img/add-registry-configuration.png)
-   1. Type the location of the registry, such as `docker.io`, and press the `Enter` key. The `docker.io` registry is added to the palette.
-      ![docker.io registry added](img/docker-option-added.png)
-   1. Select `docker.io` from the command palette.
-   1. Type the location where you want to mirror the registry, such as `ghcr.io`, and press the `Enter` key. The entry for the `docker.io` registry shows the location where it is mirrored.
+   1. Type the location of the registry, such as `quay.io`, and press the `Enter` key. The `quay.io` registry is added to the palette.
+      ![quay.io registry added](img/quay-option-added.png)
+   1. Select `quay.io` from the command palette.
+   1. Type the location where you want to mirror the registry, such as `ghcr.io`, and press the `Enter` key. The entry for the `quay.io` registry shows the location where it is mirrored.
       ![mirrored registry location](img/mirrored-registry.png)
    1. Select the `End configuring registries` option to end registry configuration.
       ![ending registry configuration](img/end-configuring-registries.png)
