@@ -3,22 +3,12 @@ import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
-import {
-  faCertificate,
-  faCloudArrowDown,
-  faCogs,
-  faDiagramProject,
-  faGaugeHigh,
-  faGears,
-  faRocket,
-  faRotateRight,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCertificate, faCloudArrowDown, faCogs, faRotateRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Layout from '@theme/Layout';
 import ThemedImage from '@theme/ThemedImage';
 import React from 'react';
 
-import PodmanAILabBanner from '../components/PodmanAILabBanner';
 import TailWindThemeSelector from '../components/TailWindThemeSelector';
 import { TelemetryLink } from '../components/TelemetryLink';
 
@@ -347,10 +337,10 @@ function EnterpriseReady(): JSX.Element {
     <section className="text-gray-900 dark:text-gray-400 dark:bg-charcoal-600 bg-zinc-200 body-font py-24">
       <div className="container px-5 mx-auto flex flex-wrap">
         <div className="flex flex-col text-center w-full mb-5">
-          <SectionTitle name="enterprise" />
+          <SectionTitle name="FAQ" />
 
           <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
-            Enterprise ready
+            FAQ
           </h2>
         </div>
         <div className="container px-5 pb-5 mx-auto">
@@ -508,8 +498,8 @@ function MainFeatures(): JSX.Element {
         <div className="container px-5 pb-5 mx-auto">
           <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
             <div className="p-4 md:w-1/2 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-700 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faGears} className="w-6 h-6 " />
+              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full text-purple-700 mb-4 shrink-0">
+                <img className="w-12 h-12 " src="../img/features/graphical.svg"></img>
               </div>
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
@@ -522,8 +512,8 @@ function MainFeatures(): JSX.Element {
               </div>
             </div>
             <div className="p-4 md:w-1/2 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-700 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faRocket} className="w-6 h-6 " />
+              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full text-purple-700 mb-4 shrink-0">
+                <img className="w-12 h-12 " src="../img/features/container.svg"></img>
               </div>
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
@@ -537,8 +527,8 @@ function MainFeatures(): JSX.Element {
               </div>
             </div>
             <div className="p-4 md:w-1/2 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-800 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faGaugeHigh} className="w-6 h-6 " />
+              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full text-purple-800 mb-4 shrink-0">
+                <img className="w-12 h-12 " src="../img/features/platforms.svg"></img>
               </div>
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
@@ -551,15 +541,15 @@ function MainFeatures(): JSX.Element {
               </div>
             </div>
             <div className="p-4 md:w-1/2 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-800 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faDiagramProject} className="w-6 h-6 " />
+              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full text-purple-800 mb-4 shrink-0">
+                <img className="w-12 h-12 " src="../img/features/certified container.svg"></img>
               </div>
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
                   Built with Container Standards
                 </h2>
                 <p className="leading-relaxed text-base list-disc">
-                  Podman supports industry-standard container technologies like OCI, and Compose. This compatibility
+                  Podman supports industry-standard container technologies like OCI and Compose. This compatibility
                   ensures a smooth transition without disrupting existing workflows or requiring extensive retooling.
                 </p>
               </div>
@@ -591,7 +581,7 @@ function Pods(): JSX.Element {
           <div className="container px-5 mx-auto flex flex-wrap">
             <div className="flex flex-col text-right w-full mb-5">
               <Link
-                title="Discover More"
+                title="Read the Docs"
                 className="no-underline hover:no-underline text-gray-900 dark:text-white dark:hover:text-violet-600 "
                 to="/docs/kubernetes">
                 <div className="mt-3 text-purple-800 dark:text-purple-400 inline-flex items-center">
@@ -614,8 +604,8 @@ function Pods(): JSX.Element {
         <div className="container px-5 pb-5 mx-auto">
           <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
             <div className="p-4 md:w-1/4 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-700 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faGears} className="w-6 h-6 " />
+              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full text-purple-700 mb-4 shrink-0">
+                <img className="w-12 h-12 " src="../img/features/developtest.svg"></img>
               </div>
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
@@ -628,8 +618,8 @@ function Pods(): JSX.Element {
               </div>
             </div>
             <div className="p-4 md:w-1/4 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-800 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faGaugeHigh} className="w-6 h-6 " />
+              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full text-purple-700 mb-4 shrink-0">
+                <img className="w-12 h-12 " src="../img/features/grow.svg"></img>
               </div>
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
@@ -642,12 +632,12 @@ function Pods(): JSX.Element {
               </div>
             </div>
             <div className="p-4 md:w-1/4 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-700 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faGears} className="w-6 h-6 " />
+              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full text-purple-700 mb-4 shrink-0">
+                <img className="w-12 h-12 " src="../img/features/troubleshoot1.svg"></img>
               </div>
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
-                  Troubleshoot with Ease
+                  Manage your clusters
                 </h2>
                 <p className="leading-relaxed text-base list-disc">
                   Whether working natively with Kubernetes objects or managing local or remote clusters, Podman Desktop
@@ -656,8 +646,8 @@ function Pods(): JSX.Element {
               </div>
             </div>
             <div className="p-4 md:w-1/4 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-700 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faGears} className="w-6 h-6 " />
+              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full text-purple-700 mb-4 shrink-0">
+                <img className="w-12 h-12 " src="../img/features/troubleshoot2.svg"></img>
               </div>
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
@@ -682,7 +672,6 @@ export default function Home(): JSX.Element {
       title="Podman Desktop - Containers and Kubernetes"
       description="Podman Desktop - An open source graphical tool for developing on containers and Kubernetes">
       <TailWindThemeSelector />
-      <PodmanAILabBanner />
       <Hero />
       <RunAnywhere />
       <MainFeatures />
