@@ -1,12 +1,9 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
 import { faCertificate, faCloudArrowDown, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Layout from '@theme/Layout';
-import ThemedImage from '@theme/ThemedImage';
 import React from 'react';
 
 import TailWindThemeSelector from '../components/TailWindThemeSelector';
@@ -162,19 +159,106 @@ function FAQ(): JSX.Element {
             </p>
             <div className="flex flex-col w-full text-left">
               <h2 className="max-w-lg mb-6 font-sans text-2xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
-                <span className="font-bold">Does Podman Desktop support Compose?</span>
+                <span className="font-bold">Is Podman Desktop suitable for enterprise use? </span>
               </h2>
               <div className="flex flex-col items-left">
                 <p className="leading-relaxed text-base">
-                  Yes, Podman Desktop supports Compose files, allowing users to manage multi-container applications
-                  using familiar tools and workflows. By leveraging the `podman compose` command or integrating with
-                  existing Docker Compose setups, developers can seamlessly transition between Docker and Podman
-                  environments without sacrificing productivity. This compatibility ensures a smooth learning curve for
-                  those accustomed to working with Compose while taking advantage of the benefits offered by Podman
-                  Desktop. We recommend developers leverage Podman's native support for Kubernetes objects, such as
-                  Pods, Deployments, and Services, to ease their transition into the Kubernetes ecosystem while still
-                  enjoying the simplicity and benefits of a container management solution like Podman.
+                  Yes, Podman Desktop is designed to meet the needs of enterprise users, offering several security
+                  features:
                 </p>
+                <ul className="list-disc list-inside space-y-2 dark:text-gray-700">
+                  <li>
+                    <strong>VPN and Proxy Support</strong>: Supports various VPN configurations and proxy settings,
+                    allowing organizations to secure their container environments by controlling network traffic and
+                    enforcing access policies.
+                  </li>
+                  <li>
+                    <strong>Image Registry Management</strong>: Provides integration with popular image registries,
+                    enabling centralized management of container images and ensuring secure storage and distribution
+                    practices.
+                  </li>
+                  <li>
+                    <strong>Air-Gapped Installation</strong>: Supports isolated installations for highly secured
+                    environments, allowing organizations to deploy container runtimes without direct internet access
+                    while maintaining essential functionality.
+                  </li>
+                  <li>
+                    <strong>Container Isolation</strong>: As a daemonless container engine, Podman Desktop runs
+                    containers directly on the host system, reducing potential attack surfaces and improving overall
+                    security posture.
+                  </li>
+                  <li>
+                    <strong>Access Controls</strong>: Offers fine-grained control over user permissions and resource
+                    allocation, ensuring that sensitive tasks are performed only by authorized users and within
+                    designated constraints.
+                  </li>
+                </ul>
+                <p>
+                  These features make Podman Desktop an attractive choice for enterprises seeking a container management
+                  solution that aligns with their stringent security requirements.
+                </p>
+                <div className="flex flex-col w-full text-left">
+                  <h2 className="max-w-lg mb-6 font-sans text-2xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
+                    <span className="font-bold">How do I get involved in the project? </span>
+                  </h2>
+                  <div className="flex flex-col items-left"></div>
+                  <p className="leading-relaxed text-base">You can contribute in various ways:</p>
+                  <ul className="list-disc list-inside space-y-2 dark:text-gray-700">
+                    <li>
+                      <strong>Reporting issues</strong>: If you encounter bugs or have suggestions for improvements, you
+                      can report them on the GitHub issue tracker. Be sure to provide detailed information and steps to
+                      reproduce the issue.
+                    </li>
+                    <li>
+                      <strong>Working on issues</strong>: You can browse the issue tracker and contribute by fixing bugs
+                      or implementing new features. This involves forking the repository, making changes, and submitting
+                      pull requests.
+                    </li>
+                    <li>
+                      <strong>Contributing code</strong>: Beyond addressing existing issues, you can propose and
+                      contribute entirely new features or enhancements to Podman Desktop's functionality, user
+                      interface, or integrations with other tools. Learn more about how to contribute.
+                    </li>
+                    <li>
+                      <strong>Contributing plug-ins</strong>: Feel like there is an integration missing? You can
+                      contribute your own plug-in functionality for Podman Desktop. Check out the guide. .
+                    </li>
+                    <li>
+                      <strong>Improving documentation</strong>: Clear and comprehensive documentation is essential. You
+                      can contribute by improving existing documentation, adding new guides, or creating tutorials.
+                    </li>
+                    <li>
+                      <strong>Providing website contributions</strong>: The Podman Desktop website is also open source.
+                      You can contribute to its content, design, or translations.
+                    </li>
+                    <li>
+                      <strong>Becoming an Adopter</strong>: If you are a happy user, we’d love to know and share the
+                      word. Consider adding yourself or your organization to the list of adopters with a pull request.
+                    </li>
+                  </ul>
+                  <p>
+                    Before you start contributing, it's helpful to familiarize yourself with the project's contribution
+                    guidelines and code architecture. These resources provide valuable information on coding style,
+                    testing procedures, and the overall development process. You can also join #podman-desktop on the
+                    Kubernetes Slack to connect with other contributors and get help.
+                  </p>
+                </div>
+                <div className="flex flex-col w-full text-left">
+                  <h2 className="max-w-lg mb-6 font-sans text-2xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
+                    <span className="font-bold">Does Podman Desktop support Compose? </span>
+                  </h2>
+                  <div className="flex flex-col items-left"></div>
+                  <p className="leading-relaxed text-base">
+                    Yes, Podman Desktop supports Compose files, allowing users to manage multi-container applications
+                    using familiar tools and workflows. By leveraging the `podman compose` command or integrating with
+                    existing Docker Compose setups, developers can seamlessly transition between Docker and Podman
+                    environments without sacrificing productivity. This compatibility ensures a smooth learning curve
+                    for those accustomed to working with Compose while taking advantage of the benefits offered by
+                    Podman Desktop. We recommend developers leverage Podman's native support for Kubernetes objects,
+                    such as Pods, Deployments, and Services, to ease their transition into the Kubernetes ecosystem
+                    while still enjoying the simplicity and benefits of a container management solution like Podman.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -184,78 +268,66 @@ function FAQ(): JSX.Element {
   );
 }
 
-function Extensibility(): JSX.Element {
+function Feedback(): JSX.Element {
   return (
     <section className="text-gray-900 dark:text-gray-400 dark:bg-charcoal-600 bg-zinc-200 body-font">
       <div className="container px-5 py-24 mx-auto flex flex-wrap">
         <div className="flex flex-col text-center w-full mb-5">
-          <SectionTitle name="extensibility" />
+          <SectionTitle name="feedback" />
 
-          <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
-            Bring new features to Podman Desktop with extensions
+          <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
+            What People Are Saying ✨
           </h2>
         </div>
 
-        <div className="flex flex-col w-full text-center">
-          <div className="flex flex-col items-center">
-            <p className="text-base lg:w-2/3 text-center mx-auto">
-              Podman Desktop is built around extension points. You can easily create a new extension using our pre-made
-              templates, easy-to-use API and UI components. Integrate your own tools into Podman Desktop with ease to
-              enrich with your own developer tools and experiences.
-            </p>
-            <ul className="list-disc list-inside text-center">
-              <li>
-                Explore our{' '}
-                <Link title="catalog of extensions" to="/extensions">
-                  catalog of extensions
-                </Link>
-                .
-              </li>
-              <li>
-                Learn to{' '}
-                <Link title="develop your own extensions" to="/docs/extensions/developing">
-                  develop your own extensions
-                </Link>
-                .
-              </li>
-              <li>
-                Want to use a Docker Desktop extension? Extensions such as{' '}
-                <Link title="trivy" to="https://github.com/aquasecurity/trivy-docker-extension">
-                  Trivy
-                </Link>{' '}
-                work out of the box with Podman Desktop.
-              </li>
-            </ul>
-          </div>
-
-          <ThemedImage
-            className="sm:w-full md:w-full lg:w-10/12 sm:pl-8 md:pl-12 lg:pl-24 text-center"
-            alt="Reuse Docker Desktop extensions"
-            sources={{
-              light: useBaseUrl('img/ddextensions/dd-support.png'),
-              dark: useBaseUrl('img/ddextensions/dd-support.png'),
-            }}
-          />
-
-          <div className="flex flex-col items-center">
-            <Link
-              title="Extend Podman Desktop"
-              className="no-underline hover:no-underline text-gray-900 dark:text-white dark:hover:text-violet-600 "
-              to="/extend">
-              <div className="mt-3 text-purple-800 dark:text-purple-400 inline-flex items-center">
-                Learn More
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
+        <div className="container px-5 pb-5 mx-auto">
+          <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+            <div className="p-4 md:w-1/4 flex">
+              <div className="grow pl-6">
+                <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
+                  @johnt, John T
+                </h2>
+                <p className="leading-relaxed text-base">
+                  Podman Desktop has completely changed the way I manage containers on my dev machine. No more Docker
+                  daemon headaches—just smooth, lightweight container management. Love it! 🚀 #Podman #Containers
+                </p>
               </div>
-            </Link>
+            </div>
+
+            <div className="p-4 md:w-1/4 flex">
+              <div className="grow pl-6">
+                <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
+                  @mariam, Mariam P
+                </h2>
+                <p className="leading-relaxed text-base">
+                  Switched to #PodmanDesktop for local container development, and wow—so much easier to manage than
+                  expected. Seamless UI, great integration, and no root daemon. A game-changer!
+                </p>
+              </div>
+            </div>
+
+            <div className="p-4 md:w-1/4 flex">
+              <div className="grow pl-6">
+                <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
+                  @Tonyb, Tony B
+                </h2>
+                <p className="leading-relaxed text-base">
+                  Tried #PodmanDesktop and was surprised at how easy it was to transition from Docker. The UI is
+                  intuitive, and the ability to run rootless containers is a massive win for security!
+                </p>
+              </div>
+            </div>
+            <div className="p-4 md:w-1/4 flex">
+              <div className="grow pl-6">
+                <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
+                  @saurabh,Saurbah J
+                </h2>
+                <p className="leading-relaxed text-base">
+                  Finally, a container tool that respects system resources! Podman Desktop gives me full control without
+                  the bloat. Love how well it integrates with Kubernetes too. 🔥 #K8s #Containers
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -269,7 +341,7 @@ function Manymorefeatures(): JSX.Element {
       <div className="container px-5 mx-auto flex flex-wrap">
         <div className="flex flex-col text-center w-full mb-5">
           <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
-            And Many More Features
+            And Many More Features ✨
           </h2>
         </div>
 
@@ -397,64 +469,30 @@ function EnterpriseReady(): JSX.Element {
   );
 }
 
-function RunAnywhere(): JSX.Element {
+function JoinCommunity(): JSX.Element {
   return (
     <section className="text-gray-900 dark:text-gray-400 dark:bg-charcoal-600 bg-zinc-200 body-font">
       <div className="container px-5 py-24 mx-auto flex flex-wrap">
         <div className="flex flex-col text-center w-full mb-5">
           <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
-            Available on Windows, Mac and Linux
+            A Community-Driven Project Designed for Developers
           </h2>
           <p className="text-base text-gray-900 md:text-lg dark:text-gray-400">
-            Use the same UI across different operating systems
+            Built by a community of developers and shaped by user feedback, Podman Desktop offers a vendor-neutral
+            platform that empowers Containers and Kubernetes workflows without lock-in. Trusted as part of the CNCF, it
+            delivers flexibility, reliability, and innovation tailored for developers.
           </p>
         </div>
         <div className="flex flex-wrap w-full justify-center">
           <Link
-            title="Download for Windows"
-            className="p-4 w-11/12 md:w-1/2 lg:w-1/3 no-underline hover:no-underline hover:text-white text-gray-900 dark:text-white"
-            to="/downloads/windows">
+            title="Join community"
+            className="p-4 w-11/12 md:w-1/2 lg:w-1/4 no-underline hover:no-underline hover:text-white text-gray-900 dark:text-white"
+            to="/community">
             <div className="flex rounded-lg h-full bg-zinc-100  hover:bg-purple-500 dark:hover:bg-purple-700 dark:bg-charcoal-800 bg-opacity-60 p-8 flex-col">
-              <div className="flex items-center mb-3 flex-col">
-                <FontAwesomeIcon size="4x" icon={faWindows} />
-                <div className="inline-flex items-center justify-center rounded-full text-gray-900 dark:text-gray-400 shrink-0"></div>
-                <h2 className=" text-lg title-font font-medium"> Windows</h2>
-              </div>
-
               <div className="grow">
                 <div className="grow w-full">
-                  <p className="text-base text-center">exe or setup.exe</p>
+                  <p className="text-base text-center">Interested to join the Tribe?</p>
                 </div>
-              </div>
-            </div>
-          </Link>
-          <Link
-            title="Download for macOS"
-            className="no-underline hover:no-underline hover:text-white text-gray-900 dark:text-white p-4 w-11/12 md:w-1/2 lg:w-1/3"
-            to="/downloads/macos">
-            <div className="flex rounded-lg h-full bg-zinc-100  hover:bg-purple-500 dark:hover:bg-purple-700 dark:bg-charcoal-800 bg-opacity-60 p-8 flex-col">
-              <div className="flex items-center mb-3 flex-col">
-                <FontAwesomeIcon size="4x" icon={faApple} />
-                <div className="inline-flex items-center justify-center rounded-full text-gray-900 dark:text-gray-400 shrink-0"></div>
-                <h2 className=" text-lg title-font font-medium"> macOS</h2>
-              </div>
-              <div className="grow w-full">
-                <p className="text-base text-center">arm64, x64 or unified dmg</p>
-              </div>
-            </div>
-          </Link>
-          <Link
-            title="Download for Linux"
-            className="no-underline hover:no-underline hover:text-white text-gray-900 dark:text-white p-4 w-11/12 md:w-1/2 lg:w-1/3"
-            to="/downloads/linux">
-            <div className="flex rounded-lg h-full bg-zinc-100  hover:bg-purple-500 dark:hover:bg-purple-700 dark:bg-charcoal-800 bg-opacity-60 p-8 flex-col">
-              <div className="flex items-center mb-3 flex-col">
-                <FontAwesomeIcon size="4x" icon={faLinux} />
-                <div className="inline-flex items-center justify-center rounded-full text-gray-900 dark:text-gray-400 shrink-0"></div>
-                <h2 className=" text-lg title-font font-medium"> Linux</h2>
-              </div>
-              <div className="grow">
-                <p className="text-base text-center">Flatpak or AMD64 binary (tar.gz)</p>
               </div>
             </div>
           </Link>
@@ -681,11 +719,11 @@ export default function Home(): JSX.Element {
       description="Podman Desktop - An open source graphical tool for developing on containers and Kubernetes">
       <TailWindThemeSelector />
       <Hero />
-      <RunAnywhere />
+      <JoinCommunity />
       <MainFeatures />
       <Pods />
       <Manymorefeatures />
-      <Extensibility />
+      <Feedback />
       <FAQ />
       <EnterpriseReady />
     </Layout>
