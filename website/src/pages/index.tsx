@@ -206,41 +206,56 @@ function FAQ(): JSX.Element {
                   <ul className="list-disc list-inside space-y-2 dark:text-gray-700">
                     <li>
                       <strong>Reporting issues</strong>: If you encounter bugs or have suggestions for improvements, you
-                      can report them on the GitHub issue tracker. Be sure to provide detailed information and steps to
-                      reproduce the issue.
+                      can report them on the{' '}
+                      <a href="https://github.com/podman-desktop/podman-desktop/issues">GitHub issue tracker</a>. Be
+                      sure to provide detailed information and steps to reproduce the issue.
                     </li>
                     <li>
-                      <strong>Working on issues</strong>: You can browse the issue tracker and contribute by fixing bugs
-                      or implementing new features. This involves forking the repository, making changes, and submitting
-                      pull requests.
+                      <strong>Working on issues</strong>: You can browse the{' '}
+                      <a href="https://github.com/podman-desktop/podman-desktop/issues">issue tracker</a> and contribute
+                      by fixing bugs or implementing new features. This involves forking the repository, making changes,
+                      and submitting pull requests.
                     </li>
                     <li>
                       <strong>Contributing code</strong>: Beyond addressing existing issues, you can propose and
                       contribute entirely new features or enhancements to Podman Desktop's functionality, user
-                      interface, or integrations with other tools. Learn more about how to contribute.
+                      interface, or integrations with other tools. Learn more about{' '}
+                      <a href="https://github.com/podman-desktop/podman-desktop/blob/main/CONTRIBUTING.md">
+                        how to contribute
+                      </a>
+                      .
                     </li>
                     <li>
                       <strong>Contributing plug-ins</strong>: Feel like there is an integration missing? You can
-                      contribute your own plug-in functionality for Podman Desktop. Check out the guide. .
+                      contribute your own plug-in functionality for Podman Desktop.{' '}
+                      <a href="https://podman-desktop.io/blog/extensions-introduction">Check out the guide</a>.
                     </li>
                     <li>
                       <strong>Improving documentation</strong>: Clear and comprehensive documentation is essential. You
                       can contribute by improving existing documentation, adding new guides, or creating tutorials.
                     </li>
                     <li>
-                      <strong>Providing website contributions</strong>: The Podman Desktop website is also open source.
-                      You can contribute to its content, design, or translations.
+                      <strong>Providing website contributions</strong>: The Podman Desktop website{' '}
+                      <a href="https://podman-desktop.io/">Podman Desktop website</a> is also open source. You can
+                      contribute to its content, design, or translations.
                     </li>
                     <li>
                       <strong>Becoming an Adopter</strong>: If you are a happy user, we’d love to know and share the
-                      word. Consider adding yourself or your organization to the list of adopters with a pull request.
+                      word. Consider adding yourself or your organization to the{' '}
+                      <a href="https://github.com/podman-desktop/podman-desktop/blob/main/ADOPTERS.md">
+                        list of adopters
+                      </a>{' '}
+                      with a pull request.
                     </li>
                   </ul>
                   <p>
-                    Before you start contributing, it's helpful to familiarize yourself with the project's contribution
-                    guidelines and code architecture. These resources provide valuable information on coding style,
-                    testing procedures, and the overall development process. You can also join #podman-desktop on the
-                    Kubernetes Slack to connect with other contributors and get help.
+                    Before you start contributing, it's helpful to familiarize yourself with the{' '}
+                    <a href="https://github.com/podman-desktop/podman-desktop/blob/main/CONTRIBUTING.md">
+                      project's contribution guidelines
+                    </a>{' '}
+                    and code architecture. These resources provide valuable information on coding style, testing
+                    procedures, and the overall development process. You can also join #podman-desktop on the Kubernetes
+                    Slack to connect with other contributors and get help.
                   </p>
                 </div>
                 <div className="flex flex-col w-full text-left">
