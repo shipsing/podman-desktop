@@ -1,7 +1,6 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import Link from '@docusaurus/Link';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faCertificate, faCloudArrowDown, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Layout from '@theme/Layout';
 import React from 'react';
@@ -413,63 +412,6 @@ function Manymorefeatures(): JSX.Element {
   );
 }
 
-function EnterpriseReady(): JSX.Element {
-  return (
-    <section className="text-gray-900 dark:text-gray-400 dark:bg-charcoal-600 bg-zinc-200 body-font py-24">
-      <div className="container px-5 mx-auto flex flex-wrap">
-        <div className="flex flex-col text-center w-full mb-5">
-          <SectionTitle name="configure" />
-
-          <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
-            Configure
-          </h2>
-        </div>
-        <div className="container px-5 pb-5 mx-auto">
-          <h1 className="sm:text-3xl text-2xl font-medium title-font text-center text-gray-900 dark:text-gray-100 mb-20">
-            Match configuration options.
-          </h1>
-          <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
-            <div className="p-4 md:w-1/3 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-700 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faCertificate} className="w-6 h-6 " />
-              </div>
-              <div className="grow pl-6">
-                <h2 className="text-gray-900 dark:text-gray-100 text-lg title-font font-medium mb-2">Code signing</h2>
-
-                <p className="leading-relaxed text-base">
-                  <a href="/downloads">Signed binaries for both macOS and Windows</a>
-                </p>
-              </div>
-            </div>
-            <div className="p-4 md:w-1/3 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-800 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faCloudArrowDown} className="w-6 h-6 " />
-              </div>
-              <div className="grow pl-6">
-                <h2 className="text-gray-900 dark:text-gray-100  text-lg title-font font-medium mb-2">Proxy</h2>
-                <p className="leading-relaxed text-base">
-                  <a href="/docs/proxy">Configure proxy within the tool. Avoid any painful files to edit.</a>
-                </p>
-              </div>
-            </div>
-            <div className="p-4 md:w-1/3 flex">
-              <div className="w-12 h-12 inline-flex items-center justify-center rounded-full bg-gray-700 text-purple-800 mb-4 shrink-0">
-                <FontAwesomeIcon size="2x" icon={faCogs} className="w-6 h-6 " />
-              </div>
-              <div className="grow pl-6">
-                <h2 className="text-gray-900 dark:text-gray-100 text-lg title-font font-medium mb-2">Registries</h2>
-                <p className="leading-relaxed text-base">
-                  <a href="/docs/proxy">Manage OCI registries. Add/edit/delete registries.</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function JoinCommunity(): JSX.Element {
   return (
     <section className="text-gray-900 dark:text-gray-400 dark:bg-charcoal-600 bg-zinc-200 body-font">
@@ -727,7 +669,6 @@ export default function Home(): JSX.Element {
       <Manymorefeatures />
       <Feedback />
       <FAQ />
-      <EnterpriseReady />
     </Layout>
   );
 }
