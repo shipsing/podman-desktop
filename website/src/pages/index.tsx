@@ -3,7 +3,7 @@ import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
-import { faCertificate, faCloudArrowDown, faCogs, faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { faCertificate, faCloudArrowDown, faCogs } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Layout from '@theme/Layout';
 import ThemedImage from '@theme/ThemedImage';
@@ -137,38 +137,46 @@ function SectionTitle(props: Readonly<{ name: string }>): JSX.Element {
   );
 }
 
-function KeepUpToDate(): JSX.Element {
+function FAQ(): JSX.Element {
   return (
     <section className="text-gray-900 dark:text-gray-400 dark:bg-charcoal-800 bg-zinc-100 body-font">
       <div className="container px-5 py-24 mx-auto flex flex-wrap">
         <div className="flex flex-col text-center w-full mb-5">
-          <SectionTitle name="update" />
+          <SectionTitle name="FAQ" />
 
-          <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
-            Install and keep up to date <span className="font-bold">Podman</span>
+          <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
+            FAQ
           </h2>
         </div>
 
-        <div className="flex flex-col w-full text-center">
-          <div className="mx-10">
-            <FontAwesomeIcon size="3x" icon={faRotateRight} className="ml-2 mb-4 text-gray-900 dark:text-gray-300" />
-          </div>
-          <div className="flex flex-col items-center">
+        <div className="flex flex-col w-full text-left">
+          <h2 className="max-w-lg mb-6 font-sans text-2xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
+            <span className="font-bold">Is Podman Desktop free? </span>
+          </h2>
+          <div className="flex flex-col items-left">
             <p className="leading-relaxed text-base">
-              Install Podman and other dependencies directly from Podman Desktop if not yet installed.
+              Yes, Podman Desktop is an open-source project released under the GNU Lesser General Public License (LGPL).
+              This means that it is freely available for use, modification, and distribution by anyone, without charge
+              or licensing fees. Users can download and use Podman Desktop at no cost, making it accessible to
+              individuals and organizations alike.
             </p>
-            <p className="leading-relaxed text-base">Check for updates and get notified about new changes.</p>
-            <p className="leading-relaxed text-base">
-              Available on{' '}
-              <a href="/downloads/windows" className="text-purple-600 dark:text-purple-400" target="_blank">
-                Windows
-              </a>{' '}
-              and{' '}
-              <a href="/downloads/macos" className="text-purple-600 dark:text-purple-400" target="_blank">
-                macOS
-              </a>
-              !
-            </p>
+            <div className="flex flex-col w-full text-left">
+              <h2 className="max-w-lg mb-6 font-sans text-2xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
+                <span className="font-bold">Does Podman Desktop support Compose?</span>
+              </h2>
+              <div className="flex flex-col items-left">
+                <p className="leading-relaxed text-base">
+                  Yes, Podman Desktop supports Compose files, allowing users to manage multi-container applications
+                  using familiar tools and workflows. By leveraging the `podman compose` command or integrating with
+                  existing Docker Compose setups, developers can seamlessly transition between Docker and Podman
+                  environments without sacrificing productivity. This compatibility ensures a smooth learning curve for
+                  those accustomed to working with Compose while taking advantage of the benefits offered by Podman
+                  Desktop. We recommend developers leverage Podman's native support for Kubernetes objects, such as
+                  Pods, Deployments, and Services, to ease their transition into the Kubernetes ecosystem while still
+                  enjoying the simplicity and benefits of a container management solution like Podman.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -183,7 +191,7 @@ function Extensibility(): JSX.Element {
         <div className="flex flex-col text-center w-full mb-5">
           <SectionTitle name="extensibility" />
 
-          <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
+          <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
             Bring new features to Podman Desktop with extensions
           </h2>
         </div>
@@ -337,10 +345,10 @@ function EnterpriseReady(): JSX.Element {
     <section className="text-gray-900 dark:text-gray-400 dark:bg-charcoal-600 bg-zinc-200 body-font py-24">
       <div className="container px-5 mx-auto flex flex-wrap">
         <div className="flex flex-col text-center w-full mb-5">
-          <SectionTitle name="FAQ" />
+          <SectionTitle name="configure" />
 
           <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
-            FAQ
+            Configure
           </h2>
         </div>
         <div className="container px-5 pb-5 mx-auto">
@@ -678,7 +686,7 @@ export default function Home(): JSX.Element {
       <Pods />
       <Manymorefeatures />
       <Extensibility />
-      <KeepUpToDate />
+      <FAQ />
       <EnterpriseReady />
     </Layout>
   );
