@@ -1,6 +1,6 @@
 ---
 title: Configure a mirror registry
-description: Covers the end-to-end workflow for configuration
+description: Covers the end-to-end workflow to configure a mirror registry
 authors: [shipsing]
 tags: [podman-desktop, podman, configure-a-mirror-registry]
 hide_table_of_contents: false
@@ -10,7 +10,7 @@ hide_table_of_contents: false
 
 Lower rate limits imposed on the Docker Hub End-User License Agreement (EULA) made it difficult for community members to access the `docker.io` images frequently. A simple solution to this problem is to configure a mirror for the `docker.io` registry in the `registries.conf` file. This way, they can access the Docker resources whenever needed.
 
-With the Podman Desktop UI, you can add registry locations and configure their mirrors easily. Configuring a mirror redirects a registry to another location, enabling you to use its content. For example, if you have configured `ghcr.io` as a mirror for `docker.io` and try to pull a resource, Podman Desktop pulls the resource from `ghcr.io` instead of `docker.io`.
+With the Podman Desktop UI, you can add registry locations and configure their mirrors easily. Configuring a mirror redirects a registry to another location, enabling you to use its content. For example, if you have configured `ghcr.io` as a mirror for `docker.io` and try to pull a resource, Podman pulls the resource from `ghcr.io` instead of `docker.io`.
 
 The blog covers how to configure a mirror for the `docker.io` registry.
 
