@@ -335,7 +335,7 @@ function Feedback(): JSX.Element {
             <div className="p-4 md:w-1/4 flex">
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
-                  @saurabh,Saurbah J
+                  @saurabh, Saurbah J
                 </h2>
                 <p className="leading-relaxed text-base">
                   Finally, a container tool that respects system resources! Podman Desktop gives me full control without
@@ -429,10 +429,10 @@ function Manymorefeatures(): JSX.Element {
 
 function JoinCommunity(): JSX.Element {
   return (
-    <section className="text-gray-900 dark:text-gray-400 dark:bg-charcoal-600 bg-zinc-200 body-font">
+    <section className="flex rounded-lg mx-auto text-gray-900 dark:text-gray-400 dark:bg-charcoal-600 bg-zinc-200 body-font">
       <div className="container px-5 py-24 mx-auto flex flex-wrap">
         <div className="flex flex-col text-center w-full mb-5">
-          <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 dark:text-white sm:text-4xl md:mx-auto">
+          <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-3xl md:mx-auto">
             A Community-Driven Project Designed for Developers
           </h2>
           <p className="text-base text-gray-900 md:text-lg dark:text-gray-400">
@@ -444,7 +444,7 @@ function JoinCommunity(): JSX.Element {
         <div className="flex flex-wrap w-full justify-center">
           <Link
             title="Join community"
-            className="p-4 w-11/12 md:w-1/2 lg:w-1/4 no-underline hover:no-underline hover:text-white text-gray-900 dark:text-white"
+            className="p-4 w-11/12 md:w-1/2 lg:w-1/2 no-underline hover:no-underline hover:text-white text-gray-900 dark:text-white"
             to="/community">
             <div className="flex rounded-lg h-full bg-zinc-100  hover:bg-purple-500 dark:hover:bg-purple-700 dark:bg-charcoal-800 bg-opacity-60 p-8 flex-col">
               <div className="grow">
