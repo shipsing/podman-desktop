@@ -1,5 +1,5 @@
 /**********************************************************************
- * Copyright (C) 2023-2025 Red Hat, Inc.
+ * Copyright (C) 2025 Red Hat, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,19 @@
  * SPDX-License-Identifier: Apache-2.0
  ***********************************************************************/
 
-import guidesJson from './guides.json' with { type: 'json' };
-import type { Guide } from './learning-center-api.js';
+import { type Writable, writable } from 'svelte/store';
 
-export function downloadGuideList(): Guide[] {
-  return guidesJson.guides;
-}
+import { configurationProperties } from './configurationProperties';
+
+export const isKubernetesExperimentalModeStore: Writable<boolean | undefined> = writable();
+
+configurationProperties.subscribe(() => {
+  if (window?.getConfigurationValue) {
+    window
+      ?.getConfigurationValue<boolean>('kubernetes.statesExperimental')
+      ?.then(value => isKubernetesExperimentalModeStore.set(value ?? false))
+      ?.catch((err: unknown) =>
+        console.error(`Error getting configuration value 'kubernetes.statesExperimental'}`, err),
+      );
+  }
+});
