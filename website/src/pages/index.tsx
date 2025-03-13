@@ -1,6 +1,7 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import Link from '@docusaurus/Link';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Layout from '@theme/Layout';
 import React from 'react';
@@ -50,9 +51,11 @@ function DownloadClientLinks(): JSX.Element {
     otherButton = (
       <div>
         <Link
-          className="underline font-semibold hover:underline ml-4 inline-flex py-2 px-6 my-4  focus:outline-hidden text-lg"
+          className="basis-1/3 py-2 rounded-lg dark:text-gray-400 text-gray-900 dark:bg-zinc-700/25 text-center items-center"
           to="/downloads">
-          Other downloads
+          <FontAwesomeIcon size="4x" icon={faApple} className="my-4" />
+          <FontAwesomeIcon size="4x" icon={faLinux} className="my-4" />
+          <FontAwesomeIcon size="4x" icon={faWindows} className="my-4" />
         </Link>
       </div>
     );
