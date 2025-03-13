@@ -338,7 +338,7 @@ function Feedback(): JSX.Element {
             <div className="p-4 md:w-1/4 flex">
               <div className="grow pl-6">
                 <h2 className="max-w-lg mb-6 font-sans text-3xl font-light leading-none tracking-tight text-gray-900 dark:text-white sm:text-2xl md:mx-auto">
-                  @saurabh, Saurbah J
+                  @saurabh, Saurabh J
                 </h2>
                 <p className="leading-relaxed text-base">
                   Finally, a container tool that respects system resources! Podman Desktop gives me full control without
