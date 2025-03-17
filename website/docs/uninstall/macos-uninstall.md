@@ -27,10 +27,9 @@ Uninstalling Podman Desktop does not automatically remove the created Kubernetes
 
 ## Uninstall Podman
 
-1. Stop and remove the Podman machine:
+1. Remove all Podman machines:
    ```sh
-   $ podman machine stop podman-machine-default
-   $ podman machine rm -f podman-machine-default
+   $ podman machine reset -f
    ```
 1. Perform one of the following steps based on your installation:
    - If you have installed Podman using `brew`, run the following command:

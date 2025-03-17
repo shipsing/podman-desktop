@@ -32,7 +32,7 @@ By default, Podman is available on Linux distributions, such as CentOS Stream, F
 - To remove all containers, run the `podman rm -a -f` command.
 - To remove all pods, run the `podman pod rm -a -f` command.
 - To remove all images, run the `podman rmi -a -f` command.
-- To remove all Podman machines and reset, run the `podman machine reset -f` command.
+- To remove all Podman machines, run the `podman machine reset -f` command.
 
 ## Uninstall Podman Desktop
 

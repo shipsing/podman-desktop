@@ -29,10 +29,9 @@ Uninstalling Podman Desktop does not automatically remove the created Kubernetes
 
 You can delete all pods, containers, and images by removing the Podman machine.
 
-1. Stop and remove the Podman machine using the PowerShell:
+1. Remove all Podman machines:
    ```sh
-   $ podman machine stop podman-machine-default
-   $ podman machine rm -f podman-machine-default
+   $ podman machine reset -f
    ```
 1. Uninstall Podman from the Start menu, Settings, or Control Panel. For more details, see the [resource](https://support.microsoft.com/en-us/windows/uninstall-or-remove-apps-and-programs-in-windows-4b55f974-2cc6-2d2b-d092-5905080eaf98).
 1. Remove Podman files and configurations:
