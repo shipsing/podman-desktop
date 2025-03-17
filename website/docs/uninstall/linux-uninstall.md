@@ -44,5 +44,5 @@ By default, Podman is available on Linux distributions, such as CentOS Stream, F
 
 1. Remove the Podman Desktop configuration folder:
    ```sh
-   $ rm -rf ~/.local/share/containers/podman-destkop
+   $ rm -rf ~/.local/share/containers/podman-desktop
    ```

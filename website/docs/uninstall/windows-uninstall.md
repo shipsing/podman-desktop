@@ -82,7 +82,6 @@ You can delete all pods, containers, and images by removing the Podman machine.
    - Run the following command:
 
      ```shell-session
-     > scoop bucket delete extras
      > scoop uninstall podman-desktop
      ```
 
