@@ -8,7 +8,7 @@ keywords: [podman desktop, containers, podman, uninstall, Windows]
 
 # Uninstall Podman Desktop on Windows
 
-Uninstalling Podman Desktop does not automatically remove the created Kubernetes clusters, Podman, and other resources. To uninstall Podman Desktop, perform the following tasks:
+Uninstalling Podman Desktop does not automatically remove the created Kubernetes clusters, Podman, or other resources. To uninstall Podman Desktop, perform the following tasks:
 
 1. Optional: Remove cluster resources
 1. Uninstall Podman
@@ -50,7 +50,6 @@ You can delete all pods, containers, and images by removing the Podman machine.
    <summary>
    uninstall methods:
    - Installer
-   - PowerShell
    - Chocolatey
    - Scoop
    - Winget
@@ -59,15 +58,6 @@ You can delete all pods, containers, and images by removing the Podman machine.
    #### Installer
 
    - Uninstall Podman Desktop from the Start menu, Settings, or Control Panel. For more details, see the [resource](https://support.microsoft.com/en-us/windows/uninstall-or-remove-apps-and-programs-in-windows-4b55f974-2cc6-2d2b-d092-5905080eaf98).
-
-   #### PowerShell
-
-   - Run the following command:
-
-     ```shell-session
-     > $app = Get-WmiObject -Class Win32_Product -Filter "Name = 'podman-desktop'"
-     > $app.Uninstall()
-     ```
 
    #### Chocolatey
 

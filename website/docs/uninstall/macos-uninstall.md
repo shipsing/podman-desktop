@@ -8,7 +8,7 @@ keywords: [podman desktop, containers, podman, uninstall, macOS]
 
 # Uninstall Podman Desktop on macOS
 
-Uninstalling Podman Desktop does not automatically remove the created Kubernetes clusters, Podman, and other resources. To uninstall Podman Desktop, perform the following tasks:
+Uninstalling Podman Desktop does not automatically remove the created Kubernetes clusters, Podman, or other resources. To uninstall Podman Desktop, perform the following tasks:
 
 1. Optional: Remove cluster resources
 1. Uninstall Podman
