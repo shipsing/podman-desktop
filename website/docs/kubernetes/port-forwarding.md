@@ -68,7 +68,7 @@ You can stop port forwarding by using one of the following ways:
 **_Use the Pods or Services page_**
 
 1. Go to the **Kubernetes > Pods** or **Kubernetes > Services** page.
-1. Click the name of the Kubernetes pod or service for which you want to stop port fowarding.
+1. Click the name of the Kubernetes pod or service for which you want to stop port forwarding.
 1. Click **Remove** in the Summary tab. The entry is removed from the **Kubernetes > Port Forwarding** page.
    ![using component page](img/stop-port-forwarding-pod.png)
 
