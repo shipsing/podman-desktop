@@ -55,6 +55,9 @@ This YAML manifest creates three pods that run the NGINX web server.
 
 1. View the created `my-nginx` deployment on the same page.
    ![nginx deployment](img/my-nginx-deployment.png)
+
+   The deployment might take some time to make pods available for use.
+
 1. Click **Pods** in the Kubernetes explorer to view three instances of the NGINX web server running.
    ![nginx pods running](img/nginx-pods-running.png)
 
