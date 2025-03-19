@@ -18,7 +18,7 @@ With Podman Desktop, you can easily transition from containers to Kubernetes and
   - `Service`: Use this object to expose your application to users and define policies for application access.
   - `Ingress`: Use this object to define routing rules and manage user access to the services running in a Kubernetes cluster.
   - `PersistentVolumeClaim`: Use this object to request `PersistentVolume` resources for storage and define volume access modes within your Kubernetes cluster.
-  - `ConfigMap`: Use this object to to define non-sensitive configuration data for initializing or executing your application.
+  - `ConfigMap`: Use this object to define non-sensitive configuration data for initializing or executing your application.
   - `Secret`: Use this object to store and manage sensitive data, such as passwords, OAuth tokens, and SSH keys for your application.
   - `CronJob`: Use this object to run a job, such as backup and report generation periodically on a given schedule.
 - View and analyze real-time information about the connection status of the resources configured within the cluster.
