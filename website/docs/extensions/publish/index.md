@@ -17,7 +17,7 @@ To enable users to install your extension from the catalog, consider push your e
 
 - All runtime dependencies are inside the final binary.
 
-- An OCI image registry to publish to, such as `quay.io/username/my-first-extension`.
+- An OCI image registry to publish to, such as `quay.io/username/my-extension`.
 
 - (Optional) The OCI image registry is public to enable anybody to fetch the image.
 
@@ -35,7 +35,7 @@ To enable users to install your extension from the catalog, consider push your e
 1. Apply mandatory Podman Desktop metadata on the `OCI` image:
 
    ```dockerfile
-   LABEL org.opencontainers.image.title="My first extension" \
+   LABEL org.opencontainers.image.title="My extension" \
          org.opencontainers.image.description="Example of extension" \
          org.opencontainers.image.vendor="podman-desktop" \
          io.podman-desktop.api.version=">= 0.12.0"
@@ -54,13 +54,13 @@ To enable users to install your extension from the catalog, consider push your e
 1. Build an image:
 
    ```shell-session
-   $ podman build -t quay.io/username/my-first-extension .
+   $ podman build -t quay.io/username/my-extension .
    ```
 
 1. Push the image and manifest to the OCI image registry:
 
    ```shell-session
-   $ podman push quay.io/username/my-first-extension
+   $ podman push quay.io/username/my-extension
    ```
 
 ### Adding platform-specific files
@@ -71,9 +71,9 @@ In contrast to the extension's code (transpiled into JavaScript) which is execut
 
 For this, you will need to create:
 
-- one Containerfile for each platform or a common Containerfile with parameters to create
-  one image per platform
-- one manifest to reference all images created at the previous step.
+- One Containerfile for each platform or a common Containerfile with parameters to create
+  one image per platform.
+- One manifest to reference all images created at the previous step.
 
 The URL you need to share with the users to install the extension is the URL of the manifest.
 
