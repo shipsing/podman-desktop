@@ -8,7 +8,7 @@ keywords: [podman desktop, extension, publishing-an-extension]
 
 # Packaging and publishing a Podman Desktop extension
 
-To enable users to install your extension from the catalog, consider push your extension to an Open Container Initiative (OCI) image registry. After pushing your extension, add the extension details to the `podman-desktop-catalog/static/api/extensions.json` file in the [catalog repository](https://github.com/podman-desktop/podman-desktop-catalog).
+To enable users to install your extension from the catalog, push your extension to an Open Container Initiative (OCI) image registry. After pushing your extension, add the extension details to the `podman-desktop-catalog/static/api/extensions.json` file in the [catalog repository](https://github.com/podman-desktop/podman-desktop-catalog).
 
 #### Prerequisites
 
@@ -86,7 +86,7 @@ You can leverage the [Buildah Build action](https://github.com/redhat-actions/bu
 
 1. Fork and then clone the [Podman Desktop catalog repository](https://github.com/podman-desktop/podman-desktop-catalog).
 1. Checkout a new branch to add your extension details.
-1. Add a license, a readme file, and the extension icon to the `podman-desktop-catalog/static/api/extensions` directory.
+1. Add a license, a readme file, and the extension icon to the `podman-desktop-catalog/static/api/extensions/podman-desktop/` directory.
 1. Edit the `extensions.json` file. Here is a sample code to add a Podman Desktop extension to the catalog:
 
 ```json
