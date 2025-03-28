@@ -114,11 +114,11 @@ You can leverage the [Buildah Build action](https://github.com/redhat-actions/bu
             },
             {
               "assetType": "README",
-              "data": "https://registry.podman-desktop.io/api/extensions/podman-desktop/<extention>/<version>/README.md"
+              "data": "https://registry.podman-desktop.io/api/extensions/podman-desktop/<extension>/<version>/README.md"
             },
             {
               "assetType": "LICENSE",
-              "data": "https://registry.podman-desktop.io/api/extensions/podman-desktop/<extention>/<version>/LICENSE"
+              "data": "https://registry.podman-desktop.io/api/extensions/podman-desktop/<extension>/<version>/LICENSE"
             }
           ]
         },
