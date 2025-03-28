@@ -21,7 +21,7 @@ To enable users to install your extension from the catalog, consider push your e
 
 - (Optional) The OCI image registry is public to enable anybody to fetch the image.
 
-## Push your extension to an OCI registry
+#### Procedure: Push your extension to an OCI registry
 
 1. Create and edit a `Containerfile` file.
 
@@ -63,7 +63,7 @@ To enable users to install your extension from the catalog, consider push your e
    $ podman push quay.io/username/my-extension
    ```
 
-### Adding platform-specific files
+#### Adding platform-specific files
 
 You may want to add a system-native executable to the extension's image, so the extension can execute it.
 
@@ -82,7 +82,7 @@ image for Linux (amd64 or arm64 depending on the architecture of the user's plat
 
 You can leverage the [Buildah Build action](https://github.com/redhat-actions/buildah-build) to build this manifest.
 
-## Publish the extension to the catalog
+#### Procedure: Publish the extension to the catalog
 
 1. Fork and then clone the [Podman Desktop catalog repository](https://github.com/podman-desktop/podman-desktop-catalog).
 1. Checkout a new branch to add your extension details.
