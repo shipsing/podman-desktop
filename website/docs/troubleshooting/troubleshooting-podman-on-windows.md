@@ -109,4 +109,4 @@ Installing the Compose extension version 2.33.x fails, and you receive an error 
 
 The reason for the failure could be that the Windows Certificate Store has been improperly loaded with the corporate certificate chain. Usually, all the certificates are placed in one location, namely TrustedRootCA, which results in the failure to import the certificates into the Podman Desktop application.
 
-To get root CA self-signed certificates to work, you can identify where these certificates have been placed in the Windows Certificate Store. Then, you can clean the Store to ensure those certificates are in their proper locations.
+To get root CA self-signed certificates to work, you can identify where these certificates have been placed in the Windows Certificate Store. Then, you can [clean the Store](https://learn.microsoft.com/en-us/windows-hardware/drivers/install/trusted-root-certification-authorities-certificate-store) to ensure those certificates are in their proper locations.
