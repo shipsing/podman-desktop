@@ -17,6 +17,8 @@ With extensions, you can add:
 - Podman Desktop extension points, including tray icon menus, status bar items, icons, menus, and commands.
 - Integration with third-party tools, such as Kind or Compose.
 
+You can view a complete list of the extensions and their details on the [website](/extensions) and install them for use.
+
 ## Architecture
 
 Below is an example of the architecture for the "Podman" extension that integrates with Podman Desktop:
