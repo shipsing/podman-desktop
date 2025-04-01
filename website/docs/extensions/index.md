@@ -44,9 +44,15 @@ To help you get started, we've provided templates ranging from a minimal "Hello 
 
 Here are some examples from [our templates documentation](/docs/extensions/templates):
 
-- [Basic "Hello World" example.](https://github.com/podman-desktop/extension-template-minimal)
-- [Simple webview template.](https://github.com/podman-desktop/extension-template-webview)
-- [Full-stack webview template.](https://github.com/podman-desktop/extension-template-full)
+- [Basic "Hello World" example](https://github.com/podman-desktop/extension-template-minimal).
+- [Simple webview template](https://github.com/podman-desktop/extension-template-webview). See the code for the published Podman Desktop extensions that use this template:
+  - [Kind](https://github.com/podman-desktop/podman-desktop/tree/main/extensions/kind/src)
+  - [Compose](https://github.com/podman-desktop/podman-desktop/tree/main/extensions/compose/src)
+  - [Registries](https://github.com/podman-desktop/podman-desktop/tree/main/extensions/registries/src)
+- [Full-stack webview template](https://github.com/podman-desktop/extension-template-full). See the code for the published Podman Desktop extensions that use this template:
+  - [Podman AI Lab](https://github.com/containers/podman-desktop-extension-ai-lab/tree/main/packages)
+  - [Bootable Containers](https://github.com/podman-desktop/extension-bootc/tree/main/packages)
+  - [Kreate](https://github.com/podman-desktop/extension-kreate/tree/main/packages)
 
 Have questions or need assistance? Join our community on Discord for support!
 
