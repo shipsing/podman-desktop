@@ -3,7 +3,7 @@ import Carousel from './Carousel.svelte';
 </script>
 
 
-{#snippet card(cardItem: unknown)}
+{#snippet card(cardItem: string)}
 <p>{cardItem}</p>
 {/snippet}
 
