@@ -85,47 +85,11 @@ You can leverage the [Buildah Build action](https://github.com/redhat-actions/bu
 #### Procedure: Publish the extension to the catalog
 
 1. Fork and then clone the [Podman Desktop catalog repository](https://github.com/podman-desktop/podman-desktop-catalog).
-1. Checkout a new branch to add your extension details.
+1. Checkout a new branch.
 1. Add a license, a readme file, and the extension icon to the `podman-desktop-catalog/static/api/extensions/podman-desktop/` directory.
-1. Edit the `extensions.json` file. Here is a sample code to add a Podman Desktop extension to the catalog:
-
-```json
-      "publisher": {
-        "publisherName": "podman-desktop",
-        "displayName": "Podman Desktop"
-      },
-      "extensionName": "<name-of-the-extension>",
-      "displayName": "<display-name-of-the-extension>",
-      "shortDescription": "<description-of-the-extension>",
-      "license": "Apache-2.0",
-      "categories": ["<category-of-the-extension>"],
-      "keywords": ["<keywords-for-the-extension>"],
-      "versions":
-        {
-          "version": "<version-number-of-extension>",
-          "podmanDesktopVersion": "<version-number-of-podman-desktop>",
-          "preview": false,
-          "lastUpdated": "2025-03-25T00:00:00Z",
-          "ociUri": "<path-to-extension-image>",
-          "files": [
-            {
-              "assetType": "icon",
-              "data": "https://registry.podman-desktop.io/api/extensions/podman-desktop/<extension>/<version>/icon.png"
-            },
-            {
-              "assetType": "README",
-              "data": "https://registry.podman-desktop.io/api/extensions/podman-desktop/<extension>/<version>/README.md"
-            },
-            {
-              "assetType": "LICENSE",
-              "data": "https://registry.podman-desktop.io/api/extensions/podman-desktop/<extension>/<version>/LICENSE"
-            }
-          ]
-        },
-```
-
-5. Create a PR with your changes.
-6. Get your PR merged to make your extension available in the catalog.
+1. Edit the [`extensions.json`](https://github.com/podman-desktop/podman-desktop-catalog/blob/main/static/api/extensions.json) file to add your extension details. [Here](https://github.com/podman-desktop/podman-desktop-catalog/blob/main/static/api/extensions.json#L406) is an example of adding a Podman Desktop extension named Minkibe to the catalog.
+1. Create a PR with your changes.
+1. Get your PR merged to make your extension available in the catalog.
 
 Podman Desktop has an in-built automatic update mechanism to refresh the catalog list with the newly added extensions.
 
