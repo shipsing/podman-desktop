@@ -74,16 +74,18 @@ Perform any of the following steps:
 
 #### Procedure
 
-1. Click **Docker Compatibility** in the status bar. A notification opens.
-1. Click **Enable**.
-   ![enable docker compatibility](img/enable-docker-compatibility.png)
-1. Enter your machine password when prompted. A successful operation notification opens.
-1. Click **OK**. A notification prompts you to restart your Podman machine.
-1. Click **Yes**.
-   ![restart Podman machine](img/restart-podman-machine.png)
+The Docker socket compatibility mode is enabled by default. However, if you have disabled the Docker socket and want to re-enable it, you must enable the **Third-Party Docker Tool Compatibility** setting.
+
 1. Go to **Settings > Preferences > Docker Compatibility**, and click the toggle button.
    ![enable toggle button - Preferences](img/enable-using-preferences.png)
    A Docker Compatibility section is added to the list of **Settings**.
+1. Click **Docker Compatibility** in the Settings. The Docker Compatibility page opens.
+1. Click **Enable** in the **Third-Party Docker Tool Compatibility** setting.
+1. Enter your machine password when prompted. A successful operation notification opens.
+1. Click **OK**. A notification prompts you to restart your Podman machine.
+   ![enable docker compatibility](img/enable-docker-compatibility.png)
+1. Click **Yes**.
+   ![restart Podman machine](img/restart-podman-machine.png)
 
 #### Verification
 
@@ -161,14 +163,13 @@ Perform any of the following steps:
 
 #### Procedure
 
-1. Click **Docker Compatibility** in the status bar. A notification opens.
-1. Click **Disable**.
-   ![disable Docker compatibility](img/disable-docker-compatibility.png)
+1. Go to **Settings > Preferences > Docker Compatibility**, and click the toggle button.
+   The Docker Compatibility section is removed from the list of **Settings**.
+1. Click **Docker Compatibility** in the Settings. The Docker Compatibility page opens.
+1. Click **Disable** in the **Third-Party Docker Tool Compatibility** setting.
 1. Enter your machine password when prompted. A successful operation notification opens.
 1. Click **OK**. A notification prompts you to restart your Podman machine.
 1. Click **Yes**.
-1. Go to **Settings > Preferences > Docker Compatibility**, and click the toggle button.
-   The Docker Compatibility section is removed from the list of **Settings**.
 
 #### Verification
 
