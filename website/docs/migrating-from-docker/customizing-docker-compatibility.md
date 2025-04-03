@@ -163,13 +163,13 @@ Perform any of the following steps:
 
 #### Procedure
 
-1. Go to **Settings > Preferences > Docker Compatibility**, and click the toggle button.
-   The Docker Compatibility section is removed from the list of **Settings**.
 1. Click **Docker Compatibility** in the Settings. The Docker Compatibility page opens.
 1. Click **Disable** in the **Third-Party Docker Tool Compatibility** setting.
 1. Enter your machine password when prompted. A successful operation notification opens.
 1. Click **OK**. A notification prompts you to restart your Podman machine.
 1. Click **Yes**.
+1. Go to **Settings > Preferences > Docker Compatibility**, and click the toggle button.
+   The Docker Compatibility section is removed from the list of **Settings**.
 
 #### Verification
 
