@@ -21,15 +21,14 @@ This tutorial covers the following end-to-end tasks required to use a multi-cont
 
 ## Before you begin
 
-If you do not have Compose installed, let's go through the onboarding process to install the Compose implementation binary:
+If you do not have Compose installed, you can follow the complete onboarding process to install it system wide:
 
-1. Get to Resources under **<Icon icon="fa-solid fa-cog" size="lg" /> Settings > Resources**.
-2. Click **Setup** under Compose (it will appear if it has not been installed yet).
-3. Go through the onboarding process.
+1. Install the Compose extension from the catalog. For more details, see [Installing a Podman Desktop extension](https://podman-desktop.io/docs/extensions/install).
+1. Setup Compose and complete the onboarding part to configure it system-wide.
 
 ![Onboarding process](img/onboarding.png)
 
-Confirm that you are able to run `podman compose`:
+1. Check that you are able to run `podman compose`:
 
 ```sh
 podman compose
@@ -44,7 +43,7 @@ Description:
 
 Our example application is located at [github.com/redhat-developer/podman-desktop-demo](https://github.com/redhat-developer/podman-desktop-demo).
 
-1. Use `git clone` to build the Go binary web application:
+1. Run `git clone` to build the Go binary web application:
 
    ```sh
    git clone https://github.com/redhat-developer/podman-desktop-demo
@@ -149,8 +148,6 @@ services:
   web:
     container_name: web
     build: ./web
-    environment:
-      - REDIS_REPLICAS=redis-replica,redis-replica-2
     ports:
       - '8080:8080'
 ```
