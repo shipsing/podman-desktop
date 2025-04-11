@@ -27,7 +27,7 @@ If you do not have Compose installed, let's go through the onboarding process to
 2. Click **Setup** under Compose (it will appear if it has not been installed yet).
 3. Go through the onboarding process.
 
-![Onboarding process](img/getting-started-with-compose/onboarding.png)
+![Onboarding process](img/onboarding.png)
 
 Confirm that you are able to run `podman compose`:
 
@@ -69,7 +69,7 @@ Within Podman Desktop, you can now see that all three containers are up and oper
 
 1. Click the "Open Browser" button to view the web application:
 
-![Open browser](img/getting-started-with-compose/openbrowser.png)
+![Open browser](img/openbrowser.png)
 
 1. Within the Guestbook web application, you can:
 
@@ -78,7 +78,7 @@ Within Podman Desktop, you can now see that all three containers are up and oper
    - `/env`: View the container's environment variables.
    - `/info`: View information about the Redis cluster.
 
-   ![Guestbook application](img/getting-started-with-compose/helloworld.png)
+   ![Guestbook application](img/helloworld.png)
 
 ## Viewing and modifying the database
 
@@ -86,7 +86,7 @@ Using Podman Desktop, you can also access the container's terminal directly from
 
 1. Click "Open Terminal" to access the `redis-leader` terminal:
 
-   ![Open terminal](img/getting-started-with-compose/openterminal.png)
+   ![Open terminal](img/openterminal.png)
 
 1. Modify the database as if you are doing database administration:
 
@@ -94,7 +94,7 @@ Using Podman Desktop, you can also access the container's terminal directly from
    2. Type `LPUSH guestbook "Hello World!"` and you will see your web application update in real-time.
    3. Type `DEL guestbook` and you will see that your database drops the `guestbook` key and clears the database.
 
-      ![Redis CLI](img/getting-started-with-compose/redis-cli.png)
+      ![Redis CLI](img/redis-cli.png)
 
    Changes will reflect in real-time on the guestbook.
 
@@ -102,7 +102,7 @@ You can further modify the database and see the changes propagate to the Redis r
 
 For example, view the logs of the `redis-replica`, and you will notice that there are periodic database synchronizations as well as reads to the database:
 
-![Redis replica logs](img/getting-started-with-compose/redisreplica.png)
+![Redis replica logs](img/redisreplica.png)
 
 ### How does it work?
 
