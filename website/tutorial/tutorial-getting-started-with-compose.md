@@ -84,7 +84,7 @@ Within Podman Desktop, you can now see that all three containers are up and oper
 
 Using Podman Desktop, you can also access the container's terminal directly from the GUI and modify the database.
 
-1. Click "Open Terminal" to access the `redis-leader` terminal:
+1. Click **Open Terminal** to access the `redis-leader` terminal:
 
    ![Open terminal](img/openterminal.png)
 
@@ -150,7 +150,7 @@ services:
     container_name: web
     build: ./web
     environment:
-      - REDIS_REPLICAS=redis-replica1,redis-replica2
+      - REDIS_REPLICAS=redis-replica,redis-replica-2
     ports:
       - '8080:8080'
 ```
