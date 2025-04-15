@@ -2,7 +2,7 @@
 sidebar_position: 8
 title: Getting started with Compose on Podman Desktop
 description: Getting started with Compose on Podman Desktop
-keywords: [podman-desktop, story, compose, containers, containerfile, docker-compose, dockerfile, multi-container]
+keywords: [podman-desktop, compose, containers, containerfile, docker-compose, dockerfile, multi-container]
 tags: [podman-desktop, working-with-compose]
 ---
 
@@ -24,10 +24,8 @@ This tutorial covers the following end-to-end tasks required to use a multi-cont
 If you do not have Compose installed, you can follow the complete onboarding process to install it system wide:
 
 1. Install the Compose extension from the catalog. For more details, see [Installing a Podman Desktop extension](https://podman-desktop.io/docs/extensions/install).
-1. Setup Compose and complete the onboarding part to configure it system-wide.
-
-![Onboarding process](img/onboarding.png)
-
+1. Set up Compose and complete the onboarding process to configure it system-wide.
+   ![Onboarding process](img/onboarding.png)
 1. Check that you are able to run `podman compose`:
 
 ```sh
@@ -38,6 +36,12 @@ Description:
   This command is a thin wrapper around an external compose provider such as docker-compose or podman-compose.  This means that podman compose is executing another tool that implements the compose functionality but sets up the environment in a way to let the compose provider communicate transparently with the local Podman socket.  The specified options as well the command and argument are passed directly to the compose provider.
 ...
 ```
+
+:::note
+
+If Compose is already installed, you have the option to upgrade or downgrade its version by navigating to the **Settings > CLI Tools** page.
+
+:::
 
 ## Download and run the example application
 
@@ -113,7 +117,7 @@ A quick overview of how the architecture works in this multi-container scenario:
 There is a set of environment variables that the web application can modify in the Compose application:
 
 - `REDIS_LEADER`: The default is `redis-leader`.
-- `REDIS_REPLICAS`: The default is `redis-replica`. Can be comma-separated, such as `redis-replica-1,redis-replica-2`.
+- `REDIS_REPLICAS`: The default is `redis-replica`. It can be comma-separated, such as `redis-replica-1,redis-replica-2`.
 - `REDIS_PORT`: The default is `6379`.
 - `SERVER_PORT`: The default is `8080`.
 
