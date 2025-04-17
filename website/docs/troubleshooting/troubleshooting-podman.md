@@ -72,7 +72,7 @@ Podman Desktop might fail starting a Podman machine.
 
 1. If the start fails, read the logs carefully to continue troubleshooting.
 
-## Podman Desktop fails listing images or containers
+## Podman Desktop fails to list images or containers
 
 Podman Desktop might fail listing images or container.
 
