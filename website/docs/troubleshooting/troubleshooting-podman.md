@@ -72,6 +72,19 @@ Podman Desktop might fail starting a Podman machine.
 
 1. If the creation fails, read the logs carefully to continue troubleshooting.
 
+## Podman machine gets stuck in the starting phase
+
+#### Issue
+
+You might find that the Podman machine is stuck in the starting phase on the **Settings > Resources** page in the UI. The machine does not switch to the running phase for quite some time.
+
+#### Workaround
+
+1. Run the `podman machine reset` command.
+1. [Create a new machine](/docs/podman/creating-a-podman-machine) using the Podman Desktop UI.
+
+Alternatively, you can run the `podman machine start` command using the CLI to get a running Podman machine.
+
 ## Podman Desktop fails listing images or containers
 
 Podman Desktop might fail listing images or container.
