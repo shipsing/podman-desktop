@@ -60,7 +60,7 @@ Podman Desktop might fail creating a Podman machine.
 
 #### Issue
 
-Podman Desktop might fail starting a Podman machine.
+Podman Desktop might fail starting a Podman machine. On the **Settings > Resources** page, the machine does not switch to the running phase for quite some time.
 
 #### Workaround
 
@@ -73,6 +73,9 @@ Podman Desktop might fail starting a Podman machine.
 1. If the start fails, read the logs carefully to continue troubleshooting.
 
 ## Podman Desktop fails to list images or containers
+Alternatively, you can run the `podman machine reset` command, and [create a new machine](/docs/podman/creating-a-podman-machine) using the Podman Desktop UI.
+
+## Podman Desktop fails listing images or containers
 
 Podman Desktop might fail listing images or container.
 
