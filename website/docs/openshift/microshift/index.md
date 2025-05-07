@@ -1,5 +1,6 @@
 ---
-title: Creating a MicroShift cluster
+sidebar_position: 104
+title: MicroShift
 description: Create a MicroShift cluster with Podman Desktop
 keywords: [podman desktop, podman, minc extension, microshift]
 tags: [install-minc-extension, create-a-microshift-cluster]
