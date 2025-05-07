@@ -14,6 +14,6 @@ You can try OpenShift online for free with the Developer Sandbox, or install it 
 
 #### Next steps
 
-1. [OpenShift Developer Sandbox](/docs/openshift/developer-sandbox).
-1. [OpenShift Local](/docs/openshift/openshift-local).
-1. [MicroShift](/docs/openshift/microshift).
+1. [OpenShift Developer Sandbox](/docs/openshift/developer-sandbox)
+1. [OpenShift Local](/docs/openshift/openshift-local)
+1. [MicroShift](/docs/openshift/microshift)
