@@ -32,7 +32,7 @@ With Podman Desktop, you can use the MicroShift in a container (MINC) extension 
 
 1. Go to **Settings > Resources**.
 1. In the MicroShift tile, click the **Create new ...** button.
-   ![install the extension](img/creating-a-microshift-cluster.png)
+   ![creating a microshift cluster](img/creating-a-microshift-cluster.png)
 1. Click **Create**.
    ![creation with default ports](img/cluster-creation-with-default-port.png)
 1. Optional: Click the **Show Logs** button to view the logs.
@@ -43,9 +43,7 @@ With Podman Desktop, you can use the MicroShift in a container (MINC) extension 
 - On the **Settings > Resources** page, your MicroShift instance is running.
   ![microshift instance running](img/microshift-instance-running.png)
 - [Set your current context](/docs/kubernetes/viewing-and-selecting-current-kubernetes-context) to `microshift` for Kubernetes development.
-- Run basic tasks, such as:
-  - [Deploying a container](/docs/kubernetes/deploying-a-pod-to-kubernetes)
-  - [Deploying a pod](/docs/kubernetes/deploying-a-pod-to-kubernetes)
+- Run basic tasks, such as [deploying a pod or container](/docs/kubernetes/deploying-a-pod-to-kubernetes) to Kubernetes.
 
 #### Additional resources
 
