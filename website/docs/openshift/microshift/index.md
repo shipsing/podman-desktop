@@ -19,15 +19,7 @@ With Podman Desktop, you can use the MicroShift in a container (MINC) extension 
 #### Prerequisites
 
 - A running [Podman machine](/docs/podman/creating-a-podman-machine) with root privileges.
-
-#### Procedure: Install the MINC extension
-
-1. Click **Extensions** in the left navigation pane.
-1. Click Install **custom...**.
-1. Enter the OCI image name `ghcr.io/minc-org/minc-extension:latest`, and click **Install**.
-   ![install the extension](img/installing-microshift.png)
-1. Click **Done** after successfull installation.
-1. Check that the MicroShift extension is available in the Installed tab.
+- [Install the MINC extension](/docs/extensions/install).
 
 #### Procedure: Create a MicroShift cluster
 
