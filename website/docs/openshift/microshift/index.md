@@ -20,14 +20,16 @@ With Podman Desktop, you can use the MicroShift in a container (MINC) extension 
 
 - A running [Podman machine](/docs/podman/creating-a-podman-machine) with root privileges.
 - [Install the MINC extension](/docs/extensions/install).
+- On Windows: [Enable the `cgroup v2` kernel feature](https://stackoverflow.com/questions/73021599/how-to-enable-cgroup-v2-in-wsl2) in the Windows Subsystem for Linux (WSL).
 
 #### Procedure: Create a MicroShift cluster
 
 1. Go to **Settings > Resources**.
 1. In the MicroShift tile, click the **Create new ...** button.
    ![creating a microshift cluster](img/creating-a-microshift-cluster.png)
+1. Optional: Edit the port number for the routes.
 1. Click **Create**.
-   ![creation with default ports](img/cluster-creation-with-default-port.png)
+   ![creation with custom ports](img/cluster-creation-with-custom-port.png)
 1. Optional: Click the **Show Logs** button to view the logs.
 1. After successful creation, click the **Go back to resources** button.
 
