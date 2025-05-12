@@ -20,7 +20,8 @@ With Podman Desktop, you can use the MicroShift in a container (MINC) extension 
 
 - A running [Podman machine](/docs/podman/creating-a-podman-machine) with root privileges.
 - [Install the MINC extension](/docs/extensions/install).
-- On Windows: [Enable the `cgroup v2` kernel feature](https://stackoverflow.com/questions/73021599/how-to-enable-cgroup-v2-in-wsl2) in the Windows Subsystem for Linux (WSL).
+- On Windows: [Enable the `cgroup v2` kernel feature](https://learn.microsoft.com/en-us/windows/wsl/wsl-config) in the Windows Subsystem for Linux (WSL).
+  - Append the command-line argument `cgroup_no_v1=all` to your `.wslconfig` file located in the `%UserProfile%` directory.
 
 #### Procedure: Create a MicroShift cluster
 
