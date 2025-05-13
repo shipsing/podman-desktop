@@ -28,7 +28,7 @@ The integrated Playground environments allow for experimenting with available mo
 #### Verification
 
 1. View the created playground on the same page.
-   ![playground](img/playground.png)
+   ![playground created](img/playground.png)
 1. Click the name of the playground to experiment with model settings. The Playground page opens.
 1. Perform any of the following tasks:
    - Edit the value of the model parameters.

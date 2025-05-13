@@ -29,13 +29,13 @@ Once a model is downloaded, a model service can be started. A model service is a
 
 1. Select the model for which you want to start an inference server from the dropdown list, and edit the port number if needed.
 1. Click **Create service**. The inference server for the model is being started, and this requires some time.
-   ![creating a service](img/creating-a-service.png)
+   ![create a service](img/creating-a-service.png)
 
 1. Click the **Open service details** button.
 
 #### Verification
 
 1. View the details of the inference server.
-   ![inference server](img/inference-server-curl.png)
+   ![inference server details](img/inference-server-curl.png)
 1. Optional: Customize the client code based on your programming language to access the model through the inference server. For example, set the code language to `Java` and `Quarkus Langchain4J`, and view the updated code snippet.
-   ![inference server](img/inference-server-quarkus.png)
+   ![inference server details for Quarkus](img/inference-server-quarkus.png)
