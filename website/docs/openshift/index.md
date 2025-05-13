@@ -10,7 +10,7 @@ keywords: [openshift, kubernetes]
 
 OpenShift is a hybrid cloud platform built around Linux containers, orchestrated and managed by Kubernetes on a foundation of Red Hat Enterprise Linux.
 
-You can try OpenShift online for free with the Developer Sandbox, or install it locally via OpenShift Local. Also, you can create a MicroShift cluster within your Podman environment to run Kubernetes workloads.
+You can try OpenShift online for free with the Developer Sandbox, or install it locally via OpenShift Local. Also, you can create a MicroShift cluster within your Podman environment to run your OpenShift workloads.
 
 #### Next steps
 

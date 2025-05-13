@@ -8,20 +8,21 @@ tags: [install-minc-extension, create-a-microshift-cluster]
 
 # Creating a MicroShift cluster
 
-With Podman Desktop, you can use the MicroShift in a container (MINC) extension to create a lightweight Kubernetes cluster that runs on minimal resources, such as CPU, RAM, and storage. The cluster is deployed as a container within your Podman environment. After setting up a MicroShift cluster, you can:
+With Podman Desktop, you can use the MicroShift in a Container (MINC) extension to create a lightweight OpenShift Kubernetes cluster that runs on minimal resources, such as CPU, RAM, and storage. The cluster is deployed as a container within your Podman environment and resembles a miniaturized version of OpenShift. After setting up a MicroShift cluster, you can:
 
-- Develop Kubernetes applications in a resource-constrained environment.
-- Provision lightweight Kubernetes control planes.
-- Run your Kubernetes workloads at the edge or even in network-constrained situations, such as low connectivity or node access issues.
-- Access the images built with Podman from your MicroShift cluster.
-- Have a consistent development and management experience with an OpenShift Container Platform (OCP) cluster.
+- Develop OpenShift applications in a resource-constrained environment.
+- Provision lightweight OpenShift control planes.
+- Run your OpenShift workloads at the edge or even in network-constrained situations, such as low connectivity or node access issues.
+- Access the images built with Podman from your cluster.
+- Have a consistent development and management experience with an OpenShift cluster.
 
 #### Prerequisites
 
 - A running [Podman machine](/docs/podman/creating-a-podman-machine) with root privileges.
 - [Install the MINC extension](/docs/extensions/install).
 - On Windows: [Enable the `cgroup v2` kernel feature](https://learn.microsoft.com/en-us/windows/wsl/wsl-config) in the Windows Subsystem for Linux (WSL).
-  - Append the command-line argument `cgroup_no_v1=all` to your `.wslconfig` file located in the `%UserProfile%` directory.
+  1. Open the `.wslconfig` file located in the `%UserProfile%` directory.
+  1. Append the kernel command-line argument `cgroup_no_v1=all` to the `kernelCommandLine` key under the `[wsl2]` section.
 
 #### Procedure: Create a MicroShift cluster
 
