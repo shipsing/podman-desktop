@@ -1771,8 +1771,8 @@ export function initExposure(): void {
   );
   contextBridge.exposeInMainWorld(
     'sendShowMessageBoxOnSelect',
-    async (messageBoxId: number, selectedIndex: number | undefined): Promise<void> => {
-      return ipcInvoke('showMessageBox:onSelect', messageBoxId, selectedIndex);
+    async (messageBoxId: number, selectedIndex?: number, dropdownIndex?: number): Promise<void> => {
+      return ipcInvoke('showMessageBox:onSelect', messageBoxId, selectedIndex, dropdownIndex);
     },
   );
 
@@ -1870,6 +1870,10 @@ export function initExposure(): void {
 
   contextBridge.exposeInMainWorld('kubernetesGetDetailedContexts', async (): Promise<KubeContext[]> => {
     return ipcInvoke('kubernetes-client:getDetailedContexts');
+  });
+
+  contextBridge.exposeInMainWorld('kubernetesDuplicateContext', async (contextName: string): Promise<void> => {
+    return ipcInvoke('kubernetes-client:duplicateContext', contextName);
   });
 
   contextBridge.exposeInMainWorld('kubernetesDeleteContext', async (contextName: string): Promise<Context[]> => {

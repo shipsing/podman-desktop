@@ -1848,8 +1848,8 @@ export class PluginSystem {
 
     this.ipcHandle(
       'showMessageBox:onSelect',
-      async (_listener, id: number, index: number | undefined): Promise<void> => {
-        return messageBox.onDidSelectButton(id, index);
+      async (_listener, id: number, index: number | undefined, dropdownIndex?: number): Promise<void> => {
+        return messageBox.onDidSelectButton(id, index, dropdownIndex);
       },
     );
 
@@ -2593,6 +2593,10 @@ export class PluginSystem {
         return kubernetesClient.deleteContext(contextName);
       },
     );
+
+    this.ipcHandle('kubernetes-client:duplicateContext', async (_listener, contextName: string): Promise<void> => {
+      return kubernetesClient.duplicateContext(contextName);
+    });
 
     this.ipcHandle('kubernetes-client:setContext', async (_listener, contextName: string): Promise<void> => {
       return kubernetesClient.setContext(contextName);

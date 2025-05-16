@@ -204,13 +204,15 @@ export function isIncompatibleMachineOutput(output: string | undefined): boolean
 // to avoid having multiple notification of the same nature in the notifications list
 // we first dispose the old one and then push the same again
 function notifySetupPodman(): void {
-  notificationDisposable?.dispose();
-  notificationDisposable = extensionApi.window.showNotification(setupPodmanNotification);
+  if (!notificationDisposable) {
+    notificationDisposable = extensionApi.window.showNotification(setupPodmanNotification);
+  }
 }
 
 function notifyDisguisedPodmanSocket(): void {
-  disguisedPodmanNotificationDisposable?.dispose();
-  disguisedPodmanNotificationDisposable = extensionApi.window.showNotification(disguisedPodmanNotification);
+  if (!disguisedPodmanNotificationDisposable) {
+    disguisedPodmanNotificationDisposable = extensionApi.window.showNotification(disguisedPodmanNotification);
+  }
 }
 
 async function checkAndNotifySetupPodmanMacHelper(): Promise<void> {
@@ -227,6 +229,7 @@ async function checkAndNotifySetupPodmanMacHelper(): Promise<void> {
 
   // Notify if we need to run podman-mac-helper only if isDisguisedPodmanSocket is set to false
   // and we are on macOS, as the helper is only required for macOS.
+  // We also only notify if the actual notification is undefined (already disposed / not exists)
   if (!isDisguisedPodmanSocket && !socketCompatibilityMode.isEnabled()) {
     notifySetupPodmanMacHelper();
   } else {
@@ -483,7 +486,8 @@ async function doUpdateMachines(
     }
   }
 
-  if (extensionApi.env.isMac) {
+  // Only do the check if the provider is ready
+  if (extensionApi.env.isMac && provider.status === 'ready') {
     // At the end of the entire check, let's make sure that on macOS if the socket is not a disguised Podman socket
     // and if we should notify that we need to run podman-mac-helper, we do so.
     await checkAndNotifySetupPodmanMacHelper();
@@ -1533,8 +1537,8 @@ export async function activate(extensionContext: extensionApi.ExtensionContext):
     // Push the results of the command so we can unload it later
     extensionContext.subscriptions.push(command);
 
-    // Only on macOS
-    if (extensionApi.env.isMac) {
+    // Only on macOS, and only do the check if the provider is actually ready.
+    if (extensionApi.env.isMac && provider.status === 'ready') {
       // At the end, we "double check" that the socket is indeed disguised. We should only do this once on initial
       // extension activation so that the user isn't constantly prompted with the error message.
       await checkAndNotifyDisguisedPodman();
@@ -1845,10 +1849,10 @@ export async function start(
 export async function connectionAuditor(items: extensionApi.AuditRequestItems): Promise<extensionApi.AuditResult> {
   const records: extensionApi.AuditRecord[] = [];
 
-  if (items['podman.factory.machine.image-uri'] && items['podman.factory.machine.image-path']) {
+  if (items['podman.factory.machine.image-uri'] && items['podman.factory.machine.image']) {
     records.push({
       type: 'error',
-      record: `'Image Path' and 'Image URI' fields are both filled. Please fill only one or leave both fields empty.`,
+      record: `'Image' and 'Image URI' fields are both filled. Please fill only one or leave both fields empty.`,
     });
   }
 
@@ -2055,6 +2059,10 @@ export async function isHyperVEnabled(): Promise<boolean> {
   return hyperVCheckResult.successful;
 }
 
+export function isPodman5OrLater(podmanVersion: string): boolean {
+  return compareVersions(podmanVersion, '5.0.0') >= 0;
+}
+
 export function sendTelemetryRecords(
   eventName: string,
   telemetryRecords: Record<string, unknown>,
@@ -2203,17 +2211,29 @@ export async function createMachine(
     telemetryRecords.diskSize = params['podman.factory.machine.diskSize'];
   }
 
-  // image-path
-  if (params['podman.factory.machine.image-path'] && typeof params['podman.factory.machine.image-path'] === 'string') {
-    parameters.push('--image-path');
-    parameters.push(params['podman.factory.machine.image-path']);
+  const podmanInstallation = await getPodmanInstallation();
+  const version = podmanInstallation?.version;
+  // check for podman major version
+  const isPodmanV5OrLater = version ? isPodman5OrLater(version) : false;
+  // image
+  if (params['podman.factory.machine.image'] && typeof params['podman.factory.machine.image'] === 'string') {
+    if (isPodmanV5OrLater) {
+      parameters.push('--image');
+    } else {
+      parameters.push('--image-path');
+    }
+    parameters.push(params['podman.factory.machine.image']);
     telemetryRecords.imagePath = 'custom';
   } else if (
     params['podman.factory.machine.image-uri'] &&
     typeof params['podman.factory.machine.image-uri'] === 'string'
   ) {
     const imageUri = params['podman.factory.machine.image-uri'].trim();
-    parameters.push('--image-path');
+    if (isPodmanV5OrLater) {
+      parameters.push('--image');
+    } else {
+      parameters.push('--image-path');
+    }
     if (imageUri.startsWith('https://') || imageUri.startsWith('http://')) {
       parameters.push(imageUri);
       telemetryRecords.imagePath = 'custom-url';
@@ -2225,19 +2245,15 @@ export async function createMachine(
     // check if we have an embedded asset for the image path for macOS or Windows
     const assetImagePath = path.resolve(getAssetsFolder(), `podman-image-${process.arch}.zst`);
 
-    const podmanInstallation = await getPodmanInstallation();
-
     // Use embedded image only for Podman 5 and onwards
-    if (fs.existsSync(assetImagePath) && podmanInstallation?.version.startsWith('5.')) {
-      parameters.push('--image-path');
+    if (fs.existsSync(assetImagePath) && isPodmanV5OrLater) {
+      parameters.push('--image');
       parameters.push(assetImagePath);
       telemetryRecords.imagePath = 'embedded';
     }
   }
   telemetryRecords.imagePath ??= 'default';
 
-  const installedPodman = await getPodmanInstallation();
-  const version = installedPodman?.version;
   if (params['podman.factory.machine.rootful'] === undefined) {
     // should be rootful mode if version supports this mode and only if rootful is not provided (false or true)
     if (version) {
