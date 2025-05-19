@@ -17,10 +17,10 @@ You can use the subscription manager package to install Podman Desktop on a Red 
 
 #### Procedure
 
-1. Open a terminal, and enable the RHEL extension repo:
+1. Open a terminal, and enable the RHEL extensions repository:
 
    ```sh
-   $ sudo subscription-manager repos --enable rhel-10-for-aarch64-extensions-rpms
+   $ sudo subscription-manager repos --enable rhel-10-for-amd64-extensions-rpms
    ```
 
 1. Enter your password when prompted.
