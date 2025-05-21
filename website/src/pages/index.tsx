@@ -357,14 +357,14 @@ function Pods(): JSX.Element {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 space-x-4 pt-16">
             <div className="flex flex-col md:items-start md:text-left items-center text-center">
               <ThemedImage
-                className="py-4 w-1/4"
+                className="py-4 h-[90px]"
                 alt="Develop and Test"
                 sources={{
                   light: useBaseUrl('img/developtest.svg'),
                   dark: useBaseUrl('img/developtest.svg'),
                 }}
               />
-              <h2 className="title-font sm:text-3xl text-2xl py-3 font-bold text-charcoal-300 dark:text-white mb-0">
+              <h2 className="title-font sm:text-3xl text-2xl py-3 font-medium text-charcoal-300 dark:text-white mb-0">
                 Develop and Test
               </h2>
               <p className="leading-relaxed py-3 dark:text-gray-300 text-charcoal-300">
@@ -374,14 +374,14 @@ function Pods(): JSX.Element {
             </div>
             <div className="flex flex-col md:items-start md:text-left items-center text-center">
               <ThemedImage
-                className="py-4 w-1/4"
+                className="py-4 h-[90px]"
                 alt="Grow Your Skills at Your Pace"
                 sources={{
                   light: useBaseUrl('img/grow.svg'),
                   dark: useBaseUrl('img/grow.svg'),
                 }}
               />
-              <h2 className="title-font sm:text-3xl text-2xl py-3 font-bold text-charcoal-300 dark:text-white mb-0">
+              <h2 className="title-font sm:text-3xl text-2xl py-3 font-medium text-charcoal-300 dark:text-white mb-0">
                 Grow Skills at Your Pace
               </h2>
               <p className="leading-relaxed py-3 dark:text-gray-300 text-charcoal-300">
@@ -391,14 +391,14 @@ function Pods(): JSX.Element {
             </div>
             <div className="flex flex-col md:items-start md:text-left items-center text-center">
               <ThemedImage
-                className="py-4 w-1/4"
+                className="py-4 h-[90px]"
                 alt="Troubleshoot with Ease"
                 sources={{
                   light: useBaseUrl('img/troubleshoot1.svg'),
                   dark: useBaseUrl('img/troubleshoot1.svg'),
                 }}
               />
-              <h2 className="title-font sm:text-3xl text-2xl py-3 font-bold text-charcoal-300 dark:text-white mb-0">
+              <h2 className="title-font sm:text-3xl text-2xl py-3 font-medium text-charcoal-300 dark:text-white mb-0">
                 Troubleshoot with Ease
               </h2>
               <p className="leading-relaxed py-3 dark:text-gray-300 text-charcoal-300">
@@ -408,14 +408,14 @@ function Pods(): JSX.Element {
             </div>
             <div className="flex flex-col md:items-start md:text-left items-center text-center">
               <ThemedImage
-                className="py-4 w-1/4"
+                className="py-4 h-[90px]"
                 alt="Troubleshoot with Ease"
                 sources={{
                   light: useBaseUrl('img/troubleshoot2.svg'),
                   dark: useBaseUrl('img/troubleshoot2.svg'),
                 }}
               />
-              <h2 className="title-font sm:text-3xl text-2xl py-3 font-bold text-charcoal-300 dark:text-white mb-0">
+              <h2 className="title-font sm:text-3xl text-2xl py-3 font-medium text-charcoal-300 dark:text-white mb-0">
                 Troubleshoot with Ease
               </h2>
               <p className="leading-relaxed py-3 dark:text-gray-300 text-charcoal-300">
