@@ -161,12 +161,17 @@ The page helps you to:
 
 ### Customize the UI
 
-You can customize the UI based on your needs and to keep your view tidy. For example, the left navigation pane continually expands as new extensions are added for use. These new additions might make the navigation pane a bit cluttered. For a better experience, you can customize the pane to include only relevant components.  
-To customize:
+You can customize the UI based on your needs and to keep your view tidy. For example, the left navigation pane continually expands as new extensions are added for use. These new additions might make the navigation pane a bit cluttered. For a better experience, you can customize the pane to include only relevant components.
 
-- Left navigation pane: Right-click the left navigation pane and deselect any UI components that you do not want to view. By default, all UI components are selected and visible in the pane.
-- Other UI elements: Go to **Settings > Preferences** and configure the required settings. You can set the following:
-  - UI appearance
-  - Navigation bar layout
-  - Provider's view in the status bar (experimental)
-  - Running tasks' view in the status bar (experimental)
+**Customize the left navigation pane**
+
+Press Control and click to deselect any UI components that you do not want to view. By default, all UI components are selected and visible in the pane.
+
+**Customize other UI elements**
+
+Go to **Settings > Preferences** and configure the required settings. You can set the following:
+
+- UI appearance
+- Navigation bar layout
+- Provider's view in the status bar (experimental)
+- Running tasks' view in the status bar (experimental)
