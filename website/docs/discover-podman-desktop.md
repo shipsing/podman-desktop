@@ -165,7 +165,10 @@ You can customize the UI based on your needs and to keep your view tidy. For exa
 
 **Customize the left navigation pane**
 
-Press Control and click to deselect any UI components that you do not want to view. By default, all UI components are selected and visible in the pane.
+By default, all UI components are selected and visible in the pane. To deselect any UI components that you do not want to view:
+
+- Linux and Windows: Right-click the left navigation pane.
+- macOS: Press Control and click.
 
 **Customize other UI elements**
 
