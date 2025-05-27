@@ -161,7 +161,7 @@ The page helps you to:
 
 ### Customize the UI
 
-You can customize the UI based on your needs and to keep your view tidy. For example, the left navigation pane continually expands as new extensions are added for use. These new additions might make the navigation pane a bit cluttered. For a better experience, you can customize the pane to include only relevant components.
+You can tailor the UI to keep your workspace tidy. For example, the left navigation pane may become cluttered as new extensions are added. To improve your experience, customize it to show only the components you need.
 
 **Customize the left navigation pane**
 
