@@ -24,7 +24,7 @@ With Podman Desktop, you can deploy a pod to your Kubernetes cluster with an act
 
    :::note
 
-   Your pod or container is deployed to the `default` namespace of the Kubernetes cluster. To switch to a different namespace, use this command: `kubectl config set-context --current --namespace=<name-of-the-namespace>`.
+   Your pod or container is deployed to the `default` namespace of the Kubernetes cluster. To switch to a different namespace, use the Kubernetes dashboard page or the Kubernetes object page.
 
    :::
 
@@ -37,6 +37,13 @@ With Podman Desktop, you can deploy a pod to your Kubernetes cluster with an act
 1. Conditional: When you configure custom port mapping while running an image, you have the option to select an Ingress host port from the dropdown list.
    ![ingress-host-port](img/ingress-host-port.png)
    Otherwise, you do not see the option.
+1. Optional: Select a namespace from the dropdown list.
+
+   :::note
+
+   By default, your pod or container is deployed to the `default` namespace.
+
+   :::
 
 1. Click **Deploy** and then **Done**.
 
