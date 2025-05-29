@@ -21,13 +21,6 @@ With Podman Desktop, you can deploy a pod to your Kubernetes cluster with an act
 #### Procedure
 
 1. Select your [Kubernetes context](/docs/kubernetes/viewing-and-selecting-current-kubernetes-context).
-
-   :::note
-
-   Your pod or container is deployed to the `default` namespace of the Kubernetes cluster. To switch to a different namespace, use the Kubernetes dashboard page or the Kubernetes object page.
-
-   :::
-
 1. Go to the **Pods** or **Containers** component page.
 1. Click the overflow menu icon corresponding to the pod or container.
    ![overflow menu icon](img/overflow-menu-icon.png)
