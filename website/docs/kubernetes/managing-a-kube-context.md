@@ -8,12 +8,12 @@ tags: [editing-a-kubernetes-context, managing-a-context, duplicate-a-context]
 
 # Managing a Kubernetes context
 
-You can edit a Kubernetes context to switch between different clusters and namespaces without any reconfigurations. Within kubernetes, a context is useful to:
+Within kubernetes, a context is useful to:
 
 - Manage multiple development, testing, and production environments.
 - Simplify your interaction when working with multiple clusters and namespaces.
 
-You can also duplicate a context to create necessary contexts with different configurations within your Kubernetes configuration file. Creating contexts with different configurations enables easy switching between environments without modifying credentials or connection settings.
+You can edit or duplicate a context to create necessary contexts with different configurations within your Kubernetes configuration file. Creating contexts with different configurations enables easy switching between environments without modifying credentials or connection settings.
 
 #### Prerequisites
 
