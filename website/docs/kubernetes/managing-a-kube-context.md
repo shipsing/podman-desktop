@@ -13,7 +13,7 @@ Within kubernetes, a context is useful to:
 - Manage multiple development, testing, and production environments.
 - Simplify your interaction when working with multiple clusters and namespaces.
 
-You can edit or duplicate a context to create necessary contexts with different configurations within your Kubernetes configuration file. Creating contexts with different configurations enables easy switching between environments without modifying credentials or connection settings.
+You can edit or duplicate a context using the UI. This helps in defining contexts with different configurations within your Kubernetes configuration file. Having contexts with different configurations enables easy switching between environments without modifying credentials or connection settings.
 
 #### Prerequisites
 
