@@ -30,7 +30,7 @@ Before going through each tutorial, familiarize yourself with the key UI compone
 
 4. **Status bar**: Provides the following capabilities:
 
-   - Set your kubernetes context
+   - Set your Kubernetes context
    - Share your feedback
    - Troubleshoot your container connections and view logs
    - View notifications and additional help resources

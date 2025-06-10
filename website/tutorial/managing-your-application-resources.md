@@ -190,7 +190,7 @@ If you have installed a CLI tool extension, you can set up, upgrade, or downgrad
 
 ![CLI set up](img/set-up-cli.png)
 
-- On the **Settings > CLI tools** page, click the **Upgrade/Downgrade** icon or link to update the version of the CLI tool:
+- On the **Settings > CLI tools** page, click the **Upgrade/Downgrade** icon or link to update the version of the CLI tool.
 
 ![CLI update](img/cli-update.png)
 
