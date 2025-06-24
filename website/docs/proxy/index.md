@@ -151,7 +151,7 @@ Requirements:
 <TabItem value="win" label="Windows">
 
 1. Go to **Settings > Proxy** from the left navigation pane.
-1. Select a proxy configuration: **System**, **Manual**, or **Disabled** the configuration.
+1. Select a proxy configuration: **System**, **Manual**, or **Disabled**.
 
    - If you select **Manual**, configure your proxy URLs and bypass proxy settings details.
      ![Proxy settings](img/proxy-settings.png)
@@ -231,7 +231,7 @@ Requirements:
 <TabItem value="mac" label="macOS">
 
 1. Go to **Settings > Proxy** from the left navigation pane.
-1. Select a proxy configuration, either **System** or **Manual** or disable the configuration.
+1. Select a proxy configuration: **System**, **Manual**, or **Disabled**.
    - If you select **Manual**, configure your proxy URLs and bypass proxy settings details.
      ![Proxy settings](img/proxy-settings.png)
 1. Click **Update**. A notification opens.
