@@ -49,13 +49,7 @@ Consider creating a custom Podman machine to:
         - **Provider Type**: The setting is visible only to administrators, and its default value is `wsl`.
       - (On macOS)
 
-        - **Provider Type**: The default value is `GPU enabled (LibKrun)`. The `krunkit` binary is available in the source code. However, you must [configure the `libkrun` machine provider manually](/docs/installation/macos-install#using-libkrun-as-default-machine-provider) before creating a machine.
-
-          :::note
-
-          On a Mac amd64 platform, you can only use the `Apple HyperVisor` provider.
-
-          :::
+        - **Provider Type**: The default value is `GPU enabled (LibKrun)`. However, you must [configure the `libkrun` machine provider manually](/docs/installation/macos-install#using-libkrun-as-default-machine-provider) before creating a machine. On a macOS amd64 platform, you can only use the `Apple HyperVisor` provider.
 
    1. Click **Create**.
 
