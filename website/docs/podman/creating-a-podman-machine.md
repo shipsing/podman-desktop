@@ -23,11 +23,11 @@ Consider creating a custom Podman machine to:
 
 - The Podman executable is installed.
 
-  :::note
+:::note
 
-  On the macOS ARM64 platform, you might get a warning that the `krunkit` binary is unavailable on the _Create Podman machine_ page. To resolve the warning, [install `krunkit` manually](https://github.com/containers/krunkit?tab=readme-ov-file#installation) or [install Podman using the GitHub installer](https://github.com/containers/podman/releases).
+On the macOS ARM64 platform, you might get a warning that the `krunkit` binary is unavailable on the _Create Podman machine_ page. To resolve the warning, [install `krunkit` manually](https://github.com/containers/krunkit?tab=readme-ov-file#installation) or [install Podman using the GitHub installer](https://github.com/containers/podman/releases).
 
-  :::
+:::
 
 #### Procedure
 
