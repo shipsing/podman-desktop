@@ -71,39 +71,6 @@ Podman Desktop requires [Podman Engine](https://docs.podman.io/en/latest/index.h
 
    After the command is executed, you can find the Podman Desktop application within the `Applications` directory of the macOS.
 
-## Using `applehv` as machine provider
-
-By default, Podman uses the `GPU enabled (LibKrun)` provider type on the macOS ARM64 platform. If you are already running a `GPU enabled (LibKrun)` Podman machine and want to create an `applehv` machine, reset the Podman machine to avoid any port conflicts:
-
-- Using the UI: Click the **Troubleshooting** icon in the status bar and then **Cleanup / Purge data**.
-- Using the CLI: Run the `podman machine reset` command.
-
-To use `podman machine` CLI commands with the `applehv` provider type, configure the machine provider manually using one of the following ways:
-
-**_Configuring an environment variable_**
-
-1. Set the following variable:
-
-   ```shell-session
-   export CONTAINERS_MACHINE_PROVIDER=applehv
-   ```
-
-1. [Create and start a Podman machine](/docs/podman/creating-a-podman-machine) using the UI.
-
-**_Configuring the `containers.conf` file_**
-
-1. Open the `containers.conf` file, which is placed in the `$HOME/.config/containers` directory.
-1. Add the `provider` attribute and set its value to `libkrun` in the file.
-
-   ```vim
-   ...
-   [machine]
-     provider = "applehv"
-   ...
-   ```
-
-1. [Create and start a Podman machine](/docs/podman/creating-a-podman-machine) using the UI.
-
 ## Getting Started
 
 Learn more on how to get started with Podman Desktop by clicking [here](/docs/containers).

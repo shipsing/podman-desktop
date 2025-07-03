@@ -55,7 +55,7 @@ Consider creating a custom Podman machine to:
         - **Provider Type**: The setting is visible only to administrators, and its default value is `wsl`.
       - (On macOS) **Provider Type**:
 
-        - For the macOS ARM64 platform, the default value is `GPU enabled (LibKrun)`. However, before switching to `Apple HyperVisor`, ensure that you have [configured the machine provider](/docs/installation/macos-install#using-applehv-as-machine-provider) manually.
+        - For the macOS ARM64 platform, the default value is `GPU enabled (LibKrun)`. However, you can switch to `Apple HyperVisor` when needed.
         - For the macOS AMD64 platform, the default value is `Apple HyperVisor`, and you cannot use the `GPU enabled (LibKrun)` provider.
 
    1. Click **Create**.
