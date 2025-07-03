@@ -73,7 +73,7 @@ Podman Desktop requires [Podman Engine](https://docs.podman.io/en/latest/index.h
 
 ## Using `applehv` as machine provider
 
-By default, Podman uses the `GPU enabled (LibKrun)` provider type on a macOS ARM64 platform. If you are already running a `GPU enabled (LibKrun)` Podman machine and want to create an `applehv` machine, reset the Podman machine to avoid any port conflicts:
+By default, Podman uses the `GPU enabled (LibKrun)` provider type on the macOS ARM64 platform. If you are already running a `GPU enabled (LibKrun)` Podman machine and want to create an `applehv` machine, reset the Podman machine to avoid any port conflicts:
 
 - Using the UI: Click the **Troubleshooting** icon in the status bar and then **Cleanup / Purge data**.
 - Using the CLI: Run the `podman machine reset` command.
