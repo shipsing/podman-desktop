@@ -34,6 +34,7 @@ On the macOS ARM64 platform, you might get a warning that the `krunkit` binary i
 1. Go to **Settings > Resources**.
 1. In the **Podman** tile, click **Create new**.
 1. In the **Create a Podman machine** screen:
+
    1. **Name**:
       Enter a name, such as `podman-machine-default`.
    1. **CPU(s)**:
