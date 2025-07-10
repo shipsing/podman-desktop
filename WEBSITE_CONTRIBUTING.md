@@ -98,7 +98,7 @@ pnpm website:prod
 
 ## Pull request previews
 
-On each pull request, we use ArgosCI to do screenshot-comparison to check for any major changes. This may have to be manually approved.
+On each pull request, we use ArgosCI to do screenshot comparisons to check for any major changes. This may have to be manually approved.
 
 ## Formatting and lint checking
 
