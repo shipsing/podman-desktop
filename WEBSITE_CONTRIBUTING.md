@@ -3,7 +3,7 @@
 Contributing to the Podman Desktop website is a valuable way to support the project. Here are several ways you can contribute:
 
 - **Enhancing Content:** Improve existing pages by updating information, correcting inaccuracies, or adding new sections.
-- **Writing Blog Posts:** Share insights, tutorials, or news related to Podman Desktop by authoring blog posts. 
+- **Writing Blog Posts:** Share insights, tutorials, or news related to Podman Desktop by authoring blog posts.
 - **Improving Documentation:** Contribute to the website's documentation by clarifying instructions, adding examples.
 - **Design and Usability Enhancements:** If you have design skills, propose improvements to the website's layout, navigation, or overall user experience to make it more intuitive and visually appealing.
 - **Reporting and Fixing Issues:** Identify and report bugs or issues on the website, such as broken links or formatting problems. If you have web development skills, you can also contribute by fixing these issues.
@@ -32,7 +32,7 @@ If you are not yet an author on Podman Desktop blog, you'll need to add yourself
 authorid:
   name: Your Name
   title: Your Title
-  url: your GitHub link 
+  url: your GitHub link
   image_url: <your GitHub link>.png
 ```
 
@@ -52,7 +52,7 @@ image: Path to the hero image for the post (example: /img/blog/podman-desktop-re
 ---
 ```
 
-If you need to include images and videos, you'll need to create a new folder in `blog/img` 
+If you need to include images and videos, you'll need to create a new folder in `blog/img`
 
 ### Videos
 
@@ -60,8 +60,7 @@ If you want to include gifs and videos in your blog post, you'll need to import 
 `import ReactPlayer from 'react-player'`
 
 Then in your blog post content use the following (and replace the URL):
-`<ReactPlayer playing playsinline controls url="path to your video file" width='100%' height='100%' />` 
-
+`<ReactPlayer playing playsinline controls url="path to your video file" width='100%' height='100%' />`
 
 ## Documentation information
 
@@ -71,7 +70,15 @@ The website is built using [docusaurus](https://docusaurus.io/) and published to
 
 ### Tips
 
-- When referring to a clickable button in the interface, **bold** the name. For example: Click on the **Extensions** button.
+- When referring to a clickable button in the interface, **bold** the name. For example, click the **Extensions** button.
+- Use backticks for all non-GUI items, including commands, variables, parameters, flags, environment variables, user inputs, names for individual API objects, RPM packages, file or image names, and directory paths. For example, use a valid registry path in the format `registry/repo/image:version`.
+- Use notes, warnings, or tips only if you want to highlight an important information or want to grab user's attention to any specific detail for ease. For example:
+
+  :::note
+
+  If you do not have hands-on experience and want to explore, use the [minimal, webview, or full template](/docs/extensions/templates) to create a Podman Desktop extension.
+
+  :::
 
 ## Previewing the website
 
@@ -91,9 +98,7 @@ pnpm website:prod
 
 ## Pull request previews
 
-On each pull request we use ArgosCI to do screenshot-comparison to check for any major changes. This may have to be manually approved.
-
-You can also find the Netlify link within the "Checks" section of the pull request for a live-preview of your documentation changes.
+On each pull request, we use ArgosCI to do screenshot-comparison to check for any major changes. This may have to be manually approved.
 
 ## Formatting and lint checking
 
@@ -126,7 +131,7 @@ This matches the ratio of Podman Desktop's default size of 1050x700 as well as g
 
 Tips:
 
-- Use a **red** circle to emphasize points of interest / draw the users eyes towards.
+- Use a **red** circle or rectangular box to emphasize points of interest and draw the user's eyes to them.
 - If you are unable to put the entire example in the screenshot, **zoom out** Podman Desktop (View -> Zoom Out) and re-take the screenshot.
 
 ### Video & gifs
