@@ -174,6 +174,7 @@ On the **Settings > Resources** page, perform any of the following actions:
 
 1. Create a new cluster.
 2. Access other useful actions to start, restart, stop, or delete a cluster.
+3. Upgrade your cluster to the latest version.
 
 **_Managing your CLI tools_**
 
