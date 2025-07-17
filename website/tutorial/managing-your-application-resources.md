@@ -69,6 +69,7 @@ Based on your needs, perform any of the following actions after navigating to th
    - Open a terminal to interact with the container.
    - Restart your container.
    - Export a container to your local machine.
+4. Bulk start: Select multiple containers and run them in a single step.
 
    :::note
 
