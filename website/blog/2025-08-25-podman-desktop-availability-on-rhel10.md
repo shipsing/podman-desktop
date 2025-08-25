@@ -9,19 +9,19 @@ hide_table_of_contents: false
 
 # Simplifying the container and AI development on RHEL 10
 
-In the ever-evolving world of containerization and AI, developers require tools that are intuitively designed for seamless integration into their daily workflows. Podman and its graphical tool, Podman Desktop, have emerged as promising tools for building applications on different platforms, including Red Hat Enterprise Linux (RHEL) 10.
+In the ever-evolving world of containerization and AI, developers require tools that are designed for seamless integration into their daily workflows. Podman and its graphical tool, Podman Desktop, have emerged as promising tools for building applications on different platforms, including Red Hat Enterprise Linux (RHEL) 10.
 
 ## Podman: The foundation
 
-Podman offers an efficient way to interact with containers and Kubernetes. It is fast and light-weight and operates with a daemonless architecture. Podman manages rootless containers, allowing you to contain privileges without compromising functionality. Developers can pull, build, and push images, run and debug containers, and efficiently work with Kubernetes. Podman integrates smoothly with systemd, offering basic container orchestration capabilities like pod management and Quadlet systemd generation.
+Podman offers an efficient way to interact with containers and Kubernetes. It is fast and light-weight and operates with a daemonless architecture. Podman manages rootless containers, allowing you to restrict privileges without compromising functionality. Developers can pull, build, and push images, run and debug containers, and efficiently work with Kubernetes. Podman integrates smoothly with systemd, offering basic container orchestration capabilities like pod management and Quadlet systemd generation.
 
 ## Podman Desktop: A crucial component for RHEL developers
 
-Podman Desktop significantly enhances the Podman experience by providing an intuitive UI that simplifies container and Kubernetes management. It provides a seamless experience for building, running, and managing containers and pods. It also offers extensive Kubernetes integration, enabling you to create local clusters with tools like Kind and Minikube.
+Podman Desktop significantly enhances the Podman experience by providing a user-friendly interface that simplifies container and Kubernetes management. It provides a streamlined experience for building, running, and managing containers and pods. It also offers robust Kubernetes integration, enabling you to create local clusters with tools like Kind and Minikube.
 Podman Desktop simplifies the local development environment by tackling challenges like complexity, skill gaps, and inconsistencies between local and production deployments. It provides a simple onboarding process, guiding developers to move from individual applications to containers, pods, and finally to Kubernetes.
 
-Podman Desktop provides the Docker compatibility feature to support Dockerfiles and Compose, which minimizes the need for configuration changes. It allows for easy migration from Docker to Podman and even lets you run `docker` commands that Podman interprets.
-Podman is included with a RHEL subscription. When you install Podman Desktop from the RHEL extensions repository, Podman Desktop detects Podman and runs it to provide a seamless integration between these two tools. For developers building applications on RHEL, the integration is beneficial in providing:
+Podman Desktop provides the [Docker compatibility](/docs/migrating-from-docker) feature to support Dockerfiles and Compose, which minimizes the need for configuration changes. It allows for easy migration from Docker to Podman and even lets you run `docker` commands that Podman interprets.
+Podman is included with a RHEL subscription. When you install Podman Desktop from the RHEL extensions repository, Podman Desktop detects Podman and runs it to provide a simplified integration between these two tools. For developers building applications on RHEL, the integration is beneficial in providing:
 
 - Standardized container environment: Use a consistent set of tools and practices, simplifying management and deployment of containers in production.
 - Cross-platform consistency: Enjoy a familiar experience across Windows, macOS, and RHEL.
@@ -29,7 +29,7 @@ Podman is included with a RHEL subscription. When you install Podman Desktop fro
   - Bootable Container: Create bootable container images for bare metal, AWS, and other environments.
   - RHEL VMs: Easily run and manage RHEL VMs from a macOS or Windows environment.
   - RHEL Lightspeed: An AI assistant that simplifies Linux administration and management. It enables interaction with RHEL using plain language and provides recommendations for troubleshooting and tuning.
-  - Red Hat Single Sign-On (SSO): Seamlessly authenticate to Red Hat, access the Red Hat container registry, and register Linux VMs, often through a no-cost Red Hat developer subscription.
+  - Red Hat Single Sign-On (SSO): Streamline authentication to Red Hat, access the Red Hat container registry, and register Linux VMs, often through a no-cost Red Hat developer subscription.
 
 ## Podman AI Lab: Simplifying the AI developer workflow on RHEL
 
@@ -66,14 +66,14 @@ The installation and verification procedure includes:
 1. Enter `y` to import the GPG key and complete the installation.
 1. Enter Podman Desktop in the search box at the top of your home screen, and click the application to open it.
 1. Follow the prompts to complete a quick onboarding process with the application.
-   ![podman-desktop-on-RHEL10](../blog/img/podman-desktop-availability-on-rhel10/podman-desktop-availability-on-rhel-10.png)
+   ![podman-desktop-on-RHEL10](./img/podman-desktop-availability-on-rhel10/podman-desktop-availability-on-rhel-10.png)
 1. Run basic tasks, such as:
    - [Start a container](/docs/containers/starting-a-container)
    - [Create a Kubernetes cluster](/docs/kubernetes/creating-a-kube-cluster)
 
 ### Important note on support
 
-Podman Desktop is an open-source community project. While Podman itself has supported options on RHEL, the support model for Podman Desktop for Red Hat customers falls under _Cooperative Community Support_. This means it is intended for non-production support and only offers benefits from community contributions, though with no or limited Service Level Agreements (SLAs). Entitled customers can use this level of support to raise non-production queries and open tickets for more complex issues.
+Podman Desktop is an open-source community project. While Podman itself has supported options on RHEL, the support model for Podman Desktop for Red Hat customers falls under [_Cooperative Community Support_](https://source.redhat.com/groups/public/cooperative_community_support). This means it is intended for non-production support and only offers benefits from community contributions, though with no or limited Service Level Agreements (SLAs). Entitled customers can use this level of support to raise non-production queries and open tickets for more complex issues.
 
 ## Get involved: Your feedback matters!
 
