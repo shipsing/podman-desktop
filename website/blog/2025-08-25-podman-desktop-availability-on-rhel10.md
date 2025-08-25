@@ -1,9 +1,9 @@
 ---
-title: Simplifying the container and AI development on RHEL 10
-description: Simplifying the Container and AI development on RHEL 10 with Podman Desktop
-slug: podman-desktop-availability-on-RHEL10
+title: Simplifying container and AI development on RHEL 10
+description: Simplifying container and AI development on RHEL 10 with Podman Desktop
+slug: podman-desktop-availability-on-rhel10
 authors: [shipsing]
-tags: [podman-desktop, podman, install-podman-desktop-on-RHEL10]
+tags: [podman-desktop, podman, rhel10, installation]
 hide_table_of_contents: false
 ---
 
@@ -27,7 +27,7 @@ Podman is included with a RHEL subscription. When you install Podman Desktop fro
 - Cross-platform consistency: Enjoy a familiar experience across Windows, macOS, and RHEL.
 - Support for several RHEL extensions: A variety of extensions available within Podman Desktop to enhance RHEL developer workflows with key functionalities:
   - Bootable Container: Create bootable container images for bare metal, AWS, and other environments.
-  - RHEL VMs: Easily run and manage RHEL VMs from macOS or Windows environment.
+  - RHEL VMs: Easily run and manage RHEL VMs from a macOS or Windows environment.
   - RHEL Lightspeed: An AI assistant that simplifies Linux administration and management. It enables interaction with RHEL using plain language and provides recommendations for troubleshooting and tuning.
   - Red Hat Single Sign-On (SSO): Seamlessly authenticate to Red Hat, access the Red Hat container registry, and register Linux VMs, often through a no-cost Red Hat developer subscription.
 
@@ -66,6 +66,7 @@ The installation and verification procedure includes:
 1. Enter `y` to import the GPG key and complete the installation.
 1. Enter Podman Desktop in the search box at the top of your home screen, and click the application to open it.
 1. Follow the prompts to complete a quick onboarding process with the application.
+   ![podman-desktop-on-RHEL10](../blog/img/podman-desktop-availability-on-rhel10/podman-desktop-availability-on-rhel-10.png)
 1. Run basic tasks, such as:
    - [Start a container](/docs/containers/starting-a-container)
    - [Create a Kubernetes cluster](/docs/kubernetes/creating-a-kube-cluster)
@@ -78,7 +79,7 @@ Podman Desktop is an open-source community project. While Podman itself has supp
 
 Podman Desktop is an evolving project, and your feedback is crucial for its continued development and improvement. We encourage you to:
 
-- Provide feedback: Share your experiences and suggestions for shaping the future of the project. Use the Share your feedback icon in the task bar to give quick feedback.
+- Provide feedback: Share your experiences and suggestions for shaping the future of the project. Use the Share your feedback icon in the taskbar to give quick feedback.
 - Create issues: If you encounter a bug or have a feature request, please create an issue on the [GitHub repository](https://github.com/podman-desktop/podman-desktop/issues).
 - Join the community: Engage with fellow developers and maintainers, ask questions, and share your knowledge. You can find us on [GitHub](https://github.com/podman-desktop/podman-desktop) and contribute to [community discussions](https://podman-desktop.io/community).
 
