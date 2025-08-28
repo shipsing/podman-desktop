@@ -47,7 +47,7 @@ This enables developers to easily get started with generative AI and integrate m
 ## Availability and installation on RHEL 10
 
 With Podman Desktop availability in the RHEL extensions repository channel, you can easily download and use it. This repository is a curated collection of modern developer tools, open-source libraries, and specialized utilities, ensuring reliable, up-to-date, and Red Hat-signed software.
-For installation, you need a RHEL 10 machine that is registered with the subscription manager using either your [account details](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_basic_system_settings/assembly_registering-the-system-and-managing-subscriptions_configuring-basic-system-settings#registering-a-system-by-using-the-command-line_assembly_registering-the-system-and-managing-subscriptions) or an [activation key](https://docs.redhat.com/en/documentation/subscription_central/1-latest/html/getting_started_with_rhel_system_registration/basic-reg-rhel-cli#proc-reg-rhel-rhc-act-key_).
+For installation, you need a RHEL 10 machine that is registered with the subscription manager using either your [account details](https://docs.redhat.com/en/documentation/subscription_central/1-latest/html/getting_started_with_rhel_system_registration/basic-reg-rhel-cli#proc-reg-rhel-rhc-username_) or an [activation key](https://docs.redhat.com/en/documentation/subscription_central/1-latest/html/getting_started_with_rhel_system_registration/basic-reg-rhel-cli#proc-reg-rhel-rhc-act-key_).
 
 The installation and verification procedure includes:
 
