@@ -43,10 +43,10 @@ You can also create a pod that uses the loaded image:
    apiVersion: v1
    kind: Pod
    metadata:
-   name: <verify-my-image>
+     name: <verify-my-image>
    spec:
-   containers:
-      - name: <my-image>
+     containers:
+       - name: <my-image>
          image: <my_image>:<my_tag>
          imagePullPolicy: Never
    ```
