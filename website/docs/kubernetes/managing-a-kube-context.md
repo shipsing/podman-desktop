@@ -41,16 +41,16 @@ You can use the UI to edit or duplicate a context, or import a Kubernetes config
 #### Procedure: Import contexts
 
 1. Go to **Settings > Kubernetes**, and click the **Import** button.
-   ![Import button to click](img/import-button.png)
+   ![Import button on the Kubernetes settings page](img/import-button.png)
 1. Perform one of the following steps:
    - Drag and drop a Kubernetes configuration file.
    - Click **Choose file**:
      1. select a Kubernetes configuration file from your machine.
      1. Edit the display name if needed.
      1. Click **Import Config**.
-        ![import Kubernetes configurations](img/import-config.png)
+        ![import configurations button](img/import-config.png)
 1. Review the contexts to import, and click **Import contexts**.
-   ![import contexts button to click](img/import-contexts.png)
+   ![import contexts button](img/import-contexts.png)
 
 #### Verification
 
