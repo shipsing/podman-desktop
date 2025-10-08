@@ -34,36 +34,25 @@ $ LIMA_INSTANCE=<name> lima sudo crictl images
 
 You can also create a pod that uses the loaded image:
 
-1. Go to **Pods** from the left navigation pane.
-1. Click **Podman Kube Play**, and provide the following details:
-   - **Kubernetes YAML file**: Click `Create file from scratch`, and use the following code for file creation:
+1. Create a `verify_my_image.yaml` Kubernetes YAML file on your workstation.
+   Replace the placeholders:
+   - Pod `name` and container `name` values must consist of lowercase alphanumeric characters, '-', or '.', and must start and end with an alphanumeric character.
+   - Container `image` value is the image you pushed. You can click the name of the image to check its name and tag.
 
-     ```yaml
-     apiVersion: v1
-     kind: Pod
-     metadata:
+   ```yaml
+   apiVersion: v1
+   kind: Pod
+   metadata:
      name: <verify-my-image>
-     spec:
+   spec:
      containers:
-        - name: <my-image>
-           image: <my_image>:<my_tag>
-           imagePullPolicy: Never
-     ```
+       - name: <my-image>
+         image: <my_image>:<my_tag>
+         imagePullPolicy: Never
+   ```
 
-     Ensure to replace the placeholders:
-     - Pod `name` and container `name` values must consist of lowercase alphanumeric characters, '-', or '.', and must start and end with an alphanumeric character.
-     - Container `image` value is the image you pushed. You can click the name of the image to check its name and tag.
-
-   - Optional: Select the checkbox to enable a build process inside your pod.
-
-     :::note
-
-     Building inside a pod helps you to isolate the build environment completely and enhance security by containing vulnerabilities or malicious code within the isolated environment.
-
-     :::
-
-1. Click **Play Custom YAML**.
-   ![Play Custom YAML button](img/create-pod-from-kube-yaml.png)
-1. Click **Done**.
-1. Go to **Kubernetes > Pods**, and view the created pod `verify-my-image`. The pod **STATUS** is **RUNNING**.
-   ![play a Kubernetes YAML](img/verify-my-image-pod-running.png)
+1. Go to **Kubernetes > Pods** from the left navigation pane.
+1. Click **Apply YAML**, and select the `verify_my_image.yaml` file from your workstation. A confirmation notification opens.
+1. Click **OK**.
+1. View the created pod `verify-my-image`. The pod **STATUS** is **RUNNING**.
+   ![verify-my-image pod running](img/verify-my-image-pod-running.png)
