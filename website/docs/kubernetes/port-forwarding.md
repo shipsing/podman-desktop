@@ -41,11 +41,11 @@ spec:
 
 1. Create a Kubernetes pod:
    1. Go to the **Pods** component page.
-   1. Click **Play Kubernetes YAML**.
-      ![play kubernetes yaml](img/play-kubernetes-yaml.png)
+   1. Click **Podman Kube Play**.
+      ![Podman Kube Play button](img/podman-kube-play.png)
    1. Select a Kubernetes YAML file, such as `pod.yaml` from your local machine.
-   1. Set the **Runtime** field to `Kubernetes cluster`.
-      ![set runtime field](img/play-a-yaml-file.png)
+   1. Optional: Select the checkbox to enable a build process inside your pod.
+      ![play your YAML file](img/play-a-yaml-file.png)
    1. Click **Play** and then **Done**.
    1. Go to **Kubernetes > Pods** to view the created Kubernetes pod.
       ![view the newly created pod](img/new-kubernetes-pod.png)
