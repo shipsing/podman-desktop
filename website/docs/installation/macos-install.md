@@ -22,7 +22,7 @@ You can install Podman Desktop on macOS by using:
   :::
 
 :::info[Prerequisite]
-Podman Desktop requires [Podman Engine](https://docs.podman.io/en/latest/index.html). If you do not have Podman engine installed, Podman Desktop will prompt you to do so after installation.
+Podman Desktop requires [Podman Engine](https://docs.podman.io/en/latest/index.html). If you do not have the Podman engine installed, Podman Desktop will prompt you to do so when you open it.
 :::
 
 ## Installing Podman Desktop on macOS using the .dmg file
