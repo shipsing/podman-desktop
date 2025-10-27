@@ -44,17 +44,17 @@ Podman Desktop requires [Podman Engine](https://docs.podman.io/en/latest/index.h
 1. Start Podman Desktop from the 'Launchpad' or Mac's `Applications` directory. The Dashboard page opens with a notification to set up Podman.
 
 1. Click **Set up** to install Podman from Podman Desktop.
-   ![set up botton](img/podman-set-up-button.png)
+   ![set up button](img/podman-set-up-button.png)
 
 1. Click **Next**. A confirmation notification to install Podman opens.
 1. Click **Yes**. The Podman Installer screen opens.
 1. Follow the instructions on the screen, enter your system password when prompted, and click **Install Software**.
 
-   ![system passsord to install Podman](img/system-password.png)
+   ![system password to install Podman](img/system-password.png)
 
 1. Click **Close** on the screen. A page notifying that Podman has been set up correctly opens.
 1. Click **Next**. A page notifying you to create a Podman machine opens.
-   ![podman installed correctly notification](img/podman-installed-successfuly.png)
+   ![podman installed correctly notification](img/podman-installed-successfully.png)
 1. Click **Next**, and then click **Create**.
    ![notification to create a podman machine](img/notification-to-create-podman-machine.png)
 1. Click **Next** to navigate back to the Dashboard page.
