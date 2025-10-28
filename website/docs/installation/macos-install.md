@@ -8,7 +8,9 @@ keywords: [podman desktop, containers, podman, installing, installation, macOS]
 
 # MacOS
 
-This page contains information regarding installation of Podman Desktop on MacOS.
+:::info[Prerequisite]
+Podman Desktop requires the [Podman engine](https://docs.podman.io/en/latest/index.html). If you do not have the Podman engine installed, Podman Desktop will prompt you to do so when you open it.
+:::
 
 You can install Podman Desktop on macOS by using:
 
@@ -17,15 +19,13 @@ You can install Podman Desktop on macOS by using:
 
   :::note
 
-  If you have installed Podman using Homebrew and used the .dmg installer for installation, Podman Desktop notifies you of the detection of two Podman engines. To resolve this issue, go to **Settings > Preferences > Extension: Podman** and set the path to the Podman binary file that you want to use. Alternatively, you can also remove one of the binary files.
+  If you have already installed Podman using Homebrew, perform one of the following steps to avoid any unexpected results when using Podman Desktop:
+  - Uninstall Podman through Homebrew before using the recommended .dmg installer.
+  - Do not use the .dmg installer to install Podman Desktop. Instead, use Homebrew only.
 
   :::
 
-:::info[Prerequisite]
-Podman Desktop requires the [Podman Engine](https://docs.podman.io/en/latest/index.html). If you do not have the Podman engine installed, Podman Desktop will prompt you to do so when you open it.
-:::
-
-## Installing Podman Desktop on macOS using the .dmg file: Recommended
+## Installing Podman Desktop using the .dmg file: Recommended
 
 1. Download the `.dmg` file from the [Downloads](/downloads/macos) section of the website.
 
@@ -61,7 +61,7 @@ Podman Desktop requires the [Podman Engine](https://docs.podman.io/en/latest/ind
 
 Podman Desktop installation is now complete. The Podman engine is installed, and the Podman machine is created. You are ready to use the application.
 
-## Installing Podman Desktop on macOS using Homebrew: Not recommended
+## Installing Podman Desktop using Homebrew: Not recommended
 
 :::info[Prerequisite]
 
