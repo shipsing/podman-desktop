@@ -8,15 +8,22 @@ keywords: [podman desktop, containers, podman, installing, installation, windows
 
 # Installing Podman Desktop and Podman on Windows
 
-## Installing Podman Desktop
+You can install Podman Desktop by using:
 
-To install Podman Desktop:
+- The installer
+- Other alternative methods
+
+## Installing Podman Desktop
 
 1. [Download the Windows installer](/downloads/windows).
 
-1. To start the Podman Desktop installer, open the downloaded file.
+1. Locate the file in the Downloads folder, and double-click on it. The Podman Desktop Setup screen opens.
 
    ![Podman Desktop Setup installing](img/podman-desktop-setup-installing.png)
+
+1. Select one of the installation options.
+1. Click **Install**. Wait for the installation to complete.
+1. Click **Finish** to close the screen. The Podman Desktop onboarding screen opens.
 
 <details>
 <summary>
@@ -83,6 +90,8 @@ Main benefits are:
 - Ease of use.
 - WSL 2 native virtualization performance.
 
+#### Prerequisites
+
 Check that your environment has:
 
 - 6 GB RAM for the Podman Machine.
@@ -92,7 +101,7 @@ Check that your environment has:
   - Windows 10 Build 19043 or greater, or Windows 11.
   - On a virtual machine: [Nested Virtualization enabled](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization).
 
-To install the Podman Machine:
+#### Procedure: Enable the WSL feature
 
 1. To prepare your system, enable the WSL feature, without installing the default Ubuntu distribution of Linux.
 
@@ -111,15 +120,26 @@ To install the Podman Machine:
 
 1. Restart your computer.
 
-1. The **Dashboard** screen displays: _<Icon icon="fa-solid fa-info" size="lg" /> Podman needs to be set up_.
+#### Procedure: Install Podman Desktop dependencies
 
-   ![Podman needs set up screen](img/dashboard-podman-needs-set-up.png)
+After Podman Desktop installation, the **Get started with Podman Desktop** page opens to help you start onboarding. Note that you can completely skip this onbaording setup and do it later by using the set up button shown on the Dashboard page or the Resources page.
+![Podman needs set up screen](img/dashboard-podman-needs-set-up.png)
 
-1. Click the **Set up** button.
+1. Set up Podman and create the Podman machine:
+   1. Click the **Start onboarding** button.
+   1. Click **Next**. A confirmation notification to install Podman opens.
+   1. Click **Yes**. The Podman Setup screen opens with the default WSLv2 virtulization provider selected. You can change the virtualization provider if needed
+   1. Click **Install**. A notification stating `Installation Successfully Completed` appears on the screen.
+   1. Click **Close**. A page notifying that Podman has been set up correctly opens.
+   1. Click **Next**. A page notifying you to create a Podman machine opens.
+   1. Click **Next**, and then click **Create**.
+   1. Click **Next**.
+1. Perform one of the following steps:
 
-1. Review and validate all confirmation screens to set up the Podman machine.
+- Follow the instructions on the screen to download and install `Kubectl` and `Compose` CLIs.
+- Click the Skip button to install them later when needed.
 
-1. When necessary, follow the instructions to install system prerequisites.
+The Dashboard page opens. You are now ready to use the application.
 
 To verify that Podman is set up:
 
