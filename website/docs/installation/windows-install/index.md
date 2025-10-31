@@ -10,7 +10,7 @@ keywords: [podman desktop, containers, podman, installing, installation, windows
 
 You can install Podman Desktop by using:
 
-- The installer
+- The Windows installer
 - Other alternative methods
 
 ## Installing Podman Desktop
