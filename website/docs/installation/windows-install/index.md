@@ -16,14 +16,11 @@ You can install Podman Desktop by using:
 ## Installing Podman Desktop
 
 1. [Download the Windows installer](/downloads/windows).
-
 1. Locate the file in the Downloads folder, and double-click on it. The Podman Desktop Setup screen opens.
-
-   ![Podman Desktop Setup installing](img/podman-desktop-setup-installing.png)
-
 1. Select one of the installation options.
 1. Click **Install**. Wait for the installation to complete.
-1. Click **Finish** to close the screen. The Podman Desktop onboarding screen opens.
+   ![install button](img/install-button-for-podman-desktop.png)
+1. Click **Finish** to close the screen. The **Get started with Podman Desktop** screen opens.
 
 <details>
 <summary>
@@ -103,9 +100,9 @@ Check that your environment has:
 
 #### Procedure: Enable the WSL feature
 
-1. To prepare your system, enable the WSL feature, without installing the default Ubuntu distribution of Linux.
+If your administrator has already enabled the WSL feature, you can skip the procedure.
 
-   Open the Command Prompt, and run:.
+1. Open the command prompt, and run the following command to enable the WSL feature without installing the default Ubuntu distribution of Linux.
 
    ```shell-session
    > wsl --update
@@ -122,30 +119,30 @@ Check that your environment has:
 
 #### Procedure: Install Podman Desktop dependencies
 
-After Podman Desktop installation, the **Get started with Podman Desktop** page opens to help you start onboarding. Note that you can completely skip this onbaording setup and do it later by using the set up button shown on the Dashboard page or the Resources page.
-![Podman needs set up screen](img/dashboard-podman-needs-set-up.png)
+After installing Podman Desktop, the **Get started with Podman Desktop** screen opens to help you start onboarding. You can install Podman, `kubectl` CLI and `compose` CLI or completely skip this onboarding setup and do it later by using:
 
-1. Set up Podman and create the Podman machine:
-   1. Click the **Start onboarding** button.
-   1. Click **Next**. A confirmation notification to install Podman opens.
-   1. Click **Yes**. The Podman Setup screen opens with the default WSLv2 virtulization provider selected. You can change the virtualization provider if needed
-   1. Click **Install**. A notification stating `Installation Successfully Completed` appears on the screen.
-   1. Click **Close**. A page notifying that Podman has been set up correctly opens.
-   1. Click **Next**. A page notifying you to create a Podman machine opens.
-   1. Click **Next**, and then click **Create**.
-   1. Click **Next**.
-1. Perform one of the following steps:
+- The **Set up** button shown in the notification on the Dashboard page.
+- The **Setup Podman** button shown in the Podman tile on the Resources page.
 
-- Follow the instructions on the screen to download and install `Kubectl` and `Compose` CLIs.
-- Click the Skip button to install them later when needed.
+Perform the following procedure to set up Podman and create the Podman machine:
 
-The Dashboard page opens. You are now ready to use the application.
+1. Click **Set up** in the notification on the Dashboard page.
+   ![set up button](img/podman-set-up-button.png)
+1. Click **Next**. A confirmation notification to install Podman opens.
+1. Click **Yes**. The Podman Setup screen opens with the default WSLv2 virtualization provider selected.
+1. Click **Install**. A notification stating `Installation Successfully Completed` appears on the screen.
+   ![install button for Podman](img/install-podman-through-installer.png)
+1. Click **Close**. A page notifying that Podman has been set up correctly opens.
+1. Click **Next**. A page notifying you to create a Podman machine opens.
+1. Click **Next**, and then click **Create**.
+   ![install button for Podman](img/notification-to-create-podman-machine.png)
+1. Click **Next** to navigate back to the Dashboard page.
 
-To verify that Podman is set up:
+To verify that Podman is set up, go to **Settings > Resources** and view the running Podman machine in the **Podman** tile.
 
-- In the **Dashboard**, the **Podman** tile displays _Podman is running_.
+![Podman is running screen](img/podman-machine-running.png)
 
-  ![Podman is running screen](img/dashboard-podman-is-running.png)
+You are now ready to use the application.
 
 ### Use Hyper-V as machine provider
 
