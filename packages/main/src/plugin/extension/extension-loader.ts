@@ -32,17 +32,18 @@ import {
 import { MenuRegistry } from '/@/plugin/menu-registry.js';
 import { NavigationManager } from '/@/plugin/navigation/navigation-manager.js';
 import { WebviewRegistry } from '/@/plugin/webview/webview-registry.js';
+import { IAsyncDisposable } from '/@api/async-disposable.js';
 import { type IConfigurationNode, IConfigurationRegistry } from '/@api/configuration/models.js';
 import type { Event } from '/@api/event.js';
 import type { ExtensionError, ExtensionInfo, ExtensionUpdateInfo } from '/@api/extension-info.js';
 import { DEFAULT_TIMEOUT, ExtensionLoaderSettings } from '/@api/extension-loader-settings.js';
 import type { ImageInspectInfo } from '/@api/image-inspect-info.js';
+import { PodInfo } from '/@api/pod-info.js';
 import { RepositoryInfoParser } from '/@api/repository-info-parser.js';
 
 import { securityRestrictionCurrentHandler } from '../../security-restrictions-handler.js';
 import { getBase64Image, isLinux, isMac, isWindows } from '../../util.js';
 import { ApiSenderType } from '../api.js';
-import type { PodInfo } from '../api/pod-info.js';
 import { AuthenticationImpl } from '../authentication.js';
 import { CancellationTokenSource } from '../cancellation-token.js';
 import { Certificates } from '../certificates.js';
@@ -117,7 +118,7 @@ export interface AnalyzedExtensionWithApi extends AnalyzedExtension {
  * Handle the loading of an extension
  */
 @injectable()
-export class ExtensionLoader implements AsyncDisposable {
+export class ExtensionLoader implements IAsyncDisposable {
   private moduleLoader: ModuleLoader;
 
   protected activatedExtensions = new Map<string, ActivatedExtension>();
@@ -224,7 +225,7 @@ export class ExtensionLoader implements AsyncDisposable {
   }
 
   @preDestroy()
-  async [Symbol.asyncDispose](): Promise<void> {
+  async asyncDispose(): Promise<void> {
     await this.stopAllExtensions();
 
     // clear maps
@@ -895,6 +896,15 @@ export class ExtensionLoader implements AsyncDisposable {
       onDidRegisterContainerConnection: (listener, thisArg, disposables) => {
         return providerRegistry.onDidRegisterContainerConnection(listener, thisArg, disposables);
       },
+      onDidSetConnectionFactory: (listener, thisArg, disposables) => {
+        return providerRegistry.onDidSetConnectionFactory(listener, thisArg, disposables);
+      },
+      onDidUnsetConnectionFactory: (listener, thisArg, disposables) => {
+        return providerRegistry.onDidUnsetConnectionFactory(listener, thisArg, disposables);
+      },
+      getConnectionFactories: () => {
+        return providerRegistry.getConnectionFactories();
+      },
       getContainerConnections: () => {
         return providerRegistry.getContainerConnections();
       },
@@ -1528,6 +1538,9 @@ export class ExtensionLoader implements AsyncDisposable {
       ): Promise<void> => {
         await this.navigationManager.navigateToEditProviderContainerConnection(connection);
       },
+      navigateToCreateProviderConnection: async (providerId: string): Promise<void> => {
+        await this.navigationManager.navigateToCreateProviderConnection(providerId);
+      },
       navigateToOnboarding: async (extensionId?: string): Promise<void> => {
         let onboardingExtensionId = extensionId;
         onboardingExtensionId ??= extensionInfo.id;
@@ -1726,6 +1739,7 @@ export class ExtensionLoader implements AsyncDisposable {
       this.activatedExtensions.set(extension.id, activatedExtension);
       this.extensionState.set(extension.id, 'started');
       this.apiSender.send('extension-started');
+      this._onDidChange.fire();
     } catch (err) {
       console.log(`Activating extension ${extension.id} failed error:${err}`);
 

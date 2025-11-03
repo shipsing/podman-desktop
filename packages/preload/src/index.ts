@@ -61,7 +61,10 @@ import type { ContainerInspectInfo } from '/@api/container-inspect-info';
 import type { ContainerStatsInfo } from '/@api/container-stats-info';
 import type { ContributionInfo } from '/@api/contribution-info';
 import type { MessageBoxOptions, MessageBoxReturnValue } from '/@api/dialog';
+import type { IDisposable } from '/@api/disposable';
 import type { DockerSocketMappingStatusInfo } from '/@api/docker-compatibility-info';
+import type { DocumentationInfo } from '/@api/documentation-info';
+import type { ExploreFeature } from '/@api/explore-feature';
 import type { ExtensionDevelopmentFolderInfo } from '/@api/extension-development-folders-info';
 import type { ExtensionInfo } from '/@api/extension-info';
 import type { FeedbackProperties, GitHubIssue } from '/@api/feedback';
@@ -89,6 +92,7 @@ import type { NetworkInspectInfo } from '/@api/network-info';
 import type { NotificationCard, NotificationCardOptions } from '/@api/notification';
 import type { OnboardingInfo, OnboardingStatus } from '/@api/onboarding';
 import type { V1Route } from '/@api/openshift-types';
+import type { PodCreateOptions, PodInfo, PodInspectInfo } from '/@api/pod-info';
 import type {
   PreflightCheckEvent,
   PreflightChecksCallback,
@@ -106,10 +110,10 @@ import type { ViewInfoUI } from '/@api/view-info';
 import type { VolumeInspectInfo, VolumeListInfo } from '/@api/volume-info';
 import type { WebviewInfo } from '/@api/webview-info';
 
+import type { ListOrganizerItem } from '../../api/src/list-organizer';
 import type { ApiSenderType } from '../../main/src/plugin/api';
 import type { ContextInfo } from '../../main/src/plugin/api/context-info';
 import type { KubernetesGeneratorInfo } from '../../main/src/plugin/api/KubernetesGeneratorInfo';
-import type { PodCreateOptions, PodInfo, PodInspectInfo } from '../../main/src/plugin/api/pod-info';
 import type { AuthenticationProviderInfo } from '../../main/src/plugin/authentication';
 import type {
   ContainerCreateOptions as PodmanContainerCreateOptions,
@@ -124,7 +128,6 @@ import type {
 } from '../../main/src/plugin/kubernetes/kube-generator-registry';
 import type { Guide } from '../../main/src/plugin/learning-center/learning-center-api';
 import type { ExtensionBanner, RecommendedRegistry } from '../../main/src/plugin/recommendations/recommendations-api';
-import type { IDisposable } from '../../main/src/plugin/types/disposable';
 
 export type DialogResultCallback = (openDialogReturnValue: Electron.OpenDialogReturnValue) => void;
 export type OpenSaveDialogResultCallback = (result: string | string[] | undefined) => void;
@@ -300,6 +303,17 @@ export function initExposure(): void {
   contextBridge.exposeInMainWorld('listNetworks', async (): Promise<NetworkInspectInfo[]> => {
     return ipcInvoke('container-provider-registry:listNetworks');
   });
+
+  contextBridge.exposeInMainWorld('removeNetwork', async (engine: string, networkId: string): Promise<void> => {
+    return ipcInvoke('container-provider-registry:removeNetwork', engine, networkId);
+  });
+
+  contextBridge.exposeInMainWorld(
+    'updateNetwork',
+    async (engine: string, networkId: string, addDNSServers: string[], removeDNSServers: string[]): Promise<void> => {
+      return ipcInvoke('container-provider-registry:updateNetwork', engine, networkId, addDNSServers, removeDNSServers);
+    },
+  );
 
   contextBridge.exposeInMainWorld(
     'replicatePodmanContainer',
@@ -1443,6 +1457,13 @@ export function initExposure(): void {
     },
   );
 
+  contextBridge.exposeInMainWorld(
+    'createHash',
+    async (input: string, algorithm: string = 'sha512'): Promise<string> => {
+      return ipcInvoke('util:createHash', algorithm, input);
+    },
+  );
+
   contextBridge.exposeInMainWorld('getImageRegistries', async (): Promise<readonly containerDesktopAPI.Registry[]> => {
     return ipcInvoke('image-registry:getRegistries');
   });
@@ -1610,6 +1631,14 @@ export function initExposure(): void {
 
   contextBridge.exposeInMainWorld('refreshCatalogExtensions', async (): Promise<void> => {
     return ipcInvoke('catalog:refreshExtensions');
+  });
+
+  contextBridge.exposeInMainWorld('getDocumentationItems', async (): Promise<DocumentationInfo[]> => {
+    return ipcInvoke('documentation:getItems');
+  });
+
+  contextBridge.exposeInMainWorld('refreshDocumentationItems', async (): Promise<void> => {
+    return ipcInvoke('documentation:refresh');
   });
 
   contextBridge.exposeInMainWorld('getCommandPaletteCommands', async (): Promise<CommandInfo[]> => {
@@ -2436,6 +2465,14 @@ export function initExposure(): void {
     return ipcInvoke('webviewRegistry:makeDefaultWebviewVisible', webviewId);
   });
 
+  contextBridge.exposeInMainWorld('registerWebviewDevTools', async (webcontentId: number): Promise<void> => {
+    return ipcInvoke('webview:devtools:register', webcontentId);
+  });
+
+  contextBridge.exposeInMainWorld('cleanupWebviewDevTools', async (webcontentId: number): Promise<void> => {
+    return ipcInvoke('webview:devtools:cleanup', webcontentId);
+  });
+
   contextBridge.exposeInMainWorld(
     'fetchExtensionViewsContributions',
     async (extensionId: string): Promise<ViewInfoUI[]> => {
@@ -2511,6 +2548,23 @@ export function initExposure(): void {
     },
   );
 
+  // Layout Registry functions
+  contextBridge.exposeInMainWorld(
+    'loadListConfig',
+    async (kind: string, availableColumns: string[]): Promise<ListOrganizerItem[]> => {
+      return ipcInvoke('list-organizer-registry:loadListConfig', kind, availableColumns);
+    },
+  );
+  contextBridge.exposeInMainWorld('saveListConfig', async (kind: string, items: ListOrganizerItem[]): Promise<void> => {
+    return ipcInvoke('list-organizer-registry:saveListConfig', kind, items);
+  });
+  contextBridge.exposeInMainWorld(
+    'resetListConfig',
+    async (kind: string, availableColumns: string[]): Promise<ListOrganizerItem[]> => {
+      return ipcInvoke('list-organizer-registry:resetListConfig', kind, availableColumns);
+    },
+  );
+
   contextBridge.exposeInMainWorld('getImageFilesProviders', async (): Promise<ImageFilesInfo[]> => {
     return ipcInvoke('image-files:getProviders');
   });
@@ -2528,6 +2582,14 @@ export function initExposure(): void {
 
   contextBridge.exposeInMainWorld('listGuides', async (): Promise<Guide[]> => {
     return ipcInvoke('learning-center:listGuides');
+  });
+
+  contextBridge.exposeInMainWorld('listFeatures', async (): Promise<ExploreFeature[]> => {
+    return ipcInvoke('explore-features:listFeatures');
+  });
+
+  contextBridge.exposeInMainWorld('closeFeatureCard', async (featureId: string): Promise<void> => {
+    return ipcInvoke('explore-features:closeFeatureCard', featureId);
   });
 
   contextBridge.exposeInMainWorld('contextCollectAllValues', async (): Promise<Record<string, unknown>> => {

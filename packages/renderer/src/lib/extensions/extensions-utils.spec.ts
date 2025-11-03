@@ -315,3 +315,225 @@ describe('extractExtensionDetail', () => {
     expect(extensionDetail?.error?.stack).toBe('line1\nline2');
   });
 });
+
+describe('filters', () => {
+  const aFakeExtension: CatalogExtension = {
+    id: 'idAInstalled',
+    publisherName: 'FooPublisher',
+    shortDescription: 'this is short A. The word bar appears here but not in the title',
+    publisherDisplayName: 'Foo Publisher',
+    extensionName: 'a-extension',
+    displayName: 'A Extension',
+    categories: ['category1', 'category2'],
+    keywords: ['keyword1', 'keyword2'],
+    unlisted: false,
+    versions: [
+      {
+        version: '1.0.0A',
+        preview: false,
+        files: [
+          {
+            assetType: 'icon',
+            data: 'iconA',
+          },
+        ],
+        ociUri: 'linkA',
+        lastUpdated: new Date(),
+      },
+    ],
+  };
+
+  const bFakeExtension: CatalogExtension = {
+    id: 'idB',
+    publisherName: 'FooPublisher',
+    shortDescription: 'this is short B',
+    publisherDisplayName: 'Foo Publisher',
+    extensionName: 'b-extension',
+    displayName: 'B Extension',
+    categories: [],
+    keywords: [],
+    unlisted: false,
+    versions: [
+      {
+        version: '1.0.0B',
+        preview: false,
+        files: [
+          {
+            assetType: 'icon',
+            data: 'iconB',
+          },
+        ],
+        ociUri: 'linkB',
+        lastUpdated: new Date(),
+      },
+    ],
+  };
+
+  const combined: CombinedExtensionInfoUI[] = [
+    {
+      id: 'idAInstalled',
+      displayName: 'A installed Extension',
+      description: 'The word bar appears here but not in the title',
+      removable: true,
+      state: 'started',
+    },
+  ] as unknown[] as CombinedExtensionInfoUI[];
+
+  test('filterCatalogExtensions with single word', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar',
+    );
+    expect(filteredCatalogExtensions.length).toBe(1);
+    expect(filteredCatalogExtensions[0].id).toBe('idAInstalled');
+  });
+
+  test('filterCatalogExtensions with single word and installed', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar is:installed',
+    );
+    expect(filteredCatalogExtensions.length).toBe(1);
+    expect(filteredCatalogExtensions[0].id).toBe('idAInstalled');
+  });
+
+  test('filterCatalogExtensions with single word and not installed', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar not:installed',
+    );
+    expect(filteredCatalogExtensions.length).toBe(0);
+  });
+
+  test('filterCatalogExtensions with single word and installed and not installed, only first boolean is used', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar is:installed not:installed',
+    );
+    expect(filteredCatalogExtensions.length).toBe(1);
+    expect(filteredCatalogExtensions[0].id).toBe('idAInstalled');
+  });
+
+  test('filterCatalogExtensions with multiple words found', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar word',
+    );
+    expect(filteredCatalogExtensions.length).toBe(1);
+    expect(filteredCatalogExtensions[0].id).toBe('idAInstalled');
+  });
+
+  test('filterCatalogExtensions with multiple words and one is not found', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar notfound',
+    );
+    expect(filteredCatalogExtensions.length).toBe(0);
+  });
+
+  test('filterCatalogExtensions with multiple words found and one category', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar word category:category1',
+    );
+    expect(filteredCatalogExtensions.length).toBe(1);
+    expect(filteredCatalogExtensions[0].id).toBe('idAInstalled');
+  });
+
+  test('filterCatalogExtensions with multiple words found and multiple categories found', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar word category:category1 category:category2',
+    );
+    expect(filteredCatalogExtensions.length).toBe(1);
+    expect(filteredCatalogExtensions[0].id).toBe('idAInstalled');
+  });
+
+  test('filterCatalogExtensions with multiple words found and multiple categories with one not found ', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar word category:category1 category:category3',
+    );
+    expect(filteredCatalogExtensions.length).toBe(0);
+  });
+
+  test('filterCatalogExtensions with multiple words found and one keyword', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar word keyword:keyword1',
+    );
+    expect(filteredCatalogExtensions.length).toBe(1);
+    expect(filteredCatalogExtensions[0].id).toBe('idAInstalled');
+  });
+
+  test('filterCatalogExtensions with multiple words found and multiple keywords found', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar word keyword:keyword1 keyword:keyword2',
+    );
+    expect(filteredCatalogExtensions.length).toBe(1);
+    expect(filteredCatalogExtensions[0].id).toBe('idAInstalled');
+  });
+
+  test('filterCatalogExtensions with multiple words found and multiple keywords with one not found ', () => {
+    const filteredCatalogExtensions = extensionsUtils.filterCatalogExtensions(
+      extensionsUtils.extractCatalogExtensions(
+        [aFakeExtension, bFakeExtension],
+        featuredExtensions,
+        installedExtensions,
+      ),
+      'bar word keyword:keyword1 keyword:keyword3',
+    );
+    expect(filteredCatalogExtensions.length).toBe(0);
+  });
+
+  test('filterInstalledExtensions with single word', () => {
+    const filteredInstalledExtensions = extensionsUtils.filterInstalledExtensions(combined, 'bar');
+    expect(filteredInstalledExtensions.length).toBe(1);
+    expect(filteredInstalledExtensions[0].id).toBe('idAInstalled');
+  });
+});

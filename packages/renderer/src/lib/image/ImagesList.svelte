@@ -253,12 +253,20 @@ let sizeColumn = new TableColumn<ImageInfoUI, string>('Size', {
   comparator: (a, b): number => b.size - a.size,
 });
 
+let archColumn = new TableColumn<ImageInfoUI, string>('Arch', {
+  align: 'right',
+  renderMapping: (image): string => image.arch,
+  renderer: TableSimpleColumn,
+  comparator: (a, b): number => a.arch.localeCompare(b.arch),
+});
+
 const columns = [
   statusColumn,
   nameColumn,
   envColumn,
   ageColumn,
   sizeColumn,
+  archColumn,
   new TableColumn<ImageInfoUI>('Actions', {
     align: 'right',
     width: '150px',
@@ -275,6 +283,19 @@ const row = new TableRow<ImageInfoUI>({
     return image.children ?? [];
   },
 });
+
+/**
+ * Utility function for the Table to get the key to use for each item
+ */
+function key(item: ImageInfoUI): string {
+  return `${item.engineId}:${item.id}`;
+}
+/**
+ * Utility function for the Table to get the label to use for each item
+ */
+function label(item: ImageInfoUI): string {
+  return item.name;
+}
 </script>
 
 <NavPage bind:searchTerm={searchTerm} title="images">
@@ -339,6 +360,9 @@ const row = new TableRow<ImageInfoUI>({
         columns={columns}
         row={row}
         defaultSortColumn="Age"
+        key={key}
+        label={label}
+        enableLayoutConfiguration={true}
         on:update={(): ImageInfoUI[] => (images = images)}>
       </Table>
     {/if}

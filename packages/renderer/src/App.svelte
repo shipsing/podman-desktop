@@ -2,6 +2,7 @@
 import './app.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+import { tablePersistence } from '@podman-desktop/ui-svelte';
 import { router } from 'tinro';
 
 import PinActions from '/@/lib/statusbar/PinActions.svelte';
@@ -54,6 +55,7 @@ import KubePodDetails from './lib/kube/pods/PodDetails.svelte';
 import KubePodsList from './lib/kube/pods/PodsList.svelte';
 import PortForwardingList from './lib/kubernetes-port-forward/PortForwardingList.svelte';
 import ManifestDetails from './lib/manifest/ManifestDetails.svelte';
+import NetworksList from './lib/network/NetworksList.svelte';
 import NodeDetails from './lib/node/NodeDetails.svelte';
 import NodesList from './lib/node/NodesList.svelte';
 import Onboarding from './lib/onboarding/Onboarding.svelte';
@@ -68,6 +70,7 @@ import ServiceDetails from './lib/service/ServiceDetails.svelte';
 import ServicesList from './lib/service/ServicesList.svelte';
 import StatusBar from './lib/statusbar/StatusBar.svelte';
 import IconsStyle from './lib/style/IconsStyle.svelte';
+import { PodmanDesktopStoragePersist } from './lib/table/PodmanDesktopStoragePersist';
 import LegacyTaskManager from './lib/task-manager/LegacyTaskManager.svelte';
 import TaskManager from './lib/task-manager/TaskManager.svelte';
 import ToastHandler from './lib/toast/ToastHandler.svelte';
@@ -115,6 +118,9 @@ window.events?.receive('navigate', (navigationRequest: unknown) => {
 window.events?.receive('kubernetes-navigation', (args: unknown) => {
   navigateTo(args as KubernetesNavigationRequest);
 });
+
+// Initialize table persistence callbacks immediately
+tablePersistence.storage = new PodmanDesktopStoragePersist();
 </script>
 
 <Route path="/*" breadcrumb="Home" let:meta>
@@ -164,7 +170,7 @@ window.events?.receive('kubernetes-navigation', (args: unknown) => {
           </Route>
         </Route>
 
-        <Route path="/kube/play" breadcrumb="Play Kubernetes YAML">
+        <Route path="/kube/play" breadcrumb="Podman Kube Play">
           <KubePlayYAML />
         </Route>
         <Route path="/image/run/*" breadcrumb="Run Image">
@@ -249,6 +255,9 @@ window.events?.receive('kubernetes-navigation', (args: unknown) => {
         </Route>
         <Route path="/volumes/:name/:engineId/*" breadcrumb="Volume Details" let:meta navigationHint="details">
           <VolumeDetails volumeName={decodeURI(meta.params.name)} engineId={decodeURI(meta.params.engineId)} />
+        </Route>
+        <Route path="/networks" breadcrumb="Networks" navigationHint="root">
+          <NetworksList />
         </Route>
         {#if $kubernetesNoCurrentContext}
           <Route path="/kubernetes/*" breadcrumb="Kubernetes" navigationHint="root">

@@ -12,7 +12,8 @@ import {
 } from '@podman-desktop/ui-svelte';
 import { onMount } from 'svelte';
 
-import type { PodInfo } from '../../../../main/src/plugin/api/pod-info';
+import type { PodInfo } from '/@api/pod-info';
+
 import { filtered, podsInfos, searchPattern } from '../../stores/pods';
 import { providerInfos } from '../../stores/providers';
 import { withBulkConfirmation } from '../actions/BulkActions';
@@ -153,6 +154,19 @@ const columns = [
 ];
 
 const row = new TableRow<PodInfoUI>({ selectable: (_pod): boolean => true });
+
+/**
+ * Utility function for the Table to get the key to use for each item
+ */
+function key(pod: PodInfoUI): string {
+  return `${pod.engineId}:${pod.id}`;
+}
+/**
+ * Utility function for the Table to get the label to use for each item
+ */
+function label(pod: PodInfoUI): string {
+  return pod.name;
+}
 </script>
 
 <NavPage bind:searchTerm={searchTerm} title="pods">
@@ -248,6 +262,9 @@ const row = new TableRow<PodInfoUI>({ selectable: (_pod): boolean => true });
         columns={columns}
         row={row}
         defaultSortColumn="Name"
+        enableLayoutConfiguration={true}
+        key={key}
+        label={label}
         on:update={(): PodInfoUI[] => (pods = pods)}>
       </Table>
     {/if}

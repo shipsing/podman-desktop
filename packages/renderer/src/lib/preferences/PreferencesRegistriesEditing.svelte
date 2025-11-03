@@ -180,24 +180,26 @@ async function loginToRegistry(registry: containerDesktopAPI.Registry): Promise<
   // if we happen to get a certificate verification issue, as the user if they would like to
   // continue with the registry anyway.
   try {
-    await window.checkImageCredentials(registry);
+    await window.checkImageCredentials($state.snapshot(registry));
   } catch (error) {
     if (
       error instanceof Error &&
       (error.message.includes('unable to verify the first certificate') ||
         error.message.includes('self signed certificate in certificate chain'))
     ) {
+      showNewRegistryForm = false;
       const result = await window.showMessageBox({
         title: 'Invalid Certificate',
         type: 'warning',
         message: 'The certificate for this registry is not trusted / verifiable. Would you like to still add it?',
         buttons: ['Yes', 'Cancel'],
       });
-      if (result && result.response === 0) {
+      if (result?.response === 0) {
         registry.insecure = true;
       } else {
         setErrorResponse(registry.serverUrl, error.message);
         loggingIn = false;
+        showNewRegistryForm = true;
         return;
       }
     }
@@ -370,7 +372,7 @@ async function removeExistingRegistry(registry: containerDesktopAPI.Registry): P
           </div>
         </div>
         <div class="flex flex-row-reverse w-full pb-3 -mt-2">
-          <span class="w-2/3 pl-4 font-bold">
+          <span role="alert" class="w-2/3 pl-4 font-bold" aria-label="Error Message Content">
             {#if originRegistries.some(r => r.serverUrl === registry.serverUrl)}
               {errorResponses.find(o => o.serverUrl === registry.serverUrl)?.error ?? ''}
             {/if}
@@ -439,7 +441,7 @@ async function removeExistingRegistry(registry: containerDesktopAPI.Registry): P
           </div>
           <div class="flex flex-row w-full pb-3 -mt-2 pl-10">
             {#if listedSuggestedRegistries[i]}
-              <span class="font-bold whitespace-pre-line">
+              <span role='alert' class="font-bold whitespace-pre-line" aria-label="Error Message Content">
                 {errorResponses.find(o => o.serverUrl === newRegistryRequest.serverUrl)?.error ?? ''}
               </span>
             {/if}

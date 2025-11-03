@@ -25,17 +25,18 @@ import type * as containerDesktopAPI from '@podman-desktop/api';
 import { app } from 'electron';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import type { PodInspectInfo } from '/@/plugin/api/pod-info.js';
 import type { Certificates } from '/@/plugin/certificates.js';
 import type { ContributionManager } from '/@/plugin/contribution-manager.js';
 import type { KubeGeneratorRegistry } from '/@/plugin/kubernetes/kube-generator-registry.js';
 import { NavigationManager } from '/@/plugin/navigation/navigation-manager.js';
 import type { WebviewRegistry } from '/@/plugin/webview/webview-registry.js';
 import type { ContributionInfo } from '/@api/contribution-info.js';
+import type { IDisposable } from '/@api/disposable.js';
 import { ExtensionLoaderSettings } from '/@api/extension-loader-settings.js';
 import type { BuildImageOptions as InternalBuildImageOptions } from '/@api/image-info.js';
 import { NavigationPage } from '/@api/navigation-page.js';
 import type { OnboardingInfo } from '/@api/onboarding.js';
+import type { PodInspectInfo } from '/@api/pod-info.js';
 import type { WebviewInfo } from '/@api/webview-info.js';
 
 import { getBase64Image } from '../../util.js';
@@ -68,7 +69,6 @@ import type { NotificationRegistry } from '../tasks/notification-registry.js';
 import { type ProgressImpl, ProgressLocation } from '../tasks/progress-impl.js';
 import type { Telemetry } from '../telemetry/telemetry.js';
 import type { TrayMenuRegistry } from '../tray-menu-registry.js';
-import type { IDisposable } from '../types/disposable.js';
 import { Disposable } from '../types/disposable.js';
 import { Uri } from '../types/uri.js';
 import { Exec } from '../util/exec.js';
@@ -579,6 +579,28 @@ test('Verify extension activate with a long timeout is flagged as error', async 
     'Extension extension.id activation timed out after 1 seconds',
   );
   expect(extensionLoader.getExtensionState().get(id)).toBe('failed');
+});
+
+test('Verify extension load triggers an onDidChange event', async () => {
+  const id = 'extension.foo';
+  const onDidChangeMock: (e: void) => unknown = vi.fn();
+  extensionLoader.onDidChange(onDidChangeMock);
+  const analyzedExtension: AnalyzedExtension = {
+    id: id,
+    name: 'id',
+    path: 'dummy',
+    api: {} as typeof containerDesktopAPI,
+    mainPath: '',
+    removable: false,
+    devMode: false,
+    manifest: {},
+    subscriptions: [],
+    readme: '',
+    dispose: vi.fn(),
+  };
+  expect(onDidChangeMock).not.toHaveBeenCalled();
+  await extensionLoader.activateExtension(analyzedExtension, {});
+  expect(onDidChangeMock).toHaveBeenCalled();
 });
 
 test('Verify extension load', async () => {
@@ -1451,6 +1473,7 @@ describe('Navigation', async () => {
       page: NavigationPage.VOLUME,
       parameters: {
         name: 'valid-name',
+        engineId: 'valid-engine',
       },
     });
 
@@ -2678,7 +2701,7 @@ test('ExtensionLoader async dispose should stop all extensions', async () => {
   expect(activateMock).toHaveBeenCalledOnce();
   expect(deactivateMock).not.toHaveBeenCalled();
 
-  await extensionLoader[Symbol.asyncDispose]();
+  await extensionLoader.asyncDispose();
 
   expect(deactivateMock).toHaveBeenCalledOnce();
 });

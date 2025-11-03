@@ -27,14 +27,30 @@ import * as extensionApi from '@podman-desktop/api';
 import { Mutex } from 'async-mutex';
 import { compareVersions } from 'compare-versions';
 
+import {
+  CLEANUP_REQUIRED_MACHINE_KEY,
+  CREATE_WSL_MACHINE_OPTION_SELECTED_KEY,
+  PODMAN_DOCKER_COMPAT_ENABLE_KEY,
+  PODMAN_MACHINE_CPU_SUPPORTED_KEY,
+  PODMAN_MACHINE_DISK_SUPPORTED_KEY,
+  PODMAN_MACHINE_EDIT_CPU,
+  PODMAN_MACHINE_EDIT_DISK_SIZE,
+  PODMAN_MACHINE_EDIT_MEMORY,
+  PODMAN_MACHINE_EDIT_ROOTFUL,
+  PODMAN_MACHINE_MEMORY_SUPPORTED_KEY,
+  PODMAN_PROVIDER_LIBKRUN_SUPPORTED_KEY,
+  ROOTFUL_MACHINE_INIT_SUPPORTED_KEY,
+  START_NOW_MACHINE_INIT_SUPPORTED_KEY,
+  USER_MODE_NETWORKING_SUPPORTED_KEY,
+  WSL_HYPERV_ENABLED_KEY,
+} from '/@/constants';
+import { WinPlatform } from '/@/platforms/win-platform';
+import type { ConnectionJSON, MachineInfo, MachineJSON, MachineJSONListOutput, MachineListOutput } from '/@/types';
+
 import type { PodmanExtensionApi, PodmanRunOptions } from '../../api/src/podman-extension-api';
-import { SequenceCheck } from './checks/base-check';
+import { CertificateDetectionService } from './certificate-detection/certificate-detection-service';
 import { getDetectionChecks } from './checks/detection-checks';
-import { HyperVCheck } from './checks/hyperv-check';
-import { HyperVPodmanVersionCheck } from './checks/hyperv-podman-version-check';
 import { MacKrunkitPodmanMachineCreationCheck, MacPodmanInstallCheck } from './checks/macos-checks';
-import { WSLVersionCheck } from './checks/wsl-version-check';
-import { WSL2Check } from './checks/wsl2-check';
 import { PodmanCleanupMacOS } from './cleanup/podman-cleanup-macos';
 import { PodmanCleanupWindows } from './cleanup/podman-cleanup-windows';
 import { KrunkitHelper } from './helpers/krunkit-helper';
@@ -42,6 +58,7 @@ import { PodmanBinaryLocationHelper } from './helpers/podman-binary-location-hel
 import { PodmanInfoHelper } from './helpers/podman-info-helper';
 import { QemuHelper } from './helpers/qemu-helper';
 import { WslHelper } from './helpers/wsl-helper';
+import { InversifyBinding } from './inject/inversify-binding';
 import { PodmanInstall } from './installer/podman-install';
 import { PodmanRemoteConnections } from './remote/podman-remote-connections';
 import { getSocketCompatibility } from './utils/compatibility-mode';
@@ -64,6 +81,8 @@ import {
   VMTYPE,
 } from './utils/util';
 import { isDisguisedPodman } from './utils/warnings';
+
+let inversifyBinding: InversifyBinding | undefined;
 
 type StatusHandler = (name: string, event: extensionApi.ProviderConnectionStatus) => void;
 
@@ -92,6 +111,11 @@ const containerProviderConnections = new Map<string, extensionApi.ContainerProvi
 // Telemetry
 let telemetryLogger: extensionApi.TelemetryLogger;
 
+let winPlatform: WinPlatform;
+
+let certificateDetectionService: CertificateDetectionService | undefined;
+let certificateDetectionInterval: NodeJS.Timeout | undefined;
+
 const wslHelper = new WslHelper();
 const qemuHelper = new QemuHelper();
 const krunkitHelper = new KrunkitHelper();
@@ -104,55 +128,7 @@ let createWSLMachineOptionSelected = false;
 let wslAndHypervEnabledContextValue = false;
 let wslEnabled = false;
 
-const extensionNotifications = new ExtensionNotifications();
-
-export type MachineJSON = {
-  Name: string;
-  CPUs: number;
-  Memory: string;
-  DiskSize: string;
-  Running: boolean;
-  Starting: boolean;
-  Default: boolean;
-  VMType: string;
-  UserModeNetworking?: boolean;
-  Port: number;
-  RemoteUsername: string;
-  IdentityPath: string;
-};
-
-export type ConnectionJSON = {
-  Name: string;
-  URI: string;
-  Identity: string;
-  IsMachine: boolean;
-  Default: boolean;
-};
-
-export type MachineInfo = {
-  name: string;
-  cpus: number;
-  memory: number;
-  diskSize: number;
-  userModeNetworking: boolean;
-  cpuUsage: number;
-  diskUsage: number;
-  memoryUsage: number;
-  vmType: string;
-  port: number;
-  remoteUsername: string;
-  identityPath: string;
-};
-
-export type MachineListOutput = {
-  stdout: string;
-  stderr: string;
-};
-
-export type MachineJSONListOutput = {
-  list: MachineJSON[];
-  error: string;
-};
+let extensionNotifications: ExtensionNotifications;
 
 export function isIncompatibleMachineOutput(output: string | undefined): boolean {
   // apple HV v4 to v5 machine config error
@@ -1025,28 +1001,16 @@ export async function registerUpdatesIfAny(
   }
 }
 
-export const ROOTFUL_MACHINE_INIT_SUPPORTED_KEY = 'podman.isRootfulMachineInitSupported';
-export const USER_MODE_NETWORKING_SUPPORTED_KEY = 'podman.isUserModeNetworkingSupported';
-export const START_NOW_MACHINE_INIT_SUPPORTED_KEY = 'podman.isStartNowAtMachineInitSupported';
-export const CLEANUP_REQUIRED_MACHINE_KEY = 'podman.needPodmanMachineCleanup';
-export const PODMAN_MACHINE_CPU_SUPPORTED_KEY = 'podman.podmanMachineCpuSupported';
-export const PODMAN_MACHINE_MEMORY_SUPPORTED_KEY = 'podman.podmanMachineMemorySupported';
-export const PODMAN_MACHINE_DISK_SUPPORTED_KEY = 'podman.podmanMachineDiskSupported';
-export const PODMAN_PROVIDER_LIBKRUN_SUPPORTED_KEY = 'podman.isLibkrunSupported';
-export const CREATE_WSL_MACHINE_OPTION_SELECTED_KEY = 'podman.isCreateWSLOptionSelected';
-export const WSL_HYPERV_ENABLED_KEY = 'podman.wslHypervEnabled';
-export const PODMAN_DOCKER_COMPAT_ENABLE_KEY = 'podman.podmanDockerCompatibilityEnabled';
-export const PODMAN_MACHINE_EDIT_CPU = 'podman.podmanMachineEditCPUSupported';
-export const PODMAN_MACHINE_EDIT_MEMORY = 'podman.podmanMachineEditMemorySupported';
-export const PODMAN_MACHINE_EDIT_DISK_SIZE = 'podman.podmanMachineEditDiskSizeSupported';
-export const PODMAN_MACHINE_EDIT_ROOTFUL = 'podman.podmanMachineEditRootfulSupported';
-
 export function initTelemetryLogger(): void {
   telemetryLogger = extensionApi.env.createTelemetryLogger();
 }
 
 export function initExtensionContext(extensionContext: extensionApi.ExtensionContext): void {
   storedExtensionContext = extensionContext;
+}
+
+export function initExtensionNotification(): void {
+  extensionNotifications = new ExtensionNotifications(telemetryLogger);
 }
 
 const currentUpdatesDisposables: extensionApi.Disposable[] = [];
@@ -1276,6 +1240,20 @@ async function exec(args: string[], options?: PodmanRunOptions): Promise<extensi
   return execPodman(args, options?.connection?.connection.vmTypeDisplayName, options);
 }
 
+export async function initInversify(
+  extensionContext: extensionApi.ExtensionContext,
+  telemetryLogger: extensionApi.TelemetryLogger,
+): Promise<{ podmanInstall: PodmanInstall; winPlatform: WinPlatform }> {
+  // create inversify binding for the extension
+  inversifyBinding = new InversifyBinding(extensionContext, telemetryLogger);
+  const inversifyContainer = await inversifyBinding.init();
+
+  const podmanInstall = inversifyContainer.get(PodmanInstall);
+  winPlatform = inversifyContainer.get(WinPlatform);
+
+  return { podmanInstall, winPlatform };
+}
+
 export async function activate(extensionContext: extensionApi.ExtensionContext): Promise<PodmanExtensionApi> {
   stopLoop = false;
 
@@ -1283,7 +1261,13 @@ export async function activate(extensionContext: extensionApi.ExtensionContext):
 
   initTelemetryLogger();
 
-  const podmanInstall = new PodmanInstall(extensionContext, telemetryLogger);
+  initExtensionNotification();
+
+  if (telemetryLogger) {
+    await initializeCertificateDetection(telemetryLogger);
+  }
+
+  const { podmanInstall } = await initInversify(extensionContext, telemetryLogger);
 
   const installedPodman = await getPodmanInstallation();
   const version: string | undefined = installedPodman?.version;
@@ -1396,8 +1380,15 @@ export async function activate(extensionContext: extensionApi.ExtensionContext):
     // Create a modal dialog to ask the user if they want to enable or disable compatibility mode
     const command = extensionApi.commands.registerCommand('podman.socketCompatibilityMode', async () => {
       // Manually check to see if the socket is disguised (this will be called when pressing the status bar item)
-      const isDisguisedPodmanSocket = await isDisguisedPodman();
-
+      let isDisguisedPodmanSocket: boolean;
+      try {
+        isDisguisedPodmanSocket = await isDisguisedPodman();
+      } catch (error: unknown) {
+        telemetryLogger.logError('checkIfSocketDisguisedFailed', { error });
+        console.debug('Error while check if the socket is disguised', error);
+        await extensionApi.window.showInformationMessage('Could not get if Podman is disguised');
+        return;
+      }
       // We use isEnabled() as we do not want to "renable" again if the user has already enabled it.
       if (!isDisguisedPodmanSocket && !socketCompatibilityMode.isEnabled()) {
         const result = await extensionApi.window.showInformationMessage(
@@ -1502,8 +1493,8 @@ export async function start(
   await initCheckAndRegisterUpdate(provider, podmanInstall);
 
   if (version) {
-    wslEnabled = await isWSLEnabled();
-    const isWslAndHyperEnabled = wslEnabled && (await isHyperVEnabled());
+    wslEnabled = await winPlatform.isWSLEnabled();
+    const isWslAndHyperEnabled = wslEnabled && (await winPlatform.isHyperVEnabled());
     updateWSLHyperVEnabledContextValue(isWslAndHyperEnabled);
   }
 
@@ -1772,7 +1763,7 @@ export async function calcPodmanMachineSetting(): Promise<void> {
   let diskSupported = true;
 
   if (extensionApi.env.isWindows) {
-    const isHyperV = await isHyperVEnabled();
+    const isHyperV = await winPlatform.isHyperVEnabled();
     cpuSupported = isHyperV;
     memorySupported = isHyperV;
     diskSupported = isHyperV;
@@ -1832,14 +1823,12 @@ export async function getJSONMachineList(): Promise<MachineJSONListOutput> {
   }
 
   let hypervEnabled = false;
-  if (await isWSLEnabled()) {
-    wslEnabled = true;
+  wslEnabled = await winPlatform.isWSLEnabled();
+  if (wslEnabled) {
     containerMachineProviders.push('wsl');
-  } else {
-    wslEnabled = false;
   }
 
-  if (await isHyperVEnabled()) {
+  if (await winPlatform.isHyperVEnabled()) {
     hypervEnabled = true;
     containerMachineProviders.push('hyperv');
   }
@@ -1881,6 +1870,15 @@ export async function deactivate(): Promise<void> {
   podmanMachinesInfo.clear();
   currentConnections.clear();
   containerProviderConnections.clear();
+
+  await inversifyBinding?.dispose();
+  inversifyBinding = undefined;
+
+  if (certificateDetectionInterval) {
+    clearInterval(certificateDetectionInterval);
+    certificateDetectionInterval = undefined;
+  }
+  certificateDetectionService = undefined;
 }
 
 const PODMAN_MINIMUM_VERSION_FOR_NOW_FLAG_INIT = '4.0.0';
@@ -1935,30 +1933,6 @@ export function isLibkrunSupported(podmanVersion: string): boolean {
 // Set wslEnabled. Used for testing purposes
 export function setWSLEnabled(enabled: boolean): void {
   wslEnabled = enabled;
-}
-
-export async function isWSLEnabled(): Promise<boolean> {
-  if (!extensionApi.env.isWindows) {
-    return false;
-  }
-  const wslCheck = new SequenceCheck('WSL platform', [
-    new WSLVersionCheck(),
-    new WSL2Check(telemetryLogger, storedExtensionContext),
-  ]);
-  const wslCheckResult = await wslCheck.execute();
-  return wslCheckResult.successful;
-}
-
-export async function isHyperVEnabled(): Promise<boolean> {
-  if (!extensionApi.env.isWindows) {
-    return false;
-  }
-  const hyperVCheck = new SequenceCheck('Hyper-V Platform', [
-    new HyperVPodmanVersionCheck(),
-    new HyperVCheck(telemetryLogger),
-  ]);
-  const hyperVCheckResult = await hyperVCheck.execute();
-  return hyperVCheckResult.successful;
 }
 
 export function isPodman5OrLater(podmanVersion: string): boolean {
@@ -2271,4 +2245,29 @@ export function updateWSLHyperVEnabledContextValue(value: boolean): void {
     wslAndHypervEnabledContextValue = value;
     extensionApi.context.setValue(WSL_HYPERV_ENABLED_KEY, value);
   }
+}
+
+async function initializeCertificateDetection(telemetryLogger: extensionApi.TelemetryLogger): Promise<void> {
+  certificateDetectionService = new CertificateDetectionService(telemetryLogger, {
+    enableTelemetry: true,
+  });
+
+  // Initial detection
+  _doDetectCustomCertificates(certificateDetectionService);
+
+  // Set up periodic detection (every 24 hours)
+  certificateDetectionInterval = setInterval(
+    () => {
+      if (certificateDetectionService) {
+        _doDetectCustomCertificates(certificateDetectionService);
+      }
+    },
+    24 * 60 * 60 * 1000,
+  );
+}
+
+function _doDetectCustomCertificates(certificateService: CertificateDetectionService): void {
+  certificateService.detectCustomCertificates().catch((error: unknown) => {
+    console.warn(`Can't detect custom registry certificates: ${error}`);
+  });
 }

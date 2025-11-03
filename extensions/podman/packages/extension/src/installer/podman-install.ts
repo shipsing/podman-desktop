@@ -17,16 +17,22 @@
  ***********************************************************************/
 import * as fs from 'node:fs';
 import { mkdir, readFile } from 'node:fs/promises';
-import * as os from 'node:os';
 import * as path from 'node:path';
 
 import * as extensionApi from '@podman-desktop/api';
 import { compare } from 'compare-versions';
+import { inject, injectable, optional } from 'inversify';
+
+import {
+  PODMAN_PROVIDER_LIBKRUN_SUPPORTED_KEY,
+  ROOTFUL_MACHINE_INIT_SUPPORTED_KEY,
+  START_NOW_MACHINE_INIT_SUPPORTED_KEY,
+  USER_MODE_NETWORKING_SUPPORTED_KEY,
+} from '/@/constants';
+import { ExtensionContextSymbol, ProviderCleanupSymbol, TelemetryLoggerSymbol } from '/@/inject/symbols';
+import { MachineJSON } from '/@/types';
 
 import { getDetectionChecks } from '../checks/detection-checks';
-import { PodmanCleanupMacOS } from '../cleanup/podman-cleanup-macos';
-import { PodmanCleanupWindows } from '../cleanup/podman-cleanup-windows';
-import type { MachineJSON } from '../extension';
 import {
   calcPodmanMachineSetting,
   getJSONMachineList,
@@ -34,10 +40,6 @@ import {
   isRootfulMachineInitSupported,
   isStartNowAtMachineInitSupported,
   isUserModeNetworkingSupported,
-  PODMAN_PROVIDER_LIBKRUN_SUPPORTED_KEY,
-  ROOTFUL_MACHINE_INIT_SUPPORTED_KEY,
-  START_NOW_MACHINE_INIT_SUPPORTED_KEY,
-  USER_MODE_NETWORKING_SUPPORTED_KEY,
 } from '../extension';
 import * as podman5JSON from '../podman5.json';
 import { getBundledPodmanVersion } from '../utils/podman-bundled';
@@ -45,9 +47,7 @@ import type { InstalledPodman } from '../utils/podman-cli';
 import { getPodmanCli, getPodmanInstallation } from '../utils/podman-cli';
 import type { PodmanInfo } from '../utils/podman-info';
 import { PodmanInfoImpl } from '../utils/podman-info';
-import type { Installer } from './installer';
-import { MacOSInstaller } from './mac-os-installer';
-import { WinInstaller } from './win-installer';
+import { Installer } from './installer';
 
 export interface UpdateCheck {
   hasUpdate: boolean;
@@ -55,27 +55,25 @@ export interface UpdateCheck {
   bundledVersion?: string;
 }
 
+@injectable()
 export class PodmanInstall {
   private podmanInfo: PodmanInfo | undefined;
 
-  private installers = new Map<NodeJS.Platform, Installer>();
-
   private readonly storagePath: string;
 
-  protected providerCleanup: extensionApi.ProviderCleanup | undefined;
-
   constructor(
+    @inject(ExtensionContextSymbol)
     readonly extensionContext: extensionApi.ExtensionContext,
+    @inject(TelemetryLoggerSymbol)
     readonly telemetryLogger: extensionApi.TelemetryLogger,
+    @inject(Installer)
+    @optional()
+    readonly installer: Installer | undefined,
+    @inject(ProviderCleanupSymbol)
+    @optional()
+    readonly providerCleanup: extensionApi.ProviderCleanup | undefined,
   ) {
     this.storagePath = extensionContext.storagePath;
-    this.installers.set('win32', new WinInstaller(extensionContext, telemetryLogger));
-    this.installers.set('darwin', new MacOSInstaller());
-    if (extensionApi.env.isMac) {
-      this.providerCleanup = new PodmanCleanupMacOS();
-    } else if (extensionApi.env.isWindows) {
-      this.providerCleanup = new PodmanCleanupWindows();
-    }
   }
 
   public async doInstallPodman(provider: extensionApi.Provider): Promise<void> {
@@ -346,11 +344,11 @@ export class PodmanInstall {
   }
 
   isAbleToInstall(): boolean {
-    return this.installers.has(os.platform());
+    return !!this.installer;
   }
 
   protected getInstaller(): Installer | undefined {
-    return this.installers.get(os.platform());
+    return this.installer;
   }
 
   private async installBundledPodman(): Promise<boolean> {

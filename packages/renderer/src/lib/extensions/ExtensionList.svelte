@@ -22,12 +22,8 @@ let { searchTerm = '' }: Props = $props();
 
 const extensionsUtils = new ExtensionsUtils();
 
-const lowerCaseSearchTerm = $derived(searchTerm.toLowerCase());
-
 const filteredInstalledExtensions: CombinedExtensionInfoUI[] = $derived(
-  $combinedInstalledExtensions.filter(extension => {
-    return `${extension.displayName} ${extension.description}`.toLowerCase().includes(lowerCaseSearchTerm);
-  }),
+  extensionsUtils.filterInstalledExtensions($combinedInstalledExtensions, searchTerm),
 );
 
 let filteredInstalledItems: number = $derived($combinedInstalledExtensions.length - filteredInstalledExtensions.length);
@@ -43,9 +39,7 @@ const enhancedCatalogExtensions: CatalogExtensionInfoUI[] = $derived(
 );
 
 const filteredCatalogExtensions: CatalogExtensionInfoUI[] = $derived(
-  enhancedCatalogExtensions.filter(extension => {
-    return `${extension.displayName} ${extension.shortDescription}`.toLowerCase().includes(lowerCaseSearchTerm);
-  }),
+  extensionsUtils.filterCatalogExtensions(enhancedCatalogExtensions, searchTerm),
 );
 
 let filteredCatalogItems: number = $derived(enhancedCatalogExtensions.length - filteredCatalogExtensions.length);
@@ -56,6 +50,14 @@ function closeModal(): void {
 
 let screen: 'installed' | 'catalog' | 'development' = $state('installed');
 let installManualImageModal: boolean = $state(false);
+
+function changeScreen(newScreen: 'installed' | 'catalog' | 'development'): void {
+  if (screen === newScreen) {
+    return;
+  }
+  screen = newScreen;
+  searchTerm = extensionsUtils.filterTerms(searchTerm).join(' ');
+}
 </script>
 
 <NavPage bind:searchTerm={searchTerm} title="extensions">
@@ -86,19 +88,19 @@ let installManualImageModal: boolean = $state(false);
     <Button
       type="tab"
       on:click={(): void => {
-        screen = 'installed';
+        changeScreen('installed');
       }}
       selected={screen === 'installed'}>Installed</Button>
     <Button
       type="tab"
       on:click={(): void => {
-        screen = 'catalog';
+        changeScreen('catalog');
       }}
       selected={screen === 'catalog'}>Catalog</Button>
       <Button
       type="tab"
       on:click={(): void => {
-        screen = 'development';
+        changeScreen('development');
       }}
       selected={screen === 'development'}>Local Extensions</Button>
  {/snippet}

@@ -16,8 +16,6 @@
  * SPDX-License-Identifier: Apache-2.0
  ***********************************************************************/
 
-import type { PlayYamlRuntime } from './operations';
-
 export interface ContainerInteractiveParams {
   interactive?: boolean;
   attachTerminal?: boolean;
@@ -43,11 +41,22 @@ export interface DeployPodOptions {
   useOpenShiftRoutes?: boolean;
 }
 
-export interface PlayKubernetesOptions {
-  runtime?: PlayYamlRuntime;
-  kubernetesNamespace?: string;
-  kubernetesContext: string;
+export enum PodmanKubePlayOptions {
+  SelectYamlFile,
+  CreateYamlFileFromScratch,
 }
+
+export interface PlayFromScratch {
+  podmanKubePlayOption: PodmanKubePlayOptions.CreateYamlFileFromScratch;
+  jsonResourceDefinition: string;
+}
+
+export interface PlayFromYaml {
+  podmanKubePlayOption: PodmanKubePlayOptions.SelectYamlFile;
+  pathToYaml: string;
+}
+
+export type PlayYamlOptions = PlayFromScratch | PlayFromYaml;
 
 export enum KubernetesResources {
   Nodes = 'Nodes',
@@ -92,4 +101,15 @@ export enum PodmanVirtualizationProviders {
   LibKrun = 'default GPU enabled (LibKrun)',
   Qemu = 'Qemu',
   Native = '', //not a real provider, used for 'Connection Type' check in Resources page of Linux machines
+}
+
+export enum PodmanMachinePrivileges {
+  Rootful = 'rootful',
+  Rootless = 'rootless',
+}
+
+export enum ProxyTypes {
+  Disabled = 'Disabled',
+  Manual = 'Manual',
+  System = 'System',
 }

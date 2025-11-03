@@ -38,7 +38,7 @@ export default defineConfig({
       '/@api/': join(PACKAGE_ROOT, '../api/src') + '/',
     },
   },
-  plugins: [tailwindcss(), svelte({ hot: !process.env.VITEST }), svelteTesting()],
+  plugins: [tailwindcss(), svelte({ configFile: '../../svelte.config.js', hot: !process.env.VITEST }), svelteTesting()],
   optimizeDeps: {
     exclude: ['tinro'],
   },
@@ -53,6 +53,7 @@ export default defineConfig({
         find: /^monaco-editor$/,
         replacement: `${PACKAGE_ROOT}/../../node_modules/monaco-editor/esm/vs/editor/editor.api`,
       },
+      { find: '@floating-ui/dom', replacement: `${PACKAGE_ROOT}/__mocks__/@floating-ui/dom.ts` },
     ],
     deps: {
       inline: ['moment'],

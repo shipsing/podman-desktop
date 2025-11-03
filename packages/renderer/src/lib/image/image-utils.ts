@@ -153,7 +153,7 @@ export class ImageUtils {
             // handle ${} in icon class
             // and interpret the value and replace with the class-name
             const match = contribution.value.icon.match(/\$\{(.*)\}/);
-            if (match && match.length === 2) {
+            if (match?.length === 2) {
               const className = match[1];
               icon = contribution.value.icon.replace(match[0], `podman-desktop-icon-${className}`);
             }
@@ -194,6 +194,7 @@ export class ImageUtils {
           age: this.humanizeAge(imageInfo.Created),
           size: imageInfo.Size,
           humanSize: this.getHumanSize(imageInfo.Size),
+          arch: imageInfo.Arch ?? '',
           name: '<none>',
           engineId: this.getEngineId(imageInfo),
           engineName: this.getEngineName(imageInfo),
@@ -218,6 +219,7 @@ export class ImageUtils {
           age: this.humanizeAge(imageInfo.Created),
           size: imageInfo.Size,
           humanSize: this.getHumanSize(imageInfo.Size),
+          arch: imageInfo.Arch ?? '',
           name: this.getName(repoTag),
           engineId: this.getEngineId(imageInfo),
           engineName: this.getEngineName(imageInfo),

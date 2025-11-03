@@ -2,7 +2,7 @@
   "name": "podman",
   "displayName": "Podman",
   "description": "Integration for Podman and Podman Machines",
-  "version": "1.22.0-next",
+  "version": "1.23.0-next",
   "icon": "icon.png",
   "type": "module",
   "publisher": "podman-desktop",
@@ -115,6 +115,10 @@
         "podman.machine.rootful": {
           "type": "boolean",
           "default": true,
+          "enum": [
+            "rootless",
+            "rootful"
+          ],
           "scope": "ContainerConnection",
           "description": "Machine with root privileges",
           "when": "podman.podmanMachineEditRootfulSupported",
@@ -437,8 +441,9 @@
     "@podman-desktop/api": "workspace:*",
     "async-mutex": "^0.5.0",
     "compare-versions": "^6.1.1",
+    "inversify": "^7.10.4",
     "mustache": "^4.2.0",
-    "ps-list": "^8.1.1",
+    "ps-list": "^9.0.0",
     "smol-toml": "1.4.2",
     "ssh2": "^1.17.0"
   },
@@ -449,11 +454,11 @@
     "adm-zip": "^0.5.16",
     "hasha": "^7.0.0",
     "mkdirp": "^3.0.1",
-    "msw": "^2.11.2",
-    "octokit": "^5.0.3",
+    "msw": "^2.11.6",
+    "octokit": "^5.0.5",
     "sshpk": "^1.18.0",
     "tsx": "^4.20.6",
-    "vite": "^7.1.7",
+    "vite": "^7.1.12",
     "vitest": "^3.2.4"
   }
 }

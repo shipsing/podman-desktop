@@ -840,6 +840,18 @@ declare module '@podman-desktop/api' {
     connection: ContainerProviderConnection;
   }
 
+  export interface ConnectionFactory {
+    type: 'container' | 'kubernetes' | 'vm';
+    providerId: string;
+  }
+
+  export interface ConnectionFactoryDetails extends ConnectionFactory {
+    creationDisplayName?: string;
+    creationButtonTitle?: string;
+    emptyConnectionMarkdownDescription?: string;
+    images?: ProviderImages;
+  }
+
   /**
    * Callback for openning shell session
    */
@@ -1020,6 +1032,18 @@ declare module '@podman-desktop/api' {
     export const onDidUpdateKubernetesConnection: Event<UpdateKubernetesConnectionEvent>;
     export const onDidUnregisterContainerConnection: Event<UnregisterContainerConnectionEvent>;
     export const onDidRegisterContainerConnection: Event<RegisterContainerConnectionEvent>;
+    /**
+     * Fired when a connection factory is set
+     */
+    export const onDidSetConnectionFactory: Event<ConnectionFactoryDetails>;
+    /**
+     * Fired when a connection factory is unset
+     */
+    export const onDidUnsetConnectionFactory: Event<ConnectionFactory>;
+    /**
+     * Returns the current connection factories
+     */
+    export function getConnectionFactories(): ConnectionFactoryDetails[];
     export function getContainerConnections(): ProviderContainerConnection[];
     /**
      * It returns the lifecycle context for the provider connection.
@@ -4895,7 +4919,10 @@ declare module '@podman-desktop/api' {
   export namespace net {
     /**
      * Finds a free port starting from the specified port and returns it.
-     * @param port The starting port number to search for a free port.
+     * @param port The starting port number to search for a free port. Must be between 0 and 65535.
+     *             If less than 1024, it defaults to 9000.
+     * @returns A promise that resolves to a free port number.
+     * @throws Error if the port is invalid (NaN or > 65535) or if no free port is found within the valid range (0-65535).
      */
     export function getFreePort(port: number): Promise<number>;
   }
@@ -4956,6 +4983,8 @@ declare module '@podman-desktop/api' {
      * Navigate to the Edit Provider Container Connection page
      */
     export function navigateToEditProviderContainerConnection(connection: ProviderContainerConnection): Promise<void>;
+
+    export function navigateToCreateProviderConnection(providerId: string): Promise<void>;
 
     /**
      *  Navigate to a specific onboarding page referenced by its extensionId

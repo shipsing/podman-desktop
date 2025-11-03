@@ -33,6 +33,11 @@ const config: Configuration = {
 
 vi.mock('node:fs');
 
+const mockTelemetryLogger: extensionApi.TelemetryLogger = {
+  logUsage: vi.fn(),
+  logError: vi.fn(),
+} as unknown as extensionApi.TelemetryLogger;
+
 beforeEach(() => {
   vi.resetAllMocks();
 });
@@ -140,7 +145,7 @@ describe('macOS: tests for notifying if disguised podman socket fails / passes',
   });
 
   test('when isDisguisedPodman is true, error message should NOT be shown', async () => {
-    const extensionNotifications = new ExtensionNotifications();
+    const extensionNotifications = new ExtensionNotifications(mockTelemetryLogger);
 
     // macOS only
     vi.mocked(extensionApi.env).isMac = true;
@@ -148,7 +153,7 @@ describe('macOS: tests for notifying if disguised podman socket fails / passes',
     vi.mocked(extensionApi.env).isLinux = false;
 
     // Mock "isDisguisedPodman" to return true to indicate a failed socket
-    vi.mocked(isDisguisedPodman).mockImplementation(async () => true);
+    vi.mocked(isDisguisedPodman).mockResolvedValue(true);
 
     await extensionNotifications.checkMacSocket();
 
@@ -160,7 +165,7 @@ describe('macOS: tests for notifying if disguised podman socket fails / passes',
   });
 
   test('when isDisguisedPodman is false, error message should be shown', async () => {
-    const extensionNotifications = new ExtensionNotifications();
+    const extensionNotifications = new ExtensionNotifications(mockTelemetryLogger);
 
     // macOS only
     vi.mocked(extensionApi.env).isMac = true;
@@ -168,7 +173,7 @@ describe('macOS: tests for notifying if disguised podman socket fails / passes',
     vi.mocked(extensionApi.env).isLinux = false;
 
     // Mock "isDisguisedPodman" to return false to indicate a failed socket
-    vi.mocked(isDisguisedPodman).mockImplementation(async () => false);
+    vi.mocked(isDisguisedPodman).mockResolvedValue(false);
 
     await extensionNotifications.checkMacSocket();
 
@@ -187,8 +192,29 @@ describe('macOS: tests for notifying if disguised podman socket fails / passes',
     });
   });
 
+  test('when isDisguisedPodman throws an error, telemetryLogUsageMock should be called with error', async () => {
+    const extensionNotifications = new ExtensionNotifications(mockTelemetryLogger);
+
+    vi.mocked(extensionApi.env).isMac = true;
+    vi.mocked(extensionApi.env).isWindows = false;
+    vi.mocked(extensionApi.env).isLinux = false;
+
+    const error = new Error('test error');
+    vi.mocked(isDisguisedPodman).mockRejectedValue(error);
+
+    await extensionNotifications.checkMacSocket();
+
+    expect(isDisguisedPodman).toBeCalled();
+
+    expect(mockTelemetryLogger.logError).toBeCalledWith(
+      'checkIfSocketDisguisedFailed',
+      expect.objectContaining({ error }),
+    );
+    expect(mockTelemetryLogger.logUsage).not.toBeCalled();
+  });
+
   test('do not show error message OR call function if on linux', async () => {
-    const extensionNotifications = new ExtensionNotifications();
+    const extensionNotifications = new ExtensionNotifications(mockTelemetryLogger);
 
     // linux
     vi.mocked(extensionApi.env).isMac = false;
@@ -204,7 +230,7 @@ describe('macOS: tests for notifying if disguised podman socket fails / passes',
   });
 
   test('do not show error message OR call function if on windows', async () => {
-    const extensionNotifications = new ExtensionNotifications();
+    const extensionNotifications = new ExtensionNotifications(mockTelemetryLogger);
 
     // windows
     vi.mocked(extensionApi.env).isMac = false;
@@ -241,7 +267,8 @@ describe('podman-mac-helper tests', () => {
   });
 
   test('show setup podman mac helper notification if on mac and podman-mac-helper needs running', async () => {
-    const extensionNotifications = new ExtensionNotifications();
+    const extensionNotifications = new ExtensionNotifications(mockTelemetryLogger);
+    vi.mocked(isDisguisedPodman).mockResolvedValue(false);
     await extensionNotifications.checkMacSocket();
 
     await vi.waitFor(() => {
@@ -257,7 +284,7 @@ describe('podman-mac-helper tests', () => {
   });
 
   test('set do not show configuration setting to true, make sure notification is NOT shown', async () => {
-    const extensionNotifications = new ExtensionNotifications();
+    const extensionNotifications = new ExtensionNotifications(mockTelemetryLogger);
 
     // Set configuration to always be true
     // mimicking the 'doNotShow' setting being true

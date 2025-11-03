@@ -73,6 +73,24 @@ export async function setupIngressController(clusterName: string): Promise<void>
   await extensionApi.kubernetes.createResources('kind-' + clusterName, yml);
 }
 
+async function validateAndCheckPort(portName: string, port: number, records: AuditRecord[]): Promise<void> {
+  try {
+    const freePort = await extensionApi.net.getFreePort(port);
+    if (port !== freePort) {
+      records.push({
+        type: 'error',
+        record: `${portName} Port ${port} is not available. Please use next available port ${freePort}.`,
+      });
+    }
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    records.push({
+      type: 'error',
+      record: `Invalid ${portName} Port ${port}.\n${errorMessage}`,
+    });
+  }
+}
+
 export async function connectionAuditor(provider: string, items: AuditRequestItems): Promise<AuditResult> {
   const records: AuditRecord[] = [];
   const auditResult = {
@@ -97,38 +115,42 @@ export async function connectionAuditor(provider: string, items: AuditRequestIte
   }
 
   const httpPort = items['kind.cluster.creation.http.port'];
-  const freeHttpPort = await extensionApi.net.getFreePort(httpPort);
-  if (httpPort !== freeHttpPort) {
-    records.push({
-      type: 'error',
-      record: `HTTP Port ${httpPort} is not available. Please use next available port ${freeHttpPort}.`,
-    });
-  }
-
   const httpsPort = items['kind.cluster.creation.https.port'];
-  const freeHttpsPort = await extensionApi.net.getFreePort(httpsPort);
 
-  if (httpsPort !== freeHttpsPort) {
+  await validateAndCheckPort('HTTP', httpPort, records);
+  await validateAndCheckPort('HTTPS', httpsPort, records);
+
+  if (httpPort === httpsPort) {
     records.push({
       type: 'error',
-      record: `HTTPS Port ${httpsPort} is not available. Please use next available port ${freeHttpsPort}.`,
+      record: `HTTP and HTTPS ports must be different. Currently both are set to ${httpPort}.`,
     });
   }
 
-  const providerSocket = extensionApi.provider
+  const providerSockets = extensionApi.provider
     .getContainerConnections()
-    .find(connection => connection.connection.type === provider);
+    .filter(connection => connection.connection.type === provider);
 
-  if (!providerSocket) return auditResult;
+  if (providerSockets.length === 0) return auditResult;
 
-  const memTotal = await getMemTotalInfo(providerSocket.connection.endpoint.socketPath);
+  // Check if any connection from the list is running
+  const runningConnection = providerSockets.find(connection => connection.connection.status() === 'started');
 
-  // check if configured memory is less than 6GB
-  if (memTotal < 6000000000) {
+  if (!runningConnection) {
     records.push({
-      type: 'info',
-      record: 'It is recommend to install Kind on a virtual machine with at least 6GB of memory.',
+      type: 'error',
+      record: `The ${provider} provider is not running. Please start the ${provider} provider to create a Kind cluster.`,
     });
+  } else {
+    // Only check memory if provider is running
+    const memTotal = await getMemTotalInfo(runningConnection.connection.endpoint.socketPath);
+    // check if configured memory is less than 6GB
+    if (memTotal < 6000000000) {
+      records.push({
+        type: 'info',
+        record: 'It is recommend to install Kind on a virtual machine with at least 6GB of memory.',
+      });
+    }
   }
   return auditResult;
 }

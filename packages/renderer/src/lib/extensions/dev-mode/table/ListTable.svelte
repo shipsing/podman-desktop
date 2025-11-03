@@ -47,6 +47,13 @@ const row = new TableRow<SelectableExtensionDevelopmentFolderInfoUI>({
 
 function deleteSelectedFolders(): void {}
 let bulkDeleteInProgress = false;
+
+function key(extensionFolder: SelectableExtensionDevelopmentFolderInfoUI): string {
+  return extensionFolder.path;
+}
+function label(extensionFolder: SelectableExtensionDevelopmentFolderInfoUI): string {
+  return extensionFolder.name;
+}
 </script>
 
 <Table
@@ -56,6 +63,8 @@ let bulkDeleteInProgress = false;
   {row}
   bind:selectedItemsNumber
   defaultSortColumn="Name"
+  key={key}
+  label={label}
   on:update={(): SelectableExtensionDevelopmentFolderInfoUI[] => (extensionFolderUIInfos = [...extensionFolderUIInfos])}>
 </Table>
 

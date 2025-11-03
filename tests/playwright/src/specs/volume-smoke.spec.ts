@@ -54,7 +54,7 @@ test.afterAll(async ({ runner, page }) => {
   }
 });
 
-test.describe.serial('Volume workflow verification', { tag: '@smoke' }, () => {
+test.describe.serial('Volume workflow verification', { tag: ['@smoke', '@windows_sanity'] }, () => {
   test('Create new Volume', async ({ navigationBar }) => {
     let volumesPage = await navigationBar.openVolumes();
     await playExpect(volumesPage.heading).toBeVisible();
@@ -175,18 +175,20 @@ test.describe.serial('Volume workflow verification', { tag: '@smoke' }, () => {
     //check that four volumes are created (in addition to the existing ones)
     volumesPage = await navigationBar.openVolumes();
     await playExpect(volumesPage.heading).toBeVisible();
-    const newVolumes = await volumesPage.countVolumesFromTable();
-    playExpect(newVolumes - previousVolumes).toBe(4);
+    await playExpect
+      .poll(async () => (await volumesPage.countVolumesFromTable()) - previousVolumes, { timeout: 30_000 })
+      .toBe(4);
 
     //check the container is stopped and delete it
     containers = await navigationBar.openContainers();
     await playExpect(containers.heading).toBeVisible();
 
+    const stopStatusArray = [ContainerState.Stopped, ContainerState.Exited];
+    const stopStatusRegex = new RegExp(`${stopStatusArray.join('|')}`);
+
     const containerDetails = await containers.openContainersDetails(containerToRun);
     await playExpect(containerDetails.heading).toBeVisible({ timeout: 10_000 });
-    await playExpect
-      .poll(async () => containerDetails.getState(), { timeout: 30_000 })
-      .toContain(ContainerState.Exited);
+    await playExpect.poll(async () => containerDetails.getState(), { timeout: 30_000 }).toMatch(stopStatusRegex);
 
     containers = await navigationBar.openContainers();
     await playExpect(containers.heading).toBeVisible();
