@@ -38,7 +38,7 @@ _**Using WinGet**_
 1. Install from the terminal:
 
    ```shell-session
-   > winget install -e --id RedHat.Podman-Desktop
+   > winget install RedHat.Podman-Desktop
    ```
 
 <details>
@@ -108,7 +108,7 @@ Check that your environment has:
 
 #### Procedure: Enable the WSL feature
 
-1. Open the command prompt, and run the following command to enable the WSL feature without installing the default Ubuntu distribution of Linux.
+1. Open the command prompt, and run the following commands to enable the WSL feature without installing the default Ubuntu distribution of Linux.
 
    ```shell-session
    > wsl --update
