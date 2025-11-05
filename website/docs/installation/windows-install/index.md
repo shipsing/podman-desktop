@@ -26,7 +26,7 @@ _**Using the Windows installer**_
 
 1. [Download the Windows installer](/downloads/windows).
 1. Locate the file in the Downloads folder, and double-click on it. The Podman Desktop Setup screen opens.
-1. Select one of the installation options.
+1. Select one of the installation options: `Windows Linux Subsystem (WSLv2)` or `Windows Hyper-V`.
 1. Click **Install**. Wait for the installation to complete.
    ![install button](img/install-button-for-podman-desktop.png)
 1. Click **Finish** to close the screen. The **Get started with Podman Desktop** screen opens.
