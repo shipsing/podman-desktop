@@ -11,9 +11,18 @@ keywords: [podman desktop, containers, podman, installing, installation, windows
 You can install Podman Desktop by using:
 
 - The Windows installer
+- Windows Package Manager (WinGet)
 - Other alternative methods
 
+During Podman installation, ensure to have administrator privileges for the following tasks:
+
+- Installing or updating Windows Subsystem for Linux version 2 (WSL 2) on a single user or all users machine
+- Enabling the WSL feature to allow users to set up Podman
+- Setting up a Podman machine using Hyper-V as the machine provider type
+
 ## Installing Podman Desktop
+
+_**Using the Windows installer**_
 
 1. [Download the Windows installer](/downloads/windows).
 1. Locate the file in the Downloads folder, and double-click on it. The Podman Desktop Setup screen opens.
@@ -22,13 +31,22 @@ You can install Podman Desktop by using:
    ![install button](img/install-button-for-podman-desktop.png)
 1. Click **Finish** to close the screen. The **Get started with Podman Desktop** screen opens.
 
+_**Using WinGet**_
+
+1. [Install the Winget Package manager for Windows](https://aka.ms/getwinget).
+
+1. Install from the terminal:
+
+   ```shell-session
+   > winget install -e --id RedHat.Podman-Desktop
+   ```
+
 <details>
 <summary>
 Alternate installation methods:
 - Silent Windows installer
 - Chocolatey
 - Scoop
-- Winget
 </summary>
 
 #### Silent Windows installer
@@ -62,16 +80,6 @@ Alternate installation methods:
    > scoop install podman-desktop
    ```
 
-#### Winget
-
-1. [Install the Winget Package manager for Windows](https://aka.ms/getwinget).
-
-1. Install from the terminal:
-
-   ```shell-session
-   > winget install -e --id RedHat.Podman-Desktop
-   ```
-
 </details>
 
 ## Installing Podman
@@ -99,8 +107,6 @@ Check that your environment has:
   - On a virtual machine: [Nested Virtualization enabled](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization).
 
 #### Procedure: Enable the WSL feature
-
-If your administrator has already enabled the WSL feature, you can skip the procedure.
 
 1. Open the command prompt, and run the following command to enable the WSL feature without installing the default Ubuntu distribution of Linux.
 
