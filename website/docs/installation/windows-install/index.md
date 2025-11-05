@@ -16,7 +16,7 @@ You can install Podman Desktop by using:
 
 During Podman installation, ensure to have administrator privileges for the following tasks:
 
-- Installing or updating Windows Subsystem for Linux version 2 (WSL 2) on a single user or all users machine
+- Installing or updating Windows Subsystem for Linux version 2 (WSL 2) on a single-user or all-users machine
 - Enabling the WSL feature to allow users to set up Podman
 - Setting up a Podman machine using Hyper-V as the machine provider type
 
