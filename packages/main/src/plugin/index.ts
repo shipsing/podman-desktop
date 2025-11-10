@@ -76,6 +76,8 @@ import type {
   ContainerInfo,
   ImageLoadOptions,
   ImagesSaveOptions,
+  NetworkCreateOptions,
+  NetworkCreateResult,
   SimpleContainerInfo,
   VolumeCreateOptions,
   VolumeCreateResponseInfo,
@@ -751,7 +753,6 @@ export class PluginSystem {
 
     container.bind<ExploreFeatures>(ExploreFeatures).toSelf().inSingletonScope();
     const exploreFeatures = container.get<ExploreFeatures>(ExploreFeatures);
-    await exploreFeatures.init();
 
     // do not wait
     featured.init().catch((e: unknown) => {
@@ -841,6 +842,16 @@ export class PluginSystem {
         removeDNSServers: string[],
       ): Promise<void> => {
         return containerProviderRegistry.updateNetwork(engineId, networkId, addDNSServers, removeDNSServers);
+      },
+    );
+    this.ipcHandle(
+      'container-provider-registry:createNetwork',
+      async (
+        _listener,
+        providerContainerConnectionInfo: ProviderContainerConnectionInfo,
+        options: NetworkCreateOptions,
+      ): Promise<NetworkCreateResult> => {
+        return containerProviderRegistry.createNetwork(providerContainerConnectionInfo, options);
       },
     );
     this.ipcHandle(
@@ -3253,6 +3264,8 @@ export class PluginSystem {
     }
     extensionsUpdater.init().catch((err: unknown) => console.error('Unable to perform extension updates', err));
     autoStartEngine.start().catch((err: unknown) => console.error('Unable to perform autostart', err));
+    await exploreFeatures.init();
+    apiSender.send('explore-features-loaded');
     return this.extensionLoader;
   }
 
