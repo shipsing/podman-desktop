@@ -278,8 +278,8 @@ Kubernetes clusters from cloud providers require an executable installed on the 
 
 Podman Desktop might not connect to Kubernetes or OpenShift clusters that use custom certificates. This happens because the connection requires a specific local Certificate Authority (CA). You may see the following errors in the logs:
 
-- `Error: self-signed certificate in certificate chain`
-- `RequestError: unable to get local issuer certificate`
+- `Error: self signed certificate in certificate chain`
+- `x509: certificate signed by unknown authority`
 
 Podman Desktop might not automatically use certificates from your machine's trust store, even if the CA is already installed on your operating system.
 
@@ -297,8 +297,8 @@ To resolve this, explicitly define the CA for the specific cluster in your Kuber
    apiVersion: v1
    clusters:
    - cluster:
-         certificate-authority: path\to\certs.crt
-         server: https://api.my-cluster.example.com:port-number
+         certificate-authority: /home/user/.kube/my-cluster-ca.crt
+         server: https://api.my-cluster.example.com:6443
       name: my-cluster-alias
    ```
 
