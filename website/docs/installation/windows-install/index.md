@@ -23,6 +23,8 @@ During setup, you can choose from the following installation scopes:
 - Anyone who uses this computer (all users): Installs the application for all users and requires administrative privileges; enter your credentials when prompted.
 - Only for me (Username): Installs the application for the current user only; no administrative privileges required.
 
+#### Procedure
+
 1. [Download the Windows installer](/downloads/windows).
 1. Locate the file in the `Downloads` folder, and double-click it. The **Podman Desktop Setup** screen opens.
 1. Select whether to install the application for all users or only for the current user.
@@ -110,7 +112,7 @@ Check that your environment meets the following requirements:
   - All editions: Windows 10 Build 19043 or later, or Windows 11
   - Enable [nested virtualization](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization) on a virtual machine.
 
-#### Procedure: Enable the WSL feature
+#### Procedure
 
 1. Run the following commands to enable the WSL feature without installing the default Ubuntu distribution of Linux:
 
@@ -150,7 +152,7 @@ Check that your environment meets the following requirements:
   - Pro or Enterprise edition: Windows 10 Build 19043 or later, or Windows 11
   - Enable [nested virtualization](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization) on a virtual machine.
 
-#### Procedure: Enable the Hyper-V feature
+#### Procedure
 
 1. Run the following command to enable the Hyper-V feature:
 
@@ -186,7 +188,7 @@ Check that your environment meets the following requirements:
 
 ### Install Podman Desktop dependencies
 
-When the Podman Desktop installation completes, the **Get started with Podman Desktop** screen opens. This screen helps you to start the onboarding process. You can use it to install Podman, the `kubectl` CLI, and the `compose` CLI. Alternatively, you can completely skip this onboarding setup. You can always complete the setup later by using one of the following ways:
+When the Podman Desktop installation completes, the **Get started with Podman Desktop** screen opens. This screen helps you to start the onboarding process. Alternatively, you can completely skip this onboarding setup. You can always complete the setup later by using one of the following ways:
 
 - Use the **Set up** button in the notification on the **Dashboard** page.
 - Use the **Setup Podman** button on the Podman tile, located on the **Settings > Resources** page.
@@ -197,7 +199,7 @@ When the Podman Desktop installation completes, the **Get started with Podman De
 1. Perform the following steps to install Podman:
    1. Click **Next**. A confirmation notification opens.
    1. Click **Yes**. The **Podman Setup** screen opens with the default WSLv2 virtualization provider selected.
-   1. Optional: If you want to use the Windows Hyper-V provider, select the other option.
+   1. Optional: Select the **Windows Hyper-V** provider when needed.
    1. Click **Install**. A notification stating **Installation Successfully Completed** appears on the screen.
       ![install button for Podman](img/install-podman-through-installer.png)
    1. Click **Close**. A page notifying that Podman is set up correctly opens.

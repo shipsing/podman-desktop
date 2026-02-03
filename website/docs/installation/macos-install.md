@@ -27,7 +27,7 @@ You can install Podman Desktop on macOS by using:
 
 ## Installing Podman Desktop using the .dmg file: Recommended
 
-The **Get started with Podman Desktop** screen helps you to start the onboarding process. You can use it to install Podman, the `kubectl` CLI, and the `compose` CLI. Alternatively, you can completely skip this onboarding setup. You can always complete the setup later by using one of the following ways:
+The **Get started with Podman Desktop** screen helps you to start the onboarding process. Alternatively, you can completely skip this onboarding setup. You can always complete the setup later by using one of the following ways:
 
 - Use the **Set up** button in the notification on the **Dashboard** page.
 - Use the **Setup Podman** button on the Podman tile, located on the **Settings > Resources** page.
