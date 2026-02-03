@@ -110,7 +110,7 @@ Check that your environment meets the following requirements:
   - Administrator privileges for the Windows user.
   - Windows 64bit.
   - All editions: Windows 10 Build 19043 or later, or Windows 11
-  - Enable [nested virtualization](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization) on a virtual machine.
+  - Enable [nested virtualization](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization) if you are running Windows as a VM on a host hypervisor.
 
 #### Procedure
 
@@ -150,7 +150,7 @@ Check that your environment meets the following requirements:
   - Administrator privileges for the Windows user.
   - Windows 64bit.
   - Pro or Enterprise edition: Windows 10 Build 19043 or later, or Windows 11
-  - Enable [nested virtualization](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization) on a virtual machine.
+  - Enable [nested virtualization](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization) if you are running Windows as a VM on a host hypervisor.
 
 #### Procedure
 
