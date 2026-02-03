@@ -18,6 +18,11 @@ You can install Podman Desktop by using:
 
 _**Using the Windows installer**_
 
+During setup, you can choose from the following installation scopes:
+
+- Anyone who uses this computer (all users): Installs the application for all users and requires administrative privileges; enter your credentials when prompted.
+- Only for me (Username): Installs the application for the current user only; no administrative privileges required.
+
 1. [Download the Windows installer](/downloads/windows).
 1. Locate the file in the `Downloads` folder, and double-click it. The **Podman Desktop Setup** screen opens.
 1. Select whether to install the application for all users or only for the current user.
