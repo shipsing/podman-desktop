@@ -81,21 +81,18 @@ Alternate installation methods:
 
 </details>
 
-- After enabling the machine provider on Windows, follow the instructions in [Install Podman Desktop dependencies](#procedure-install-podman-desktop-dependencies).
-
 ## Installing Podman
 
 On Windows, running the Podman container engine requires a Linux distribution to run in a virtual machine. You can use Windows Subsystem for Linux version 2 (WSL 2) or Hyper-V as the machine provider.
 
 During Podman installation, ensure that you have administrator privileges for the following tasks:
 
-- Enable the WSL or Hyper-V feature to allow users to set up Podman.
-- Set up a Podman machine using Hyper-V as the machine provider type.
-- Install or update Windows Subsystem for Linux version 2 (WSL 2) or Hyper-V
+- Enable the WSL or Hyper-V feature.
+- Create a Hyper-V Podman machine.
 
 ### Use WSL2 as machine provider
 
-Podman Desktop helps you to create a [Windows Subsystem for Linux version 2 (WSL 2)](https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2) virtual machine, also known as the Podman machine. The major benefits are:
+Podman Desktop creates a [Windows Subsystem for Linux version 2 (WSL 2)](https://learn.microsoft.com/en-us/windows/wsl/about#what-is-wsl-2) virtual machine, also known as the Podman machine. The major benefits are:
 
 - Ease of use.
 - WSL 2 native virtualization performance.
@@ -110,7 +107,7 @@ Check that your environment meets the following requirements:
 - Required WSL 2 prerequisites:
   - Administrator privileges for the Windows user.
   - Windows 64bit.
-  - Windows 10 Build 19043 or greater, or Windows 11
+  - All editions: Windows 10 Build 19043 or later, or Windows 11
   - Enable [nested virtualization](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization) on a virtual machine.
 
 #### Procedure: Enable the WSL feature
@@ -150,7 +147,7 @@ Check that your environment meets the following requirements:
 - Required Hyper-V prerequisites:
   - Administrator privileges for the Windows user.
   - Windows 64bit.
-  - Windows 10 Build 19043 or greater, or Windows 11
+  - Pro or Enterprise edition: Windows 10 Build 19043 or later, or Windows 11
   - Enable [nested virtualization](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/nested-virtualization#configure-nested-virtualization) on a virtual machine.
 
 #### Procedure: Enable the Hyper-V feature

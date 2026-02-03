@@ -8,8 +8,6 @@ keywords: [podman desktop, containers, podman, installing, installation, macOS]
 
 # MacOS
 
-## Prerequisites
-
 :::info[Prerequisite]
 Podman Desktop requires the [Podman engine](https://docs.podman.io/en/latest/index.html). If you do not have the Podman engine installed, Podman Desktop will prompt you to do so when you open it.
 :::
